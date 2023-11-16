@@ -9,6 +9,7 @@ import TemplateProvider from './providers/TemplateProvider';
 import SoundProvider from './providers/SoundProvider';
 import StadiumScene from './WebGL/Scene/components/StadiumScene/StadiumScene';
 import Transition from './WebGL/Scene/components/shared/Transition/Transition';
+import AnchorScene from './WebGL/Scene/components/AnchorScene/AnchorScene';
 
 function App() {
   const project = getProject('Template', { state });
@@ -20,7 +21,7 @@ function App() {
         <span className="overlay"></span>
         <header>
           <a href="" className="logo">
-            <img src="/public/img/martell_logo.png" alt="" />
+            <img src="/img/martell_logo.png" alt="" />
           </a>
         </header>
       </div>
@@ -41,14 +42,9 @@ function App() {
               <SheetProvider sheet={globalSheet}>
                 <Transition />
                 <Routes>
-                  {/* <Route index path="/" element={<TestMap />} /> */}
                   <Route index path="/" element={<StadiumScene />} />
-                  {/*<Route path="/spline" element={<AlambicScene/>} />*/}
-                  {/* <Route path="/curve" element={<TestAnchor />} /> */}
-                  {/* <Route
-                    path="/voxel"
-                    element={<ParticuleScene loadedModels={modelURLs} />}
-                  /> */}
+                  <Route path="/anchor" element={<AnchorScene />} />
+                  <Route from="*" to="/" />
                 </Routes>
               </SheetProvider>
             </Router>
