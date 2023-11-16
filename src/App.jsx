@@ -9,7 +9,7 @@ import TemplateProvider from './providers/TemplateProvider';
 import SoundProvider from './providers/SoundProvider';
 import StadiumScene from './WebGL/Scene/components/StadiumScene/StadiumScene';
 import Transition from './WebGL/Scene/components/shared/Transition/Transition';
-import AnchorScene from './WebGL/Scene/components/AnchorScene/AnchorScene';
+import AnchorScene from './WebGL/Scene/components/AnchorScene/AnchorScene.jsx';
 
 function App() {
   const project = getProject('Template', { state });
@@ -30,12 +30,12 @@ function App() {
         style={{
           height: '100vh',
           position: 'fixed',
-          background: 'white ',
+          background: '#000000 ',
           top: 0,
         }}
         gl={{ preserveDrawingBuffer: true }}
       >
-        <Leva hidden></Leva>
+        {/* <Leva ></Leva> */}
         <TemplateProvider project={project}>
           <SoundProvider>
             <Router>
