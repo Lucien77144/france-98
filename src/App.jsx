@@ -7,6 +7,8 @@ import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import TemplateProvider from './providers/TemplateProvider';
 import SoundProvider from './providers/SoundProvider';
+import StadiumScene from './WebGL/Scene/components/StadiumScene/StadiumScene';
+import Transition from './WebGL/Scene/components/shared/Transition/Transition';
 
 function App() {
   const project = getProject('Template', { state });
@@ -18,7 +20,7 @@ function App() {
         <span className="overlay"></span>
         <header>
           <a href="" className="logo">
-            <img src="/img/martell_logo.png" alt="" />
+            <img src="/public/img/martell_logo.png" alt="" />
           </a>
         </header>
       </div>
@@ -40,13 +42,13 @@ function App() {
                 <Transition />
                 <Routes>
                   {/* <Route index path="/" element={<TestMap />} /> */}
-                  <Route index path="/" element={<VolumetricLight />} />
+                  <Route index path="/" element={<StadiumScene />} />
                   {/*<Route path="/spline" element={<AlambicScene/>} />*/}
-                  <Route path="/curve" element={<TestAnchor />} />
-                  <Route
+                  {/* <Route path="/curve" element={<TestAnchor />} /> */}
+                  {/* <Route
                     path="/voxel"
                     element={<ParticuleScene loadedModels={modelURLs} />}
-                  />
+                  /> */}
                 </Routes>
               </SheetProvider>
             </Router>

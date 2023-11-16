@@ -3,6 +3,11 @@ import * as THREE from 'three';
 
 export const SoundContext = createContext(null);
 
+/**
+ * Sound provider
+ * @param {Object} children Children of the provider
+ * @returns
+ */
 function SoundProvider({ children }) {
   const audioLoader = useRef(new THREE.AudioLoader());
   const audioListener = useRef(new THREE.AudioListener());
@@ -10,13 +15,13 @@ function SoundProvider({ children }) {
     mapScene: {
       ambient: {
         audio: null,
-        source: '/audio/examples/bass.mp3',
+        source: '/src/assets/audio/bass.mp3',
       },
     },
     splineScene: {
       ambient: {
         audio: null,
-        source: '/audio/examples/paris.mp3',
+        source: '/src/assets/audio/paris.mp3',
       },
     },
   });
