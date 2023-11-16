@@ -18,12 +18,6 @@ function App() {
   return (
     <div className="mainContainer darkMode">
       <div className="outsideContainer">
-        <span className="overlay"></span>
-        <header>
-          <a href="" className="logo">
-            <img src="/img/martell_logo.png" alt="" />
-          </a>
-        </header>
       </div>
 
       <Canvas

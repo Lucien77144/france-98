@@ -5,7 +5,7 @@ import { useScroll } from '@react-three/drei';
 import InteractGroup from './components/shared/InteractGroup/InteractGroup';
 import AnchorController from './components/shared/RailCamera/AnchorController';
 import RailCameraController from './components/shared/RailCamera/RailCameraController';
-import { TemplateContext } from '../../Providers/TemplateProvider';
+import { TemplateContext } from '../../providers/TemplateProvider';
 
 function SceneManager({
   children,
@@ -49,10 +49,10 @@ function SceneManager({
     if (camChild) {
       setCamComponent(
         React.cloneElement(camChild, {
-          empty: empty,
-          actions: actions,
-          stateAnim: stateAnim,
-          pointerSignOnFocus: pointerSignOnFocus,
+          empty,
+          actions,
+          stateAnim,
+          pointerSignOnFocus,
         })
       );
     }

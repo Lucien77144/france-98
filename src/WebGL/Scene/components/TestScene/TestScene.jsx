@@ -6,6 +6,7 @@ import { TemplateContext } from '../../../../providers/TemplateProvider';
 import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import RailCameraController from '../shared/RailCamera/RailCameraController';
+import DynamicSpotLight from './components/DynamicSpotLight/DynamicSpotLight';
 
 function TestScene() {
   const { camera } = useThree();
@@ -33,7 +34,7 @@ function TestScene() {
   function renderInteractObjects() {
     return (
       <>
-        <e.mesh
+        {/* <e.mesh
           theatreKey={'cube1'}
           position={[planeWidth / 3 - 0.25, 0.25, 0]}
         >
@@ -47,7 +48,7 @@ function TestScene() {
         >
           <boxGeometry args={[0.5, 0.5, 0.5]} />
           <meshBasicMaterial attach="material" color="red" />
-        </e.mesh>
+        </e.mesh> */}
       </>
     );
   }
@@ -71,17 +72,19 @@ function TestScene() {
         focusMechanic={'map'}
         rotationSpeed={100}
         clickHandler={redirectionPage}
+        flyAround={false}
       >
         <PerspectiveCamera makeDefault far={1000} />
         <RailCameraController lookAtPos={[0, 0, 0]}></RailCameraController>
-        <Plane
+        {/* <Plane
           ref={plane}
           args={[5, 5]}
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, 0, 0]}
         >
           <meshBasicMaterial attach="material" color="lightgrey" side={2} />
-        </Plane>
+        </Plane> */}
+        <DynamicSpotLight />
       </SceneManager>
     </ScrollControls>
   );
