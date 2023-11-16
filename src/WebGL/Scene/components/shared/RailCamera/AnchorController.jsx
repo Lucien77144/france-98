@@ -9,13 +9,14 @@ import {
 } from '../../../../Utils/Utils';
 import * as THREE from 'three';
 import { types } from '@theatre/core';
-import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { TemplateContext } from '../../../../../Providers/TemplateProvider';
 
 function AnchorController({
   empty,
   anchorsRef = null,
   actions = null,
   lambda = 10,
+  lookAtPos = null,
   rotationSpeed = 0.0025,
   stateAnim,
   pointerSignOnFocus = null,
@@ -36,6 +37,7 @@ function AnchorController({
     if (empty && empty.current) {
       if (anchorsRef && anchorsRef.current) {
         anchors.current = anchorsRef.current.children;
+        console.log(anchorsRef.current.children);
 
         const anchorsColor = projectRef.current.sheet('global').object(
           'anchorsColor',
@@ -44,7 +46,6 @@ function AnchorController({
             anchor1: types.number(0, { range: [0, 1] }),
             anchor2: types.number(0, { range: [0, 1] }),
             anchor3: types.number(0, { range: [0, 1] }),
-            anchor4: types.number(0, { range: [0, 1] }),
           },
           { reconfigure: true }
         );
@@ -76,11 +77,15 @@ function AnchorController({
         camPosition.current.y,
         camPosition.current.z
       );
-      camera.rotation.set(
-        camRotation.current.x,
-        camRotation.current.y,
-        camRotation.current.z
-      );
+      if (lookAtPos) {
+        camera.lookAt(...lookAtPos);
+      } else {
+        camera.rotation.set(
+          camRotation.current.x,
+          camRotation.current.y,
+          camRotation.current.z
+        );
+      }
     }
   }, []);
 
@@ -94,7 +99,6 @@ function AnchorController({
         itemFocus.current.position.distanceTo(camera.position) >= 5
       ) {
         objToTargetPos(camera, itemFocus.current, delta, lambda);
-        console.log(delta, lambda);
         objectALookAtObjectBWithLerp(
           camera,
           itemFocus.current,
@@ -124,19 +128,33 @@ function AnchorController({
 
   function manageAnchors() {
     if (index.current === indexTarget) {
+      const sign = scrollSign.current;
       if (scrollSign.current !== 0) {
-        const sign = scrollSign.current;
-        setIndexTarget((prev) =>
-          THREE.MathUtils.clamp(prev + sign, 0, anchors.current.length - 1)
+        const nextVal = THREE.MathUtils.clamp(
+          indexTarget + sign,
+          0,
+          anchors.current.length - 1
         );
-        stateAnim.current = 'transition';
-        action.current.paused = false;
-        action.current.timeScale = sign;
+        setIndexTarget((prev) => nextVal);
+        const checkLimit =
+          (index.current == anchors.current.length - 1 &&
+            anchors.current.length - 1 == nextVal) ||
+          0 == nextVal;
+        if (!checkLimit) {
+          stateAnim.current = 'transition';
+          action.current.paused = false;
+          action.current.timeScale = sign;
+        }
       }
     }
   }
 
   function manageTransition(delta) {
+    const wPosAnchor = new THREE.Vector3();
+    anchors.current[indexTarget].getWorldPosition(wPosAnchor);
+    const wPosEmpty = new THREE.Vector3();
+    empty.current.getWorldPosition(wPosEmpty);
+
     if (Math.abs(index.current - indexTarget) === 1) {
       camera.position.set(
         camPosition.current.x,
@@ -144,11 +162,7 @@ function AnchorController({
         camPosition.current.z
       );
       classicCamRot();
-      if (
-        anchors.current[indexTarget].position.distanceTo(
-          empty.current.position
-        ) < 0.1
-      ) {
+      if (wPosAnchor.distanceTo(wPosEmpty) < 0.01) {
         stateAnim.current = 'classic';
         index.current = indexTarget;
         action.current.paused = true;
@@ -158,9 +172,8 @@ function AnchorController({
       objToTargetPos(camera, anchors.current[indexTarget], delta);
       const vec = getVecDirItemToTarget(camera, anchors.current[indexTarget]);
       objToTargetRot(vec, camera, rotationSpeed);
-      if (
-        anchors.current[indexTarget].position.distanceTo(camera.position) < 0.1
-      ) {
+      camera.getWorldPosition(wPosEmpty);
+      if (wPosAnchor.distanceTo(wPosEmpty) < 0.01) {
         stateAnim.current = 'classic';
         index.current = indexTarget;
         action.current.paused = true;
@@ -168,10 +181,6 @@ function AnchorController({
         action.current.time =
           anchors.current[indexTarget].material.color.r *
           action.current.getClip().duration;
-        console.log(
-          anchors.current[indexTarget].material.color.r,
-          getAnimProg()
-        );
       }
     }
   }
@@ -189,11 +198,15 @@ function AnchorController({
     );
   }
   function classicCamRot() {
-    camera.rotation.set(
-      camRotation.current.x,
-      camRotation.current.y,
-      camRotation.current.z
-    );
+    if (lookAtPos) {
+      camera.lookAt(...lookAtPos);
+    } else {
+      camera.rotation.set(
+        camRotation.current.x,
+        camRotation.current.y,
+        camRotation.current.z
+      );
+    }
   }
 
   return <></>;
