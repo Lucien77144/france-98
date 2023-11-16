@@ -5,11 +5,11 @@ import { SheetProvider } from '@theatre/r3f';
 import { getProject } from '@theatre/core';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
-import TemplateProvider from './providers/TemplateProvider';
 import SoundProvider from './providers/SoundProvider';
 import StadiumScene from './WebGL/Scene/components/StadiumScene/StadiumScene';
 import Transition from './WebGL/Scene/components/shared/Transition/Transition';
 import AnchorScene from './WebGL/Scene/components/AnchorScene/AnchorScene';
+import TemplateProvider from './Providers/TemplateProvider';
 
 function App() {
   const project = getProject('Template', { state });
