@@ -6,10 +6,10 @@ import { getProject } from '@theatre/core';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import SoundProvider from './providers/SoundProvider';
-import StadiumScene from './WebGL/Scene/components/StadiumScene/StadiumScene';
 import Transition from './WebGL/Scene/components/shared/Transition/Transition';
 import AnchorScene from './WebGL/Scene/components/AnchorScene/AnchorScene';
-import TemplateProvider from './Providers/TemplateProvider';
+import TemplateProvider from './providers/TemplateProvider';
+import TestScene from './WebGL/Scene/components/TestScene/TestScene';
 
 function App() {
   const project = getProject('Template', { state });
@@ -42,7 +42,7 @@ function App() {
               <SheetProvider sheet={globalSheet}>
                 <Transition />
                 <Routes>
-                  <Route index path="/" element={<StadiumScene />} />
+                  <Route index path="/" element={<TestScene />} />
                   <Route path="/anchor" element={<AnchorScene />} />
                   <Route from="*" to="/" />
                 </Routes>

@@ -7,7 +7,7 @@ import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import RailCameraController from '../shared/RailCamera/RailCameraController';
 
-function StadiumScene() {
+function TestScene() {
   const { camera } = useThree();
   const planeWidth = 3; // J'utilise 3 pour la largeur pour que les cubes soient posés à 1/3 et 2/3
   const plane = useRef();
@@ -87,4 +87,4 @@ function StadiumScene() {
   );
 }
 
-export default StadiumScene;
+export default TestScene;
