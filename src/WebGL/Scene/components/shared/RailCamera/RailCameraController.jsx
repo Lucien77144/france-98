@@ -6,7 +6,7 @@ import {
   objToTargetPos,
 } from '../../../../Utils/Utils';
 import * as THREE from 'three';
-import { TemplateContext } from '../../../../../Providers/TemplateProvider';
+import { TemplateContext } from '../../../../../providers/TemplateProvider';
 
 function RailCameraController({
   empty,

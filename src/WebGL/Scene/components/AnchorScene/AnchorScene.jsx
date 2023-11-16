@@ -82,7 +82,7 @@ function TestAnchor(props) {
               actions={actions}
               focusMechanic={'default'}
             >
-              <ambientLight intensity={0.025} />
+              <ambientLight intensity={0.25} />
               <PerspectiveCamera makeDefault far={1000} />
               <AnchorController
                 anchorsRef={anchors}

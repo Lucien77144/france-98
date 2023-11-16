@@ -9,7 +9,7 @@ import {
 } from '../../../../Utils/Utils';
 import * as THREE from 'three';
 import { types } from '@theatre/core';
-import { TemplateContext } from '../../../../../Providers/TemplateProvider';
+import { TemplateContext } from '../../../../../providers/TemplateProvider';
 
 function AnchorController({
   empty,
