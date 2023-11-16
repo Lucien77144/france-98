@@ -1,11 +1,21 @@
 import React, { createContext, useEffect, useRef, useState } from 'react';
 
 export const TemplateContext = createContext(null);
-
 function TemplateProvider({ children, project }) {
+  /**
+   * Project Ref
+   */
+  const projectRef = useRef(project);
+
+  /**
+   * Transitions
+   */
   const [inAnimTrans, setInAnimTrans] = useState(false);
   const [transEnter, setTransEnter] = useState(false);
-  const [redirectionLink, setRedirectionLink] = useState('/');
+
+  /**
+   * Interactions
+   */
   const [interactSettings, setInteractSettings] = useState({
     distance: 40,
     dotThreshold: 0.95,
@@ -14,27 +24,45 @@ function TemplateProvider({ children, project }) {
     fctIn: 'none',
     fctOut: 'none',
   });
-  const itemFocus = useRef(null);
+  const interactObjs = useRef([]); // Objects that can be interacted with
+  const itemFocus = useRef(null); // Object that is focused
+
+  /**
+   * Redirections
+   */
+  const [redirectionLink, setRedirectionLink] = useState('/');
+
+  /**
+   * Scroll
+   */
   const canScroll = useRef(true);
-  const interactObjs = useRef([]);
-  const projectRef = useRef(project);
-  const scrollTimeout = useRef(null);
   const scrollSign = useRef(0);
-  const lastScrollSign = useRef(0);
-  const handleScroll = (e) => {
+
+  const scrollTimeout = useRef(null); // Local ref
+  const lastScrollSign = useRef(0); // Local ref
+
+  /**
+   * UseEffect functions
+   */
+  const handleScroll = (evt) => {
     if (!itemFocus.current) {
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
-      scrollSign.current = Math.sign(e.deltaY);
+
+      scrollSign.current = Math.sign(evt.deltaY);
       lastScrollSign.current = scrollSign.current;
+
       scrollTimeout.current = setTimeout(() => {
-        console.log("Le scroll s'est arrêté");
+        // console.log("Le scroll s'est arrêté");
         scrollSign.current = 0;
       }, 100);
     }
   };
 
+  /**
+   * Use effect
+   */
   useEffect(() => {
     window.addEventListener('wheel', handleScroll);
 
@@ -46,19 +74,20 @@ function TemplateProvider({ children, project }) {
   return (
     <TemplateContext.Provider
       value={{
-        setTransEnter,
-        setRedirectionLink,
-        setInAnimTrans,
-        setInteractSettings,
+        projectRef,
         transEnter,
         redirectionLink,
         inAnimTrans,
         interactSettings,
         canScroll,
         interactObjs,
-        projectRef,
         itemFocus,
         scrollSign,
+
+        setTransEnter,
+        setRedirectionLink,
+        setInAnimTrans,
+        setInteractSettings,
       }}
     >
       {children}
