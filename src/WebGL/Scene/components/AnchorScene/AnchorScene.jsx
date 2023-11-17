@@ -92,13 +92,8 @@ function TestAnchor(props) {
               {/* <rectAreaLight width={.25} height={.5} intensity={20} rotation={[-Math.PI/2,0,0]} position={[0,0.5,0]} power={.5}> */}
               {/* </rectAreaLight> */}
               <ambientLight intensity={Math.PI / 1.5} />
-
-
-
-
-
-              
               <PerspectiveCamera makeDefault far={1000}/>
+
               <AnchorController
                 anchorsRef={anchors}
                 lookAtPos={[0, 0, 0]}

@@ -21,7 +21,7 @@ function AnchorController({
                             stateAnim,
                             pointerSignOnFocus = null,
                           }) {
-  const camPosition = useRef();
+    const camPosition = useRef();
   const camRotation = useRef();
   const action = useRef();
   const index = useRef(0);
@@ -37,7 +37,6 @@ function AnchorController({
     if (empty && empty.current) {
       if (anchorsRef && anchorsRef.current) {
         anchors.current = anchorsRef.current.children;
-        console.log(anchorsRef.current.children)
 
         const anchorsColor = projectRef.current.sheet('global').object(
             'anchorsColor',
@@ -48,6 +47,7 @@ function AnchorController({
               anchor3: types.number(0, { range: [0, 1] }),
             },
             { reconfigure: true }
+
         );
 
         anchorsColor.onValuesChange((values) => {
@@ -87,7 +87,6 @@ function AnchorController({
             camRotation.current.z
         );
       }
-
     }
   }, []);
 
@@ -142,18 +141,15 @@ function AnchorController({
           action.current.paused = false;
           action.current.timeScale = sign;
         }
-
       }
     }
   }
 
   function manageTransition(delta) {
     const wPosAnchor = new THREE.Vector3();
-    anchors.current[indexTarget].getWorldPosition(wPosAnchor)
-    const wPosEmpty = new THREE.Vector3()
-    empty.current.getWorldPosition(wPosEmpty)
-
-
+    anchors.current[indexTarget].getWorldPosition(wPosAnchor);
+    const wPosEmpty = new THREE.Vector3();
+    empty.current.getWorldPosition(wPosEmpty);
     if (Math.abs(index.current - indexTarget) === 1) {
       camera.position.set(
           camPosition.current.x,
@@ -161,9 +157,7 @@ function AnchorController({
           camPosition.current.z
       );
       classicCamRot();
-      if (
-          wPosAnchor.distanceTo(wPosEmpty) < 0.01
-      ) {
+      if (wPosAnchor.distanceTo(wPosEmpty) < 0.01) {
         stateAnim.current = 'classic';
         index.current = indexTarget;
         action.current.paused = true;
@@ -173,18 +167,15 @@ function AnchorController({
       objToTargetPos(camera, anchors.current[indexTarget], delta);
       const vec = getVecDirItemToTarget(camera, anchors.current[indexTarget]);
       objToTargetRot(vec, camera, rotationSpeed);
-      camera.getWorldPosition(wPosEmpty)
-      if (
-          wPosAnchor.distanceTo(wPosEmpty) < 0.01
-      ) {
+      camera.getWorldPosition(wPosEmpty);
+      if (wPosAnchor.distanceTo(wPosEmpty) < 0.01) {
         stateAnim.current = 'classic';
         index.current = indexTarget;
         action.current.paused = true;
         action.current.timeScale = 0;
         action.current.time =
-            anchors.current[indexTarget].material.color.r *
-            action.current.getClip().duration;
-
+          anchors.current[indexTarget].material.color.r *
+          action.current.getClip().duration;
       }
     }
   }
@@ -210,6 +201,7 @@ function AnchorController({
           camRotation.current.x,
           camRotation.current.y,
           camRotation.current.z
+
       );
     }
   }

@@ -49,10 +49,10 @@ function SceneManager({
     if (camChild) {
       setCamComponent(
         React.cloneElement(camChild, {
-          empty: empty,
-          actions: actions,
-          stateAnim: stateAnim,
-          pointerSignOnFocus: pointerSignOnFocus,
+          empty,
+          actions,
+          stateAnim,
+          pointerSignOnFocus,
         })
       );
     }

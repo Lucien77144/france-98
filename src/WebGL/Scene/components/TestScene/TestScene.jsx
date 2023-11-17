@@ -6,8 +6,9 @@ import { TemplateContext } from '../../../../providers/TemplateProvider';
 import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import RailCameraController from '../shared/RailCamera/RailCameraController';
+import DynamicSpotLight from './components/DynamicSpotLight/DynamicSpotLight';
 
-function StadiumScene() {
+function TestScene() {
   const { camera } = useThree();
   const planeWidth = 3; // J'utilise 3 pour la largeur pour que les cubes soient posés à 1/3 et 2/3
   const plane = useRef();
@@ -33,7 +34,7 @@ function StadiumScene() {
   function renderInteractObjects() {
     return (
       <>
-        <e.mesh
+        {/* <e.mesh
           theatreKey={'cube1'}
           position={[planeWidth / 3 - 0.25, 0.25, 0]}
         >
@@ -47,7 +48,7 @@ function StadiumScene() {
         >
           <boxGeometry args={[0.5, 0.5, 0.5]} />
           <meshBasicMaterial attach="material" color="red" />
-        </e.mesh>
+        </e.mesh> */}
       </>
     );
   }
@@ -71,20 +72,22 @@ function StadiumScene() {
         focusMechanic={'map'}
         rotationSpeed={100}
         clickHandler={redirectionPage}
+        flyAround={false}
       >
         <PerspectiveCamera makeDefault far={1000} />
         <RailCameraController lookAtPos={[0, 0, 0]}></RailCameraController>
-        <Plane
+        {/* <Plane
           ref={plane}
           args={[5, 5]}
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, 0, 0]}
         >
           <meshBasicMaterial attach="material" color="lightgrey" side={2} />
-        </Plane>
+        </Plane> */}
+        <DynamicSpotLight />
       </SceneManager>
     </ScrollControls>
   );
 }
 
-export default StadiumScene;
+export default TestScene;
