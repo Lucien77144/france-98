@@ -29,7 +29,7 @@ function App() {
         }}
         gl={{ preserveDrawingBuffer: true }}
       >
-        <Leva hidden></Leva>
+        {/* <Leva ></Leva> */}
         <TemplateProvider project={project}>
           <SoundProvider>
             <Router>

@@ -6,6 +6,7 @@ import {
   ScrollControls,
   useAnimations,
   useGLTF,
+  Environment,
 } from '@react-three/drei';
 import { editable as e } from '@theatre/r3f';
 import { useThree, useLoader } from '@react-three/fiber';
@@ -14,10 +15,12 @@ import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import AnchorController from '../shared/RailCamera/AnchorController';
 import DynamicSpotLight from './components/DynamicSpotLight/DynamicSpotLight';
+import GlobalFog from './GlobalFog/GlobalFog.jsx';
 
 function TestAnchor(props) {
-  const { camera } = useThree();
+  const { camera, scene } = useThree();
   const group = useRef();
+  const light = useRef();
   const anchors = useRef([]);
   const { nodes, materials, animations } = useGLTF(
     '/src/assets/models/stade.glb'
@@ -32,16 +35,19 @@ function TestAnchor(props) {
 
   useEffect(() => {
     camera.add(audioListener.current);
+    if (light.current) {
+      light.current.add(new THREE.RectAreaLightHelper(light.current));
+    }
     return () => {
       camera.remove(audioListener.current);
     };
   }, [audioScene]);
+
   const matcapTexture = useLoader(
     THREE.TextureLoader,
     '/src/assets/img/spectator.png'
   );
   const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
-  // const material = new THREE.MeshNormalMaterial()
 
   function fctEmpty(ref) {
     return (
@@ -88,10 +94,16 @@ function TestAnchor(props) {
               fctEmpty={fctEmpty}
               interactObjects={renderInteractObjects()}
               actions={actions}
-              focusMechanic={'default'}
             >
-              <ambientLight intensity={0.25} />
+              <Environment
+                files={'/src/assets/img/env2.hdr'}
+                blur={0.15}
+              ></Environment>
+              {/* <rectAreaLight width={.25} height={.5} intensity={20} rotation={[-Math.PI/2,0,0]} position={[0,0.5,0]} power={.5}> */}
+              {/* </rectAreaLight> */}
+              <ambientLight intensity={Math.PI / 1.5} />
               <PerspectiveCamera makeDefault far={1000} />
+
               <AnchorController
                 anchorsRef={anchors}
                 lookAtPos={[0, 0, 0]}
@@ -365,9 +377,9 @@ function TestAnchor(props) {
                 </group>
               </group>
               <DynamicSpotLight
-                position={[-.5, .2, 0]}
+                position={[-0.5, 0.2, 0]}
                 rotation={[0, Math.PI / 2, 0]}
-                scale={.1}
+                scale={0.1}
               />
             </SceneManager>
           </group>
@@ -376,135 +388,4 @@ function TestAnchor(props) {
     </>
   );
 }
-
 export default TestAnchor;
-
-{
-  /*<group name={'anchors'} ref={anchors}>*/
-}
-{
-  /*  <mesh*/
-}
-{
-  /*    name="anchors-0"*/
-}
-{
-  /*    geometry={nodes['anchors-0'].geometry}*/
-}
-{
-  /*    material={materials.Material}*/
-}
-{
-  /*    position={[-46.263, 0, -0.998]}*/
-}
-{
-  /*    rotation={[Math.PI, -1.24, Math.PI]}*/
-}
-{
-  /*    scale={[0.1, 0.1, 0.1]}*/
-}
-{
-  /*    visible={false}*/
-}
-{
-  /*  />*/
-}
-{
-  /*  <mesh*/
-}
-{
-  /*    name="anchors-1"*/
-}
-{
-  /*    geometry={nodes['anchors-1'].geometry}*/
-}
-{
-  /*    material={materials['Material.001']}*/
-}
-{
-  /*    position={[-31.488, 0, 0.771]}*/
-}
-{
-  /*    rotation={[0, -1.535, 0]}*/
-}
-{
-  /*    scale={[0.1, 0.1, 0.1]}*/
-}
-{
-  /*  />*/
-}
-{
-  /*  <mesh*/
-}
-{
-  /*    name="anchors-2"*/
-}
-{
-  /*    geometry={nodes['anchors-2'].geometry}*/
-}
-{
-  /*    material={materials['Material.002']}*/
-}
-{
-  /*    position={[-16.579, 0, 0.136]}*/
-}
-{
-  /*    rotation={[Math.PI, -1.553, Math.PI]}*/
-}
-{
-  /*    scale={[0.1, 0.1, 0.1]}*/
-}
-{
-  /*  ></mesh>*/
-}
-{
-  /*  <mesh*/
-}
-{
-  /*    name="anchors-3"*/
-}
-{
-  /*    geometry={nodes['anchors-3'].geometry}*/
-}
-{
-  /*    material={materials['Material.003']}*/
-}
-{
-  /*    position={[-3.845, 0, 0.21]}*/
-}
-{
-  /*    rotation={[0, -1.492, 0]}*/
-}
-{
-  /*    scale={[0.1, 0.1, 0.1]}*/
-}
-{
-  /*  />*/
-}
-{
-  /*  <mesh*/
-}
-{
-  /*    name="anchors-4"*/
-}
-{
-  /*    geometry={nodes['anchors-4'].geometry}*/
-}
-{
-  /*    material={materials['Material.004']}*/
-}
-{
-  /*    position={[2, 0, 0]}*/
-}
-{
-  /*    rotation={[0, -1.571, 0]}*/
-}
-{
-  /*    scale={[0.1, 0.1, 0.1]}*/
-}
-{
-  /*  />*/
-}
-{
-  /*</group>*/
-}
