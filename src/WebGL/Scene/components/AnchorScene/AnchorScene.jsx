@@ -108,6 +108,7 @@ function TestAnchor(props) {
                 anchorsRef={anchors}
                 lookAtPos={[0, 0, 0]}
               ></AnchorController>
+              <GlobalFog />
               <group name="NurbsPath" />
               <group
                 name="anchors"
@@ -376,11 +377,11 @@ function TestAnchor(props) {
                   />
                 </group>
               </group>
-              <DynamicSpotLight
+              {/* <DynamicSpotLight
                 position={[-0.5, 0.2, 0]}
                 rotation={[0, Math.PI / 2, 0]}
                 scale={0.1}
-              />
+              /> */}
             </SceneManager>
           </group>
         </group>

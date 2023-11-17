@@ -12,16 +12,16 @@ import { TemplateContext } from '../../../../../providers/TemplateProvider.jsx';
 import { types } from '@theatre/core';
 
 function AnchorController({
-                            empty,
-                            anchorsRef = null,
-                            actions = null,
-                            lambda = 10,
-                            lookAtPos = null,
-                            rotationSpeed = 0.0025,
-                            stateAnim,
-                            pointerSignOnFocus = null,
-                          }) {
-    const camPosition = useRef();
+  empty,
+  anchorsRef = null,
+  actions = null,
+  lambda = 10,
+  lookAtPos = null,
+  rotationSpeed = 0.0025,
+  stateAnim,
+  pointerSignOnFocus = null,
+}) {
+  const camPosition = useRef();
   const camRotation = useRef();
   const action = useRef();
   const index = useRef(0);
@@ -31,7 +31,7 @@ function AnchorController({
   const { camera } = useThree();
   const data = useScroll();
   const { projectRef, interactSettings, itemFocus, scrollSign } =
-      useContext(TemplateContext);
+    useContext(TemplateContext);
 
   useEffect(() => {
     if (empty && empty.current) {
@@ -39,15 +39,14 @@ function AnchorController({
         anchors.current = anchorsRef.current.children;
 
         const anchorsColor = projectRef.current.sheet('global').object(
-            'anchorsColor',
-            {
-              anchor0: types.number(0, { range: [0, 1] }),
-              anchor1: types.number(0, { range: [0, 1] }),
-              anchor2: types.number(0, { range: [0, 1] }),
-              anchor3: types.number(0, { range: [0, 1] }),
-            },
-            { reconfigure: true }
-
+          'anchorsColor',
+          {
+            anchor0: types.number(0, { range: [0, 1] }),
+            anchor1: types.number(0, { range: [0, 1] }),
+            anchor2: types.number(0, { range: [0, 1] }),
+            anchor3: types.number(0, { range: [0, 1] }),
+          },
+          { reconfigure: true }
         );
 
         anchorsColor.onValuesChange((values) => {
@@ -73,18 +72,17 @@ function AnchorController({
         action.current = null;
       }
       camera.position.set(
-          camPosition.current.x,
-          camPosition.current.y,
-          camPosition.current.z
+        camPosition.current.x,
+        camPosition.current.y,
+        camPosition.current.z
       );
-      if(lookAtPos) {
+      if (lookAtPos) {
         camera.lookAt(...lookAtPos);
-      }
-      else{
+      } else {
         camera.rotation.set(
-            camRotation.current.x,
-            camRotation.current.y,
-            camRotation.current.z
+          camRotation.current.x,
+          camRotation.current.y,
+          camRotation.current.z
         );
       }
     }
@@ -96,16 +94,16 @@ function AnchorController({
         classicCamPos();
         classicCamRot();
       } else if (
-          stateAnim.current === 'enter' &&
-          itemFocus.current.position.distanceTo(camera.position) >= 5
+        stateAnim.current === 'enter' &&
+        itemFocus.current.position.distanceTo(camera.position) >= 5
       ) {
         objToTargetPos(camera, itemFocus.current, delta, lambda);
         objectALookAtObjectBWithLerp(
-            camera,
-            itemFocus.current,
-            0.11,
-            interactSettings.focusOffset,
-            pointerSignOnFocus.current
+          camera,
+          itemFocus.current,
+          0.11,
+          interactSettings.focusOffset,
+          pointerSignOnFocus.current
         );
       } else if (stateAnim.current === 'exit') {
         objToTargetPos(camera, empty.current, delta, lambda);
@@ -114,9 +112,9 @@ function AnchorController({
           stateAnim.current = 'classic';
         }
       } else if (
-          stateAnim.current === 'transition' &&
-          anchorsRef &&
-          anchorsRef.current
+        stateAnim.current === 'transition' &&
+        anchorsRef &&
+        anchorsRef.current
       ) {
         manageTransition(delta);
       }
@@ -131,12 +129,17 @@ function AnchorController({
     if (index.current === indexTarget) {
       const sign = scrollSign.current;
       if (scrollSign.current !== 0) {
-        const nextVal =  THREE.MathUtils.clamp(indexTarget + sign, 0, anchors.current.length - 1);
-        setIndexTarget((prev) =>
-            nextVal
+        const nextVal = THREE.MathUtils.clamp(
+          indexTarget + sign,
+          0,
+          anchors.current.length - 1
         );
-        const checkLimit = (index.current == anchors.current.length - 1)  && (anchors.current.length - 1 == nextVal) || (0 == nextVal)
-        if(!checkLimit){
+        setIndexTarget((prev) => nextVal);
+        const checkLimit =
+          (index.current == anchors.current.length - 1 &&
+            anchors.current.length - 1 == nextVal) ||
+          0 == nextVal;
+        if (!checkLimit) {
           stateAnim.current = 'transition';
           action.current.paused = false;
           action.current.timeScale = sign;
@@ -152,9 +155,9 @@ function AnchorController({
     empty.current.getWorldPosition(wPosEmpty);
     if (Math.abs(index.current - indexTarget) === 1) {
       camera.position.set(
-          camPosition.current.x,
-          camPosition.current.y,
-          camPosition.current.z
+        camPosition.current.x,
+        camPosition.current.y,
+        camPosition.current.z
       );
       classicCamRot();
       if (wPosAnchor.distanceTo(wPosEmpty) < 0.01) {
@@ -187,21 +190,19 @@ function AnchorController({
       }
     }
     camera.position.set(
-        camPosition.current.x,
-        camPosition.current.y,
-        camPosition.current.z
+      camPosition.current.x,
+      camPosition.current.y,
+      camPosition.current.z
     );
   }
   function classicCamRot() {
-    if(lookAtPos) {
+    if (lookAtPos) {
       camera.lookAt(...lookAtPos);
-    }
-    else{
+    } else {
       camera.rotation.set(
-          camRotation.current.x,
-          camRotation.current.y,
-          camRotation.current.z
-
+        camRotation.current.x,
+        camRotation.current.y,
+        camRotation.current.z
       );
     }
   }
