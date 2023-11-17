@@ -13,13 +13,18 @@ import { TemplateContext } from '../../../../providers/TemplateProvider';
 import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import AnchorController from '../shared/RailCamera/AnchorController';
+import DynamicSpotLight from './components/DynamicSpotLight/DynamicSpotLight';
 
 function TestAnchor(props) {
   const { camera } = useThree();
   const group = useRef();
   const anchors = useRef([]);
-  const { nodes, materials, animations } = useGLTF('/src/assets/models/stade.glb');
-  const { nodes: n2, materials: m2 } = useGLTF('/src/assets/models/supporter.glb');
+  const { nodes, materials, animations } = useGLTF(
+    '/src/assets/models/stade.glb'
+  );
+  const { nodes: n2, materials: m2 } = useGLTF(
+    '/src/assets/models/supporter.glb'
+  );
   const { actions } = useAnimations(animations, group);
 
   const { canScroll } = useContext(TemplateContext);
@@ -31,7 +36,10 @@ function TestAnchor(props) {
       camera.remove(audioListener.current);
     };
   }, [audioScene]);
-  const matcapTexture = useLoader(THREE.TextureLoader, '/src/assets/img/spectator.png');
+  const matcapTexture = useLoader(
+    THREE.TextureLoader,
+    '/src/assets/img/spectator.png'
+  );
   const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
   // const material = new THREE.MeshNormalMaterial()
 
@@ -356,6 +364,11 @@ function TestAnchor(props) {
                   />
                 </group>
               </group>
+              <DynamicSpotLight
+                position={[-.5, .2, 0]}
+                rotation={[0, Math.PI / 2, 0]}
+                scale={.1}
+              />
             </SceneManager>
           </group>
         </group>

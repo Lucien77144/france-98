@@ -24,7 +24,7 @@ function App() {
         style={{
           height: '100vh',
           position: 'fixed',
-          background: 'white ',
+          background: '#ffc400',
           top: 0,
         }}
         gl={{ preserveDrawingBuffer: true }}

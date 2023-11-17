@@ -1,8 +1,8 @@
 varying vec2 vUv;
+varying vec3 vPosition;
 
-uniform sampler2D uSpotLight;
 uniform float uTime;
-uniform vec2 uResolution;
+uniform float uMove;
 
 vec2 random2(vec2 st){
     st = vec2( dot(st,vec2(127.1,311.7)),
@@ -25,18 +25,17 @@ float noise(vec2 st) {
 }
 
 void main() {
-    vec2 uv = vUv;
-    vec2 st = gl_FragCoord.xy / uResolution.xy;
-        st.x *= uResolution.x / uResolution.y;
+    vUv = uv;
+    vPosition = position;
 
-    float t = uTime * .25;
-    st += noise(st * 2.) + t;
+    float time = uTime * .5;
 
-    vec3 color = vec3(1.) * smoothstep(1., 0., noise(st));
+    vPosition.z += cos(noise(vUv * 5. - time));
+    vPosition.z += cos(noise(vUv * 1. - time) * 10.);
+    vPosition.z *= (vUv.x * 1.);
 
-    float mask = texture2D(uSpotLight, uv).r;
-    color = mix(color, vec3(0.), 1. - mask);
+    // vPosition.x *= uMove;
+    // vPosition.z += uMove;
 
-    gl_FragColor = vec4(color, color.r);
-    // gl_FragColor = vec4(color, 1.);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( vPosition, 1.0 );
 }

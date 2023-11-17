@@ -37,6 +37,5 @@ void main() {
     float mask = texture2D(uSpotLight, uv).r;
     color = mix(color, vec3(0.), 1. - mask);
 
-    gl_FragColor = vec4(color, color.r);
-    // gl_FragColor = vec4(color, 1.);
+    gl_FragColor = vec4(vec3(1., 0., 0.), mask.r);
 }

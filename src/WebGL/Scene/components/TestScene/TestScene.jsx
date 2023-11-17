@@ -7,6 +7,7 @@ import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import RailCameraController from '../shared/RailCamera/RailCameraController';
 import DynamicSpotLight from './components/DynamicSpotLight/DynamicSpotLight';
+import Flag from './components/Flag/Flag';
 
 function TestScene() {
   const { camera } = useThree();
@@ -70,7 +71,6 @@ function TestScene() {
         fctEmpty={fctEmpty}
         interactObjects={renderInteractObjects()}
         focusMechanic={'map'}
-        rotationSpeed={100}
         clickHandler={redirectionPage}
         flyAround={false}
       >
@@ -85,6 +85,9 @@ function TestScene() {
           <meshBasicMaterial attach="material" color="lightgrey" side={2} />
         </Plane> */}
         <DynamicSpotLight />
+        {/* <Flag
+          args={[ 10, 6.5, 100, 100 ]}
+        /> */}
       </SceneManager>
     </ScrollControls>
   );

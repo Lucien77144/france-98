@@ -1,61 +1,60 @@
-import { Plane, shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-
+import { Plane, shaderMaterial } from '@react-three/drei';
 import vertexShader from './shaders/vertexShader.vert?raw';
 import fragmentShader from './shaders/fragmentShader.frag?raw';
 import { useRef } from 'react';
 import { extend, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
 
-const SpotMaterial = shaderMaterial(
+const FlagMaterial = shaderMaterial(
   {
     uColor: { value: new THREE.Color('#0ff8f1') },
-    uSpotLight: { value: null },
     uTime: { value: 0 },
+    uMove: { value: 0 },
     uResolution: { value: new THREE.Vector2(0, 0) },
+    uFlagTexture: { value: null },
   },
   vertexShader,
   fragmentShader
 );
-extend({ SpotMaterial });
+extend({ FlagMaterial });
 
-export default function DynamicSpotLight({ position = [0, 0, 0] }) {
-  const spotRef = useRef(null);
+export default function Flag({ position = [0, 0, 0], args = [20, 10] }) {
   const planeRef = useRef(null);
   const materialRef = useRef(null);
 
-  const lightTexture = useLoader(
-    THREE.TextureLoader,
-    '/src/assets/img/spotlight.jpg'
-  );
-
   const { size } = useThree();
 
-  // set the origin of the rotation to left middle :
-  useEffect(() => {
-    planeRef.current.geometry.translate(-10, 0, 0);
-  }, []);
+  const flagTexture = useLoader(
+    THREE.TextureLoader,
+    '/src/assets/img/french-flag.jpg'
+  );
 
   useEffect(() => {
-    materialRef.current.uniforms.uSpotLight.value = lightTexture;
+    materialRef.current.uniforms.uFlagTexture.value = flagTexture;
+  }, [flagTexture]);
+
+  useEffect(() => {
     materialRef.current.uniforms.uResolution.value = new THREE.Vector2(
       size.width,
       size.height
     );
-  }, [lightTexture, size]);
+  }, [size]);
 
-  useFrame(({ camera, clock }) => {
-    // Rotate plane :
-    // planeRef.current.rotation.x += clock.elapsedTime * 0.001;
-    // planeRef.current.rotation.y += clock.elapsedTime * 0.001;
-
+  useFrame(({ clock }) => {
     // Update time uniform :
     materialRef.current.uniforms.uTime.value = clock.elapsedTime;
+    materialRef.current.uniforms.uMove.value = Math.cos(clock.elapsedTime);
   });
 
   return (
-    <Plane ref={planeRef} position={position} args={[20, 10]}>
-      <spotMaterial
+    <Plane
+      ref={planeRef}
+      position={position}
+      args={args}
+      rotation={[0, Math.PI / 2, 0]}
+    >
+      <flagMaterial
         attach="material"
         ref={materialRef}
         transparent={true}

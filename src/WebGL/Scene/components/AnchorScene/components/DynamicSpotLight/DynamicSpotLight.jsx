@@ -1,4 +1,4 @@
-import { Plane, shaderMaterial } from '@react-three/drei';
+import { Box, Plane, shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
 import vertexShader from './shaders/vertexShader.vert?raw';
@@ -19,7 +19,11 @@ const SpotMaterial = shaderMaterial(
 );
 extend({ SpotMaterial });
 
-export default function DynamicSpotLight({ position = [0, 0, 0] }) {
+export default function DynamicSpotLight({
+  position = [0, 0, 0],
+  scale = 1,
+  rotation = [0, 0, 0],
+}) {
   const spotRef = useRef(null);
   const planeRef = useRef(null);
   const materialRef = useRef(null);
@@ -34,6 +38,7 @@ export default function DynamicSpotLight({ position = [0, 0, 0] }) {
   // set the origin of the rotation to left middle :
   useEffect(() => {
     planeRef.current.geometry.translate(-10, 0, 0);
+    planeRef.current.scale.set(scale, scale, scale);
   }, []);
 
   useEffect(() => {
@@ -54,13 +59,21 @@ export default function DynamicSpotLight({ position = [0, 0, 0] }) {
   });
 
   return (
-    <Plane ref={planeRef} position={position} args={[20, 10]}>
-      <spotMaterial
-        attach="material"
-        ref={materialRef}
-        transparent={true}
-        side={THREE.DoubleSide}
-      />
-    </Plane>
+    <group ref={spotRef}>
+      <Box args={[0.025, 0.025, 0.025]} position={position} />
+      <Plane
+        ref={planeRef}
+        position={position}
+        rotation={rotation}
+        args={[20, 10]}
+      >
+        <spotMaterial
+          attach="material"
+          ref={materialRef}
+          transparent={true}
+          side={THREE.DoubleSide}
+        />
+      </Plane>
+    </group>
   );
 }
