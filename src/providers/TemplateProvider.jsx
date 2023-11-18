@@ -19,13 +19,14 @@ function TemplateProvider({ children, project }) {
   const [interactSettings, setInteractSettings] = useState({
     distance: 1000,
     dotThreshold: 0.8,
-    focusDistance: .4,
+    focusDistance: 0.4,
     focusOffset: 0,
     fctIn: 'none',
     fctOut: 'none',
   });
   const interactObjs = useRef([]); // Objects that can be interacted with
   const itemFocus = useRef(null); // Object that is focused
+  const [isFocus, setIsFocus] = useState(false); // Object that is focused
 
   /**
    * Redirections
@@ -83,11 +84,13 @@ function TemplateProvider({ children, project }) {
         interactObjs,
         itemFocus,
         scrollSign,
+        isFocus,
 
         setTransEnter,
         setRedirectionLink,
         setInAnimTrans,
         setInteractSettings,
+        setIsFocus,
       }}
     >
       {children}

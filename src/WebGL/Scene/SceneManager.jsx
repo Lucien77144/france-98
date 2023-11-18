@@ -29,7 +29,7 @@ export default function SceneManager({
   const pointerSignOnFocus = useRef(1);
 
   const [emptyElt, setEmptyElt] = useState();
-  const { interactObjs, itemFocus } = useContext(TemplateContext);
+  const { interactObjs, itemFocus, setIsFocus } = useContext(TemplateContext);
   const [camComponent, setCamComponent] = useState(null);
   const [newChildren, setNewChildren] = useState(null);
   const { pointer } = useThree();
@@ -125,6 +125,8 @@ export default function SceneManager({
 
                 if (directInteract) {
                   itemFocus.current = clickedObject;
+                  setIsFocus(true);
+
                   stateAnim.current = 'enter';
                   pointerSignOnFocus.current = Math.sign(pointer.x);
                   gsap.to(speedRot.current, { value: 0.15, duration: 0.25 });
@@ -136,9 +138,11 @@ export default function SceneManager({
               if (focusMechanic == 'default') {
                 if (itemFocus.current && stateAnim.current == 'enter') {
                   stateAnim.current = 'exit';
+
                   itemFocus.current = null;
+                  setIsFocus(false);
+
                   gsap.to(speedRot.current, { value: 1, duration: 0.25 });
-                  console.log('lipip');
                   onMissHandler && onMissHandler();
                 }
               }

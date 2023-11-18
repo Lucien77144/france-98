@@ -32,7 +32,6 @@ function RailCameraController({
       camRotation.current = empty.current.rotation;
       if (actions) {
         action.current = Object.values(actions)[0];
-        console.log(actions);
         action.current.play().paused = true;
       } else {
         action.current = null;

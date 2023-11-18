@@ -13,8 +13,9 @@ import { useThree, useLoader } from '@react-three/fiber';
 import { TemplateContext } from '../../../../providers/TemplateProvider';
 import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
-import AnchorController from '../shared/RailCamera/AnchorController';
 import GlobalFog from './components/GlobalFog/GlobalFog';
+import RailCameraController from '../shared/RailCamera/RailCameraController';
+import InteractivePoint from '../shared/InteractivePoint/InteractivePoint';
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();
@@ -34,7 +35,7 @@ function TestAnchor(props) {
 
   useEffect(() => {
     camera.add(audioListener.current);
-    
+
     if (light.current) {
       light.current.add(new THREE.RectAreaLightHelper(light.current));
     }
@@ -76,14 +77,16 @@ function TestAnchor(props) {
           <meshStandardMaterial color="hotpink" transparent />
         </e.mesh>
 
-        <mesh
-          name="SPECTATEURS1"
-          castShadow
-          receiveShadow
-          geometry={nodes.SPECTATEURS1.geometry}
-          material={nodes.SPECTATEURS1.material}
-          position={[0, 0.016, 0]}
-        />
+        <group name="SPECTATEURS1">
+          <InteractivePoint position={[0, 0.05, 0]} size={1} />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.SPECTATEURS1.geometry}
+            material={nodes.SPECTATEURS1.material}
+            position={[0, 0.016, 0]}
+          />
+        </group>
       </>
     );
   }
@@ -113,10 +116,11 @@ function TestAnchor(props) {
               <ambientLight intensity={Math.PI / 1.5} />
               <PerspectiveCamera makeDefault far={1000} />
 
-              <AnchorController
-                anchorsRef={anchors}
+              <RailCameraController
+                // anchorsRef={anchors}
                 lookAtPos={[0, 0, 0]}
-              ></AnchorController>
+              ></RailCameraController>
+
               <group name="NurbsPath" />
               <group
                 name="anchors"
@@ -170,6 +174,7 @@ function TestAnchor(props) {
                   rotation={[-Math.PI, 1.555, -Math.PI]}
                 />
               </group>
+
               <group name="STADE1">
                 <group name="STADE1-_1">
                   <mesh

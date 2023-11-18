@@ -25,9 +25,7 @@ export default function DynamicSpotLight() {
   });
 
   return (
-    <Plane ref={planeRef} position={[0, 0, 0]}
-        args={[10, 10]}
-    >
+    <Plane ref={planeRef} position={[0, 0, 0]} args={[10, 10]}>
       <spotMaterial
         attach="material"
         ref={materialRef}
