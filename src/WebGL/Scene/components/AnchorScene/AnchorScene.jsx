@@ -13,8 +13,8 @@ import { useThree, useLoader } from '@react-three/fiber';
 import { TemplateContext } from '../../../../providers/TemplateProvider';
 import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
-import AnchorController from '../shared/RailCamera/AnchorController.jsx';
-import GlobalFog from './GlobalFog/GlobalFog.jsx';
+import AnchorController from '../shared/RailCamera/AnchorController';
+import GlobalFog from './components/GlobalFog/GlobalFog';
 
 function TestAnchor(props) {
   const { camera,scene } = useThree();
