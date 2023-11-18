@@ -7,7 +7,7 @@ import AnchorController from './components/shared/RailCamera/AnchorController.js
 import RailCameraController from './components/shared/RailCamera/RailCameraController';
 import { TemplateContext } from '../../providers/TemplateProvider';
 
-function SceneManager({
+export default function SceneManager({
   children,
   fctEmpty,
   htmlRefs = null,
@@ -61,18 +61,18 @@ function SceneManager({
     const filteredChildren = childArray.filter((child) => child !== camChild);
 
     setNewChildren(filteredChildren);
-
     setEmptyElt(fctEmpty(empty));
 
     // function showPos(){
     //     console.log(empty.current.position.toArray(),data.offset)
     // }
-    //
+
     // window.addEventListener("click", showPos)
     // return () => {
     //     window.removeEventListener("click",showPos)
     // }
   }, [fctEmpty]);
+
   useFrame((state, delta, frame) => {
     if (flyAround) {
       rotationGroup.current.rotation.x =
@@ -80,6 +80,7 @@ function SceneManager({
       rotationGroup.current.rotation.y =
         pointer.x * ((Math.PI / 1800) * speedRot.current.value);
     }
+
     // if(itemFocus.current && rotationObjFocus){
     //     itemFocus.current.rotation.x += Math.sign(pointer.x) *  (Math.PI/1800) ;
     //     itemFocus.current.rotation.y +=  Math.sign(pointer.y) * (Math.PI/1800) ;
@@ -151,5 +152,3 @@ function SceneManager({
     </>
   );
 }
-
-export default SceneManager;

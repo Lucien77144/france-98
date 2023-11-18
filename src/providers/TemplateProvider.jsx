@@ -17,9 +17,9 @@ function TemplateProvider({ children, project }) {
    * Interactions
    */
   const [interactSettings, setInteractSettings] = useState({
-    distance: 40,
-    dotThreshold: 0.95,
-    focusDistance: 6,
+    distance: 1000,
+    dotThreshold: 0.8,
+    focusDistance: .4,
     focusOffset: 0,
     fctIn: 'none',
     fctOut: 'none',

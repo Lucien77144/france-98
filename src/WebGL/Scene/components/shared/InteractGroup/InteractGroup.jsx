@@ -13,6 +13,7 @@ function InteractGroup({ children, groupInteractRef }) {
     color: 0xffffff,
     dithering: true,
   });
+
   const focusMaterial = new THREE.MeshBasicMaterial({
     color: 0xff0000,
     dithering: true,
@@ -44,14 +45,17 @@ function InteractGroup({ children, groupInteractRef }) {
     if (groupInteractRef.current) {
       groupInteractRef.current.children.forEach((child) => {
         const object = child;
-        const [camDir, itemDir, dot] = getVecDirItemToTarget(camera, object);
+        const objectWorldPos = new THREE.Vector3();
         const indexToRemove = interactObjs.current.findIndex(
           (obj) => obj.id === object.id
         );
-        const objWorldPos = new THREE.Vector3();
-        object.getWorldPosition(objWorldPos);
+
+        const [camDir, itemDir, dot] = getVecDirItemToTarget(camera, object);
+
+        object.getWorldPosition(objectWorldPos);
+
         if (
-          objWorldPos.distanceTo(camera.position) <=
+          objectWorldPos.distanceTo(camera.position) <=
             interactSettings.distance &&
           dot > interactSettings.dotThreshold
         ) {
@@ -62,7 +66,6 @@ function InteractGroup({ children, groupInteractRef }) {
       });
     }
   });
-
   return <>{children}</>;
 }
 

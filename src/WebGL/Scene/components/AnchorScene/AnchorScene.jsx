@@ -6,7 +6,7 @@ import {
   ScrollControls,
   useAnimations,
   useGLTF,
-  Environment
+  Environment,
 } from '@react-three/drei';
 import { editable as e } from '@theatre/r3f';
 import { useThree, useLoader } from '@react-three/fiber';
@@ -17,12 +17,16 @@ import AnchorController from '../shared/RailCamera/AnchorController';
 import GlobalFog from './components/GlobalFog/GlobalFog';
 
 function TestAnchor(props) {
-  const { camera,scene } = useThree();
+  const { camera, scene } = useThree();
   const group = useRef();
   const light = useRef();
   const anchors = useRef([]);
-  const { nodes, materials, animations } = useGLTF('/src/assets/models/stade.glb');
-  const { nodes: n2, materials: m2 } = useGLTF('/src/assets/models/supporter.glb');
+  const { nodes, materials, animations } = useGLTF(
+    '/src/assets/models/stade.glb'
+  );
+  const { nodes: n2, materials: m2 } = useGLTF(
+    '/src/assets/models/supporter.glb'
+  );
   const { actions } = useAnimations(animations, group);
 
   const { canScroll } = useContext(TemplateContext);
@@ -30,17 +34,20 @@ function TestAnchor(props) {
 
   useEffect(() => {
     camera.add(audioListener.current);
-    if(light.current){
-      light.current.add(new THREE.RectAreaLightHelper(light.current))
-
+    
+    if (light.current) {
+      light.current.add(new THREE.RectAreaLightHelper(light.current));
     }
     return () => {
       camera.remove(audioListener.current);
     };
   }, [audioScene]);
 
-  const matcapTexture = useLoader(THREE.TextureLoader, '/src/assets/img/spectator.png');
-  const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
+  const matcap = useLoader(
+    THREE.TextureLoader,
+    '/src/assets/img/spectator.png'
+  );
+  const material = new THREE.MeshMatcapMaterial({ matcap });
 
   function fctEmpty(ref) {
     return (
@@ -68,6 +75,15 @@ function TestAnchor(props) {
           <sphereGeometry args={[1, 16, 16]} />
           <meshStandardMaterial color="hotpink" transparent />
         </e.mesh>
+
+        <mesh
+          name="SPECTATEURS1"
+          castShadow
+          receiveShadow
+          geometry={nodes.SPECTATEURS1.geometry}
+          material={nodes.SPECTATEURS1.material}
+          position={[0, 0.016, 0]}
+        />
       </>
     );
   }
@@ -87,12 +103,15 @@ function TestAnchor(props) {
               fctEmpty={fctEmpty}
               interactObjects={renderInteractObjects()}
               actions={actions}
-             >
-              <Environment files={"/src/assets/img/env2.hdr"} blur={0.15}></Environment>
+            >
+              <Environment
+                files={'/src/assets/img/env2.hdr'}
+                blur={0.15}
+              ></Environment>
               {/* <rectAreaLight width={.25} height={.5} intensity={20} rotation={[-Math.PI/2,0,0]} position={[0,0.5,0]} power={.5}> */}
               {/* </rectAreaLight> */}
               <ambientLight intensity={Math.PI / 1.5} />
-              <PerspectiveCamera makeDefault far={1000}/>
+              <PerspectiveCamera makeDefault far={1000} />
 
               <AnchorController
                 anchorsRef={anchors}
@@ -151,14 +170,6 @@ function TestAnchor(props) {
                   rotation={[-Math.PI, 1.555, -Math.PI]}
                 />
               </group>
-              <mesh
-                name="SPECTATEURS1"
-                castShadow
-                receiveShadow
-                geometry={nodes.SPECTATEURS1.geometry}
-                material={nodes.SPECTATEURS1.material}
-                position={[0, 0.016, 0]}
-              />
               <group name="STADE1">
                 <group name="STADE1-_1">
                   <mesh
@@ -366,7 +377,7 @@ function TestAnchor(props) {
                   />
                 </group>
               </group>
-              <GlobalFog></GlobalFog>
+              <GlobalFog />
             </SceneManager>
           </group>
         </group>
