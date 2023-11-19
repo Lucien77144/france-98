@@ -23,7 +23,7 @@ function TestAnchor(props) {
   const light = useRef();
   const anchors = useRef([]);
   const { nodes, materials, animations } = useGLTF(
-    '/src/assets/models/stade.glb'
+    '/src/assets/models/Stade.glb'
   );
   const { nodes: n2, materials: m2 } = useGLTF(
     '/src/assets/models/supporter.glb'
@@ -48,19 +48,18 @@ function TestAnchor(props) {
     THREE.TextureLoader,
     '/src/assets/img/spectator.png'
   );
-  const material = new THREE.MeshMatcapMaterial({ matcap });
+  const material = new THREE.MeshMatcapMaterial({ matcap, side: THREE.DoubleSide });
 
   function fctEmpty(ref) {
     return (
       <mesh
-        ref={ref}
-        name="EMPTY"
-        geometry={nodes.EMPTY.geometry}
-        material={materials.Material}
-        position={[-46.263, 0, -0.998]}
-        rotation={[Math.PI, -1.24, Math.PI]}
-        visible={false}
-      />
+      ref={ref}
+      name="EMPTY"
+      geometry={nodes.EMPTY.geometry}
+      material={nodes.EMPTY.material}
+      position={[-0.623, 1.2, -0.004]}
+      rotation={[0, 0, 1.359]}
+    />
     );
   }
 
@@ -96,8 +95,8 @@ function TestAnchor(props) {
       <ScrollControls
         pages={canScroll.current ? 5 : 0}
         enabled={canScroll}
-        damping={0.33}
-        distance={2}
+        damping={.5}
+        distance={5}
       >
         {/*<e.pointLight theatreKey="Light" position={[10, 10, 10]} intensity={10}/>*/}
         <group ref={group} {...props} dispose={null}>
@@ -118,63 +117,24 @@ function TestAnchor(props) {
 
               <RailCameraController
                 // anchorsRef={anchors}
-                lookAtPos={[0, 0, 0]}
+                // lookAtPos={[0, 0, 0]}
               ></RailCameraController>
 
-              <group name="NurbsPath" />
-              <group
-                name="anchors"
-                position={[-0.03, 0.334, -0.087]}
-                ref={anchors}
-              >
-                <mesh
-                  name="Anchors_1"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Anchors_1.geometry}
-                  material={nodes.Anchors_1.material}
-                  position={[0.919, 0, -0.014]}
-                  rotation={[-Math.PI, 1.555, -Math.PI]}
-                  visible={false}
-                />
-                <mesh
-                  name="Anchors_2"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Anchors_2.geometry}
-                  material={nodes.Anchors_2.material}
-                  position={[-0.017, 0, -1.145]}
-                  rotation={[Math.PI, -0.071, Math.PI]}
-                />
-                <mesh
-                  name="Anchors_3"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Anchors_3.geometry}
-                  material={nodes.Anchors_3.material}
-                  position={[-0.922, 0, 0.015]}
-                  rotation={[0, -1.544, 0]}
-                />
-                <mesh
-                  name="Anchors_4"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Anchors_4.geometry}
-                  material={nodes.Anchors_4.material}
-                  position={[0.02, 0, 1.143]}
-                  rotation={[0, 0.003, 0]}
-                />
-                <mesh
-                  name="Anchors_5"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Anchors_5.geometry}
-                  material={nodes.Anchors_5.material}
-                  position={[0.919, 0, -0.014]}
-                  rotation={[-Math.PI, 1.555, -Math.PI]}
-                />
-              </group>
+          
+              <mesh
+                name="Cage1"
+  
+                geometry={nodes.Cage1.geometry}
+                material={material}
+                position={[0, 0.048, 0.607]}
+              />
+              <mesh
+                name="Cage2"
 
+                geometry={nodes.Cage2.geometry}
+                material={material}
+                position={[0, 0.049, -0.691]}
+              />
               <group name="STADE1">
                 <group name="STADE1-_1">
                   <mesh
@@ -382,6 +342,12 @@ function TestAnchor(props) {
                   />
                 </group>
               </group>
+              <mesh
+          name="Plane"
+
+          geometry={nodes.Plane.geometry}
+          material={material}
+          />
               <GlobalFog />
             </SceneManager>
           </group>
