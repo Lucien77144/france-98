@@ -1,3 +1,4 @@
+import { useScroll } from '@react-three/drei';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 
 export const TemplateContext = createContext(null);
@@ -38,6 +39,8 @@ function TemplateProvider({ children, project }) {
    */
   const canScroll = useRef(true);
   const scrollSign = useRef(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const data = useScroll();
 
   const scrollTimeout = useRef(null); // Local ref
   const lastScrollSign = useRef(0); // Local ref
@@ -85,12 +88,14 @@ function TemplateProvider({ children, project }) {
         itemFocus,
         scrollSign,
         isFocus,
+        scrollPosition,
 
         setTransEnter,
         setRedirectionLink,
         setInAnimTrans,
         setInteractSettings,
         setIsFocus,
+        setScrollPosition,
       }}
     >
       {children}

@@ -42,17 +42,17 @@ export default function InteractivePoint({
     primary: new THREE.Color('#001eff'),
     action: new THREE.Color('#af2bfc'),
   },
-  type = POINT_TYPE.NONE,
   audio = {
     scene: 'stadiumScene',
     context: 'ambient',
   },
+  range = [0, 1],
 }) {
   const materialRef = useRef(null);
   const planeRef = useRef(null);
   const pointRef = useRef(null);
 
-  const { isFocus } = useContext(TemplateContext);
+  const { isFocus, scrollPosition } = useContext(TemplateContext);
   const { audioScene, audioEnd, setAudioEnd } = useContext(SoundContext);
 
   const { clock } = useThree();
@@ -93,13 +93,19 @@ export default function InteractivePoint({
         duration: 0.25,
         value: isFocus ? 0 : 1,
         onComplete: () => {
-          if (isFocus) {
-            pointRef.current.scale.set(0, 0, 0);
-          }
+          isFocus && pointRef.current.scale.set(0, 0, 0);
         },
       });
     }
   }, [isFocus]);
+
+  useEffect(() => {
+    if (scrollPosition > range[0] && scrollPosition < range[1]) {
+      pointRef.current.visible = true;
+    } else {
+      pointRef.current.visible = false;
+    }
+  }, [scrollPosition]);
 
   useEffect(() => {
     if (materialRef?.current) {

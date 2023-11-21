@@ -133,213 +133,6 @@ function TestAnchor(props) {
                 material={material}
                 position={[0, 0.049, -0.691]}
               />
-              <group name="STADE1">
-                <group name="STADE1-_1">
-                  <mesh
-                    name="STADE1-_1001"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001'].geometry}
-                    material={materials['_1.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_1"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_1'].geometry}
-                    material={materials['_2_1.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_2"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_2'].geometry}
-                    material={materials['_11_2.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_3"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_3'].geometry}
-                    material={materials['_12_1.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_4"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_4'].geometry}
-                    material={materials['_11_1.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_5"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_5'].geometry}
-                    material={materials['_11.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_6"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_6'].geometry}
-                    material={materials['_12.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_7"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_7'].geometry}
-                    material={materials['_10.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_8"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_8'].geometry}
-                    material={materials['_14.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_9"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_9'].geometry}
-                    material={materials['_3.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_10"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_10'].geometry}
-                    material={materials['Asphalt_New.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_11"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_11'].geometry}
-                    material={materials['_7.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_12"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_12'].geometry}
-                    material={materials['_Charcoal_.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_13"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_13'].geometry}
-                    material={materials['_6.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_14"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_14'].geometry}
-                    material={materials['__0137_Black__1.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_15"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_15'].geometry}
-                    material={materials['Metal_Aluminum_Anodized.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_16"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_16'].geometry}
-                    material={materials['_2.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_17"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_17'].geometry}
-                    material={materials['_8.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_18"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_18'].geometry}
-                    material={materials['_16.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_19"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_19'].geometry}
-                    material={materials['Material85.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_20"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_20'].geometry}
-                    material={materials['_17.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_21"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_21'].geometry}
-                    material={materials['_0137_Black_.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_22"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_22'].geometry}
-                    material={materials['FrontColor.004']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_23"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_23'].geometry}
-                    material={materials['Color_005.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_24"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_24'].geometry}
-                    material={materials['jean_blue.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_25"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_25'].geometry}
-                    material={materials['Color_006.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_26"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_26'].geometry}
-                    material={materials['Color_002.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_27"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_27'].geometry}
-                    material={materials['_0128_White_.002']}
-                  />
-                  <mesh
-                    name="STADE1-_1001_28"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes['STADE1-_1001_28'].geometry}
-                    material={materials['FrontColor.005']}
-                  />
-                </group>
-              </group>
               <mesh
                 name="Plane"
                 geometry={nodes.Plane.geometry}
@@ -355,15 +148,17 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_02',
                   }}
+                  range={[0, .2]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
-                  size={1}
+                  size={2}
                   position={[0.75, 0.35, 0]}
                   audio={{
                     scene: 'stadiumScene',
                     context: 'track_03',
                   }}
+                  range={[.17, .3]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -373,6 +168,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_04',
                   }}
+                  range={[.25, .4]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -382,6 +178,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_05',
                   }}
+                  range={[.5, .7]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -391,6 +188,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_06',
                   }}
+                  range={[.75, .95]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -400,6 +198,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_07',
                   }}
+                  range={[.9, 1]}
                 />
               </group>
 
