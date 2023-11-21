@@ -34,7 +34,7 @@ function RailCameraController({
         action.current = Object.values(actions)[0];
         action.current.play().paused = true;
       } else {
-        action.current = null;
+        action.current = [0,1,3];
       }
       camera.position.set(
         camPosition.current.x,
@@ -48,7 +48,7 @@ function RailCameraController({
       );
     }
     function showPos() {
-      // console.log(action.current.time)
+      console.log(data.offset)
     }
 
     window.addEventListener('click', showPos);
