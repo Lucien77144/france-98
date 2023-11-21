@@ -26,6 +26,7 @@ const InteractiveMaterial = shaderMaterial(
     uColor: { value: null },
     uPrimaryColor: { value: null },
     uActionColor: { value: null },
+    uPlaying: { value: false },
     uPause: { value: null },
     uPlay: { value: null },
   },
@@ -59,10 +60,7 @@ export default function InteractivePoint({
   const [status, setStatus] = useState('stop');
   const [startTime, setStartTime] = useState(0);
 
-  const playImg = useLoader(
-    THREE.TextureLoader,
-    '/src/assets/img/ui/play.png'
-  );
+  const playImg = useLoader(THREE.TextureLoader, '/src/assets/img/ui/play.png');
   const pauseImg = useLoader(
     THREE.TextureLoader,
     '/src/assets/img/ui/pause.png'
@@ -120,6 +118,7 @@ export default function InteractivePoint({
       case 'stop':
       case 'pause':
         fadeColor('primary', animDuration / 1000);
+        materialRef.current.uniforms.uPlaying.value = false;
 
         setTimeout(() => {
           materialRef.current.uniforms.uProgress.value = 0;
@@ -128,6 +127,7 @@ export default function InteractivePoint({
       case 'play':
       case 'play_intro':
         fadeColor('action', animDuration / 1000);
+        materialRef.current.uniforms.uPlaying.value = true;
         break;
     }
   }, [status]);
