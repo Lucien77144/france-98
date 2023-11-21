@@ -4,7 +4,7 @@ import vertexShader from './shaders/vertexShader.vert?raw';
 import fragmentShader from './shaders/fragmentShader.frag?raw';
 
 import * as THREE from 'three';
-import { extend, useFrame, useThree } from '@react-three/fiber';
+import { extend, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -21,9 +21,13 @@ export const POINT_TYPE = {
 const InteractiveMaterial = shaderMaterial(
   {
     uTime: { value: 0 },
+    uOpacity: { value: 0 },
     uProgress: { value: 0 },
     uColor: { value: null },
-    uOpacity: { value: 0 },
+    uPrimaryColor: { value: null },
+    uActionColor: { value: null },
+    uPause: { value: null },
+    uPlay: { value: null },
   },
   vertexShader,
   fragmentShader
@@ -32,10 +36,10 @@ extend({ InteractiveMaterial });
 
 export default function InteractivePoint({
   position = [0, 0, 0],
-  size = .75,
+  size = 0.75,
   colors = {
     primary: new THREE.Color('#001eff'),
-    active: new THREE.Color('#af2bfc'),
+    action: new THREE.Color('#af2bfc'),
   },
   type = POINT_TYPE.NONE,
   audio = {
@@ -54,6 +58,15 @@ export default function InteractivePoint({
 
   const [status, setStatus] = useState('stop');
   const [startTime, setStartTime] = useState(0);
+
+  const playImg = useLoader(
+    THREE.TextureLoader,
+    '/src/assets/img/ui/play.png'
+  );
+  const pauseImg = useLoader(
+    THREE.TextureLoader,
+    '/src/assets/img/ui/pause.png'
+  );
 
   useFrame(({ camera }) => {
     planeRef.current.lookAt(camera.position);
@@ -92,19 +105,29 @@ export default function InteractivePoint({
 
   useEffect(() => {
     if (materialRef?.current) {
-      materialRef.current.uniforms.uColor.value = colors.active;
+      materialRef.current.uniforms.uColor.value = colors.primary;
+      materialRef.current.uniforms.uPrimaryColor.value = colors.primary;
+      materialRef.current.uniforms.uActionColor.value = colors.action;
+
+      materialRef.current.uniforms.uPlay.value = playImg;
+      materialRef.current.uniforms.uPause.value = pauseImg;
     }
   }, []);
 
   useEffect(() => {
+    const animDuration = 250;
     switch (status) {
       case 'stop':
       case 'pause':
-        fadeColor('primary');
+        fadeColor('primary', animDuration / 1000);
+
+        setTimeout(() => {
+          materialRef.current.uniforms.uProgress.value = 0;
+        }, animDuration);
         break;
       case 'play':
       case 'play_intro':
-        fadeColor('active');
+        fadeColor('action', animDuration / 1000);
         break;
     }
   }, [status]);
@@ -137,7 +160,7 @@ export default function InteractivePoint({
         case 'stop':
           setStatus('play_intro');
 
-          audioScene?.ui?.audio_click?.audio?.play(); // on audio click finished, play the ambient sound :
+          audioScene?.ui?.audio_click?.audio?.play(0); // on audio click finished, play the ambient sound :
           materialRef.current.uniforms.uColor.value = colors.primary;
           break;
         case 'pause':
@@ -154,7 +177,7 @@ export default function InteractivePoint({
 
           audioScene?.ui?.audio_click?.audio?.pause();
           audioScene?.[audio?.scene]?.[audio?.context]?.audio?.pause();
-          materialRef.current.uniforms.uColor.value = colors.active;
+          materialRef.current.uniforms.uColor.value = colors.action;
           break;
       }
     });
