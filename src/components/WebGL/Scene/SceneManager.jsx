@@ -5,7 +5,7 @@ import { useScroll } from '@react-three/drei';
 import InteractGroup from './components/shared/InteractGroup/InteractGroup';
 import AnchorController from './components/shared/RailCamera/AnchorController.jsx';
 import RailCameraController from './components/shared/RailCamera/RailCameraController';
-import { TemplateContext } from '../../providers/TemplateProvider';
+import { TemplateContext } from '../../../providers/TemplateProvider';
 
 export default function SceneManager({
   children,

@@ -8,7 +8,7 @@ import {
   objToTargetRot,
 } from '../../../../Utils/Utils.jsx';
 import * as THREE from 'three';
-import { TemplateContext } from '../../../../../providers/TemplateProvider.jsx';
+import { TemplateContext } from '../../../../../../providers/TemplateProvider.jsx';
 import { types } from '@theatre/core';
 
 function AnchorController({

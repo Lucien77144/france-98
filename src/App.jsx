@@ -6,10 +6,10 @@ import { getProject } from '@theatre/core';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import SoundProvider from './providers/SoundProvider';
-import Transition from './WebGL/Scene/components/shared/Transition/Transition';
-import AnchorScene from './WebGL/Scene/components/AnchorScene/AnchorScene';
+import Transition from './components/WebGL/Scene/components/shared/Transition/Transition';
+import AnchorScene from './components/WebGL/Scene/components/AnchorScene/AnchorScene';
 import TemplateProvider from './providers/TemplateProvider';
-import TestScene from './WebGL/Scene/components/TestScene/TestScene';
+import TestScene from './components/WebGL/Scene/components/TestScene/TestScene';
 
 function App() {
   const project = getProject('Template', { state });

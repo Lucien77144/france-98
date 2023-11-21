@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { getVecDirItemToTarget } from '../../../../Utils/Utils';
 import * as THREE from 'three';
-import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { TemplateContext } from '../../../../../../providers/TemplateProvider';
 
 function InteractGroup({ children, groupInteractRef }) {
   const { camera, pointer } = useThree();

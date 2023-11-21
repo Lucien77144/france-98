@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { useVideoTexture } from '@react-three/drei';
 import { useLocation } from 'react-router-dom';
 import TransitionMaterial from './TransitionMaterial';
-import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { TemplateContext } from '../../../../../../providers/TemplateProvider';
 
 function Transition() {
   const { inAnimTrans } = useContext(TemplateContext);

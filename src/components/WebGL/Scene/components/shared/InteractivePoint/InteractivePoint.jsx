@@ -8,10 +8,10 @@ import { extend, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { TemplateContext } from '../../../../../../providers/TemplateProvider';
 import gsap from 'gsap';
 import { useContext } from 'react';
-import { SoundContext } from '../../../../../providers/SoundProvider';
+import { SoundContext } from '../../../../../../providers/SoundProvider';
 
 export const POINT_TYPE = {
   NONE: null,

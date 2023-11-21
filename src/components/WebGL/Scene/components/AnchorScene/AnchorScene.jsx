@@ -11,8 +11,8 @@ import {
 
 import { editable as e } from '@theatre/r3f';
 import { useThree, useLoader } from '@react-three/fiber';
-import { TemplateContext } from '../../../../providers/TemplateProvider';
-import { SoundContext } from '../../../../providers/SoundProvider';
+import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { SoundContext } from '../../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import GlobalFog from './components/GlobalFog/GlobalFog';
 import RailCameraController from '../shared/RailCamera/RailCameraController';

@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { PerspectiveCamera, Plane, ScrollControls } from '@react-three/drei';
 import { editable as e } from '@theatre/r3f';
 import { useThree } from '@react-three/fiber';
-import { TemplateContext } from '../../../../providers/TemplateProvider';
-import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import RailCameraController from '../shared/RailCamera/RailCameraController';
 import DynamicSpotLight from './components/DynamicSpotLight/DynamicSpotLight';
+import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { SoundContext } from '../../../../../providers/SoundProvider';
 
 function TestScene() {
   const { camera } = useThree();

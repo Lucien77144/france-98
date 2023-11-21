@@ -3,7 +3,7 @@ import { useFrame, extend } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { TemplateContext } from '../../../../../../providers/TemplateProvider';
 
 const MyShaderMaterial = shaderMaterial(
   // uniforms
