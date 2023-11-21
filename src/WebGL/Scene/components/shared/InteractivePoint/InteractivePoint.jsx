@@ -11,6 +11,12 @@ import { useEffect } from 'react';
 import { TemplateContext } from '../../../../../providers/TemplateProvider';
 import gsap from 'gsap';
 import { useContext } from 'react';
+import { SoundContext } from '../../../../../providers/SoundProvider';
+
+export const POINT_TYPE = {
+  NONE: null,
+  SOUND: '',
+};
 
 const InteractiveMaterial = shaderMaterial(
   {
@@ -27,7 +33,15 @@ extend({ InteractiveMaterial });
 export default function InteractivePoint({
   position = [0, 0, 0],
   size = 1,
-  color = new THREE.Color('#ffd500'),
+  colors = {
+    primary: new THREE.Color('#9c08b2'),
+    active: new THREE.Color('#ffd500'),
+  },
+  type = POINT_TYPE.NONE,
+  audio = {
+    scene: 'stadiumScene',
+    context: 'ambient',
+  },
 }) {
   const materialRef = useRef(null);
   const planeRef = useRef(null);
@@ -35,7 +49,11 @@ export default function InteractivePoint({
   const [isHovered, setIsHovered] = useState(false);
 
   const { isFocus } = useContext(TemplateContext);
+  const { audioScene, audioEnd, setAudioEnd } = useContext(SoundContext);
+
   const { clock } = useThree();
+
+  const [status, setStatus] = useState('stop');
 
   useFrame(({ camera }) => {
     planeRef.current.lookAt(camera.position);
@@ -71,13 +89,87 @@ export default function InteractivePoint({
 
   useEffect(() => {
     if (materialRef?.current) {
-      materialRef.current.uniforms.uColor.value = color;
+      materialRef.current.uniforms.uColor.value = colors.active;
     }
   }, []);
 
+  useEffect(() => {
+    switch (status) {
+      case 'stop':
+      case 'pause':
+        fadeColor('primary');
+        break;
+      case 'play':
+        fadeColor('active');
+        break;
+    }
+  }, [status]);
+
+  useEffect(() => {
+    if (audioEnd == 'audio_click' && status == 'play') {
+      audioScene?.ui?.audio_click?.audio?.stop();
+      audioScene?.[audio?.scene]?.[audio?.context]?.audio?.play();
+    } else if (audioEnd?.includes(audio?.context)) {
+      fadeColor('primary');
+
+      const action = status == 'play' ? 'pause' : 'stop';
+
+      audioScene?.ui?.audio_click?.audio?.[action]();
+      audioScene?.[audio?.scene]?.[audio?.context]?.audio?.[action]();
+
+      setStatus(action);
+    }
+  }, [audioEnd]);
+
+  function pauseAllSounds(prevent, scene = 'stadiumScene') {
+    const scenes = Object.keys(audioScene[scene]);
+    setAudioEnd(scenes.filter((s) => s != prevent));
+  }
+
+  function toggleSound() {
+    pauseAllSounds(audio?.context);
+    setTimeout(() => {
+      switch (status) {
+        case 'stop':
+          setStatus('play');
+
+          audioScene?.ui?.audio_click?.audio?.play(); // on audio click finished, play the ambient sound :
+          materialRef.current.uniforms.uColor.value = colors.primary;
+          break;
+        case 'pause':
+          setStatus('play');
+
+          audioScene?.[audio?.scene]?.[audio?.context]?.audio?.play();
+          materialRef.current.uniforms.uColor.value = colors.primary;
+          break;
+        case 'play':
+          setStatus('pause');
+
+          audioScene?.ui?.audio_click?.audio?.pause();
+          audioScene?.[audio?.scene]?.[audio?.context]?.audio?.pause();
+          materialRef.current.uniforms.uColor.value = colors.active;
+          break;
+      }
+    });
+  }
+
+  function fadeColor(color, duration = 0.25) {
+    gsap.to(materialRef.current.uniforms.uColor.value, {
+      duration,
+      r: colors?.[color]?.r,
+      g: colors?.[color]?.g,
+      b: colors?.[color]?.b,
+    });
+  }
+
   return (
     <>
-      <group ref={pointRef} position={position}>
+      <group
+        // on click :
+        onClick={toggleSound}
+        ref={pointRef}
+        position={position}
+      >
         <Plane
           ref={planeRef}
           args={[size, size]}

@@ -15,7 +15,9 @@ import { SoundContext } from '../../../../providers/SoundProvider';
 import SceneManager from '../../SceneManager';
 import GlobalFog from './components/GlobalFog/GlobalFog';
 import RailCameraController from '../shared/RailCamera/RailCameraController';
-import InteractivePoint from '../shared/InteractivePoint/InteractivePoint';
+import InteractivePoint, {
+  POINT_TYPE,
+} from '../shared/InteractivePoint/InteractivePoint';
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();
@@ -48,25 +50,28 @@ function TestAnchor(props) {
     THREE.TextureLoader,
     '/src/assets/img/spectator.png'
   );
-  const material = new THREE.MeshMatcapMaterial({ matcap, side: THREE.DoubleSide });
+  const material = new THREE.MeshMatcapMaterial({
+    matcap,
+    side: THREE.DoubleSide,
+  });
 
   function fctEmpty(ref) {
     return (
       <mesh
-      ref={ref}
-      name="EMPTY"
-      geometry={nodes.EMPTY.geometry}
-      material={nodes.EMPTY.material}
-      position={[-0.623, 1.2, -0.004]}
-      rotation={[0, 0, 1.359]}
-    />
+        ref={ref}
+        name="EMPTY"
+        geometry={nodes.EMPTY.geometry}
+        material={nodes.EMPTY.material}
+        position={[-0.623, 1.2, -0.004]}
+        rotation={[0, 0, 1.359]}
+      />
     );
   }
 
   function renderInteractObjects() {
     return (
       <>
-        <e.mesh
+        {/* <e.mesh
           visible
           theatreKey={'interactObj'}
           position={[1, 2, 3]}
@@ -74,18 +79,7 @@ function TestAnchor(props) {
         >
           <sphereGeometry args={[1, 16, 16]} />
           <meshStandardMaterial color="hotpink" transparent />
-        </e.mesh>
-
-        <group name="SPECTATEURS1">
-          <InteractivePoint position={[0, 0.05, 0]} size={1} />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SPECTATEURS1.geometry}
-            material={nodes.SPECTATEURS1.material}
-            position={[0, 0.016, 0]}
-          />
-        </group>
+        </e.mesh> */}
       </>
     );
   }
@@ -95,7 +89,7 @@ function TestAnchor(props) {
       <ScrollControls
         pages={canScroll.current ? 5 : 0}
         enabled={canScroll}
-        damping={.5}
+        damping={0.5}
         distance={5}
       >
         {/*<e.pointLight theatreKey="Light" position={[10, 10, 10]} intensity={10}/>*/}
@@ -116,21 +110,18 @@ function TestAnchor(props) {
               <PerspectiveCamera makeDefault far={1000} />
 
               <RailCameraController
-                // anchorsRef={anchors}
-                // lookAtPos={[0, 0, 0]}
+              // anchorsRef={anchors}
+              // lookAtPos={[0, 0, 0]}
               ></RailCameraController>
 
-          
               <mesh
                 name="Cage1"
-  
                 geometry={nodes.Cage1.geometry}
                 material={material}
                 position={[0, 0.048, 0.607]}
               />
               <mesh
                 name="Cage2"
-
                 geometry={nodes.Cage2.geometry}
                 material={material}
                 position={[0, 0.049, -0.691]}
@@ -343,12 +334,51 @@ function TestAnchor(props) {
                 </group>
               </group>
               <mesh
-          name="Plane"
-
-          geometry={nodes.Plane.geometry}
-          material={material}
-          />
+                name="Plane"
+                geometry={nodes.Plane.geometry}
+                material={material}
+              />
               <GlobalFog />
+
+              <group name="SPECTATEURS1">
+                <InteractivePoint
+                  mode={POINT_TYPE.SOUND}
+                  position={[0, 0.05, 0]}
+                  size={1}
+                  audio={{
+                    scene: 'stadiumScene',
+                    context: 'track_02',
+                  }}
+                />
+                <mesh
+                  castShadow
+                  receiveShadow
+                  geometry={nodes.SPECTATEURS1.geometry}
+                  material={nodes.SPECTATEURS1.material}
+                  position={[0, 0.016, 0]}
+                />
+              </group>
+
+              <group name="TEMP_IPOINTS">
+                {/* <InteractivePoint
+                  mode={POINT_TYPE.SOUND}
+                  position={[0, 1.05, 0]}
+                  size={1}
+                  audio={{
+                    scene: 'stadiumScene',
+                    context: 'track_02',
+                  }}
+                /> */}
+                <InteractivePoint
+                  mode={POINT_TYPE.SOUND}
+                  position={[0, 1.05, 0]}
+                  size={1}
+                  audio={{
+                    scene: 'stadiumScene',
+                    context: 'track_03',
+                  }}
+                />
+              </group>
             </SceneManager>
           </group>
         </group>

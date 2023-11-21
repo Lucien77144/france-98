@@ -8,20 +8,59 @@ export const SoundContext = createContext(null);
  * @param {Object} children Children of the provider
  * @returns
  */
-function SoundProvider({ children }) {
+export default function SoundProvider({ children }) {
   const audioLoader = useRef(new THREE.AudioLoader());
   const audioListener = useRef(new THREE.AudioListener());
+  const [audioEnd, setAudioEnd] = useState();
+
   const [audioScene, setAudioScene] = useState({
-    mapScene: {
-      ambient: {
+    ui: {
+      audio_click: {
         audio: null,
-        source: '/src/assets/audio/bass.mp3',
+        source: '/src/assets/audio/audio_start.mp3',
+        volume: 0.75,
       },
     },
-    splineScene: {
+    stadiumScene: {
       ambient: {
         audio: null,
-        source: '/src/assets/audio/paris.mp3',
+        source: '/src/assets/audio/stadium_ambient.mp3',
+        volume: 0.1,
+      },
+      track_01: {
+        audio: null,
+        source: '/src/assets/audio/tracks/1.mp3',
+        volume: 1,
+      },
+      track_02: {
+        audio: null,
+        source: '/src/assets/audio/tracks/2.mp3',
+        volume: 1,
+      },
+      track_03: {
+        audio: null,
+        source: '/src/assets/audio/tracks/3.mp3',
+        volume: 1,
+      },
+      track_04: {
+        audio: null,
+        source: '/src/assets/audio/tracks/4.mp3',
+        volume: 1,
+      },
+      track_05: {
+        audio: null,
+        source: '/src/assets/audio/tracks/5.mp3',
+        volume: 1,
+      },
+      track_06: {
+        audio: null,
+        source: '/src/assets/audio/tracks/6.mp3',
+        volume: 1,
+      },
+      track_07: {
+        audio: null,
+        source: '/src/assets/audio/tracks/7.mp3',
+        volume: 1,
       },
     },
   });
@@ -33,14 +72,18 @@ function SoundProvider({ children }) {
           audioLoader.current.load(contextObj.source, (buffer) => {
             const audio = new THREE.Audio(audioListener.current);
             audio.setBuffer(buffer);
-            audio.setVolume(1);
+            audio.setVolume(contextObj.volume);
             audio.pause();
+            audio.onEnded = () => {
+              setAudioEnd(context);
+            };
 
             setAudioScene((prevAudioScene) => ({
               ...prevAudioScene,
-              mapScene: {
-                ambient: {
-                  audio: audio,
+              [scene]: {
+                ...prevAudioScene[scene],
+                [context]: {
+                  audio,
                   source: contextObj.source,
                 },
               },
@@ -79,13 +122,14 @@ function SoundProvider({ children }) {
         audioLoader,
         audioListener,
         audioScene,
+        audioEnd,
+
         setAudioScene,
         addNewAudioSrc,
+        setAudioEnd,
       }}
     >
       {children}
     </SoundContext.Provider>
   );
 }
-
-export default SoundProvider;

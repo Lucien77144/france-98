@@ -48,7 +48,7 @@ function RailCameraController({
       );
     }
     function showPos() {
-      // console.log(action.current.time)
+      // console.log(data.offset)
     }
 
     window.addEventListener('click', showPos);
