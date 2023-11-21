@@ -344,7 +344,6 @@ function TestAnchor(props) {
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
                   position={[0, 0.05, 0]}
-                  size={1}
                   audio={{
                     scene: 'stadiumScene',
                     context: 'track_02',
@@ -363,7 +362,6 @@ function TestAnchor(props) {
                 {/* <InteractivePoint
                   mode={POINT_TYPE.SOUND}
                   position={[0, 1.05, 0]}
-                  size={1}
                   audio={{
                     scene: 'stadiumScene',
                     context: 'track_02',
@@ -372,7 +370,6 @@ function TestAnchor(props) {
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
                   position={[0, 1.05, 0]}
-                  size={1}
                   audio={{
                     scene: 'stadiumScene',
                     context: 'track_03',

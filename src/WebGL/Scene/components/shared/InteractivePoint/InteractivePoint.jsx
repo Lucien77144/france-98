@@ -21,7 +21,7 @@ export const POINT_TYPE = {
 const InteractiveMaterial = shaderMaterial(
   {
     uTime: { value: 0 },
-    uHover: { value: false },
+    uProgress: { value: 0 },
     uColor: { value: null },
     uOpacity: { value: 0 },
   },
@@ -32,10 +32,10 @@ extend({ InteractiveMaterial });
 
 export default function InteractivePoint({
   position = [0, 0, 0],
-  size = 1,
+  size = .75,
   colors = {
-    primary: new THREE.Color('#9c08b2'),
-    active: new THREE.Color('#ffd500'),
+    primary: new THREE.Color('#001eff'),
+    active: new THREE.Color('#af2bfc'),
   },
   type = POINT_TYPE.NONE,
   audio = {
@@ -46,7 +46,6 @@ export default function InteractivePoint({
   const materialRef = useRef(null);
   const planeRef = useRef(null);
   const pointRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
 
   const { isFocus } = useContext(TemplateContext);
   const { audioScene, audioEnd, setAudioEnd } = useContext(SoundContext);
@@ -54,6 +53,7 @@ export default function InteractivePoint({
   const { clock } = useThree();
 
   const [status, setStatus] = useState('stop');
+  const [startTime, setStartTime] = useState(0);
 
   useFrame(({ camera }) => {
     planeRef.current.lookAt(camera.position);
@@ -63,13 +63,16 @@ export default function InteractivePoint({
     planeRef.current.scale.set(scale, scale, scale);
 
     materialRef.current.uniforms.uTime.value = clock.elapsedTime;
-  });
 
-  useEffect(() => {
-    if (materialRef?.current) {
-      materialRef.current.uniforms.uHover.value = isHovered;
+    if (status == 'play') {
+      const ctxtAudio = audioScene?.[audio?.scene]?.[audio?.context]?.audio;
+      const duration = ctxtAudio?.buffer?.duration || 0;
+
+      const progress = Math.min((clock.elapsedTime - startTime) / duration, 1);
+
+      materialRef.current.uniforms.uProgress.value = progress;
     }
-  }, [isHovered]);
+  });
 
   useEffect(() => {
     // change opacity of material :
@@ -100,24 +103,25 @@ export default function InteractivePoint({
         fadeColor('primary');
         break;
       case 'play':
+      case 'play_intro':
         fadeColor('active');
         break;
     }
   }, [status]);
 
   useEffect(() => {
-    if (audioEnd == 'audio_click' && status == 'play') {
-      audioScene?.ui?.audio_click?.audio?.stop();
+    if (audioEnd == 'audio_click' && status == 'play_intro') {
+      audioScene.ui?.audio_click?.audio?.stop();
       audioScene?.[audio?.scene]?.[audio?.context]?.audio?.play();
+
+      setStatus('play');
+      setStartTime(clock.elapsedTime);
     } else if (audioEnd?.includes(audio?.context)) {
+      audioScene.ui?.audio_click?.audio?.stop();
+      audioScene?.[audio?.scene]?.[audio?.context]?.audio?.stop();
+
       fadeColor('primary');
-
-      const action = status == 'play' ? 'pause' : 'stop';
-
-      audioScene?.ui?.audio_click?.audio?.[action]();
-      audioScene?.[audio?.scene]?.[audio?.context]?.audio?.[action]();
-
-      setStatus(action);
+      setStatus('stop');
     }
   }, [audioEnd]);
 
@@ -131,19 +135,22 @@ export default function InteractivePoint({
     setTimeout(() => {
       switch (status) {
         case 'stop':
-          setStatus('play');
+          setStatus('play_intro');
 
           audioScene?.ui?.audio_click?.audio?.play(); // on audio click finished, play the ambient sound :
           materialRef.current.uniforms.uColor.value = colors.primary;
           break;
         case 'pause':
           setStatus('play');
+          setStartTime(clock.elapsedTime - startTime);
 
           audioScene?.[audio?.scene]?.[audio?.context]?.audio?.play();
           materialRef.current.uniforms.uColor.value = colors.primary;
           break;
         case 'play':
+        case 'play_intro':
           setStatus('pause');
+          setStartTime(clock.elapsedTime - startTime);
 
           audioScene?.ui?.audio_click?.audio?.pause();
           audioScene?.[audio?.scene]?.[audio?.context]?.audio?.pause();
@@ -170,12 +177,7 @@ export default function InteractivePoint({
         ref={pointRef}
         position={position}
       >
-        <Plane
-          ref={planeRef}
-          args={[size, size]}
-          onPointerOver={() => setIsHovered(true)}
-          onPointerOut={() => setIsHovered(false)}
-        >
+        <Plane ref={planeRef} args={[size, size]}>
           <interactiveMaterial
             attach="material"
             ref={materialRef}
