@@ -54,7 +54,7 @@ function RailCameraController({
       );
     }
     function showPos() {
-      console.log(scrollPosition);
+      // console.log(scrollPosition);
     }
 
     window.addEventListener('click', showPos);

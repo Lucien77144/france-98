@@ -1,0 +1,27 @@
+.dgb {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    padding: 0 10px;
+  }
+
+  &-item {
+    list-style: none;
+    transition: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    position: fixed;
+    padding: 1rem 2rem;
+    background-color: grey;
+    opacity: 0;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-active {
+    bottom: 0;
+    opacity: 1;
+  }
+}

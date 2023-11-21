@@ -12,6 +12,7 @@ import { TemplateContext } from '../../../../../../providers/TemplateProvider';
 import gsap from 'gsap';
 import { useContext } from 'react';
 import { SoundContext } from '../../../../../../providers/SoundProvider';
+import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
 
 export const POINT_TYPE = {
   NONE: null,
@@ -54,6 +55,7 @@ export default function InteractivePoint({
 
   const { isFocus, scrollPosition } = useContext(TemplateContext);
   const { audioScene, audioEnd, setAudioEnd } = useContext(SoundContext);
+  const { setActiveAudio } = useContext(InterfaceContext);
 
   const { clock } = useThree();
 
@@ -80,6 +82,10 @@ export default function InteractivePoint({
       const duration = ctxtAudio?.buffer?.duration || 0;
 
       const progress = Math.min((clock.elapsedTime - startTime) / duration, 1);
+      setActiveAudio({
+        name: audio?.context,
+        progress,
+      });
 
       materialRef.current.uniforms.uProgress.value = progress;
     }
@@ -148,29 +154,40 @@ export default function InteractivePoint({
     } else if (audioEnd?.includes(audio?.context)) {
       audioScene.ui?.audio_click?.audio?.stop();
       audioScene?.[audio?.scene]?.[audio?.context]?.audio?.stop();
+      setActiveAudio({
+        name: audio?.context,
+        progress: -1,
+      });
 
       fadeColor('primary');
       setStatus('stop');
     }
   }, [audioEnd]);
 
-  function pauseAllSounds(prevent, scene = 'stadiumScene') {
+  function stopAllSounds(prevent, scene = 'stadiumScene') {
     const scenes = Object.keys(audioScene[scene]);
     setAudioEnd(scenes.filter((s) => s != prevent));
   }
 
   function toggleSound() {
-    pauseAllSounds(audio?.context);
+    stopAllSounds(audio?.context);
+
     setTimeout(() => {
       switch (status) {
         case 'stop':
           setStatus('play_intro');
+          setActiveAudio({
+            name: audio?.context,
+            progress: -1,
+          });
 
-          audioScene?.ui?.audio_click?.audio?.play(0); // on audio click finished, play the ambient sound :
+          audioScene?.ui?.audio_click?.audio?.play(); // on audio click finished, play the ambient sound :
           materialRef.current.uniforms.uColor.value = colors.primary;
           break;
         case 'pause':
           setStatus('play');
+          console.log('play');
+
           setStartTime(clock.elapsedTime - startTime);
 
           audioScene?.[audio?.scene]?.[audio?.context]?.audio?.play();
@@ -179,6 +196,7 @@ export default function InteractivePoint({
         case 'play':
         case 'play_intro':
           setStatus('pause');
+          console.log('pause');
           setStartTime(clock.elapsedTime - startTime);
 
           audioScene?.ui?.audio_click?.audio?.pause();

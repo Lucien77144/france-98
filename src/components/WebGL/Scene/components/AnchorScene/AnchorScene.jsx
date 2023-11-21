@@ -148,7 +148,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_02',
                   }}
-                  range={[0, .2]}
+                  range={[0, 0.2]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -158,7 +158,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_03',
                   }}
-                  range={[.17, .3]}
+                  range={[0.17, 0.3]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -168,7 +168,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_04',
                   }}
-                  range={[.25, .4]}
+                  range={[0.25, 0.4]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -178,7 +178,7 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_05',
                   }}
-                  range={[.5, .7]}
+                  range={[0.5, 0.7]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
@@ -188,17 +188,17 @@ function TestAnchor(props) {
                     scene: 'stadiumScene',
                     context: 'track_06',
                   }}
-                  range={[.75, .95]}
+                  range={[0.75, 0.95]}
                 />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
                   size={1}
-                  position={[0, 1, .5]}
+                  position={[0, 1, 0.5]}
                   audio={{
                     scene: 'stadiumScene',
                     context: 'track_07',
                   }}
-                  range={[.9, 1]}
+                  range={[0.9, 1]}
                 />
               </group>
 

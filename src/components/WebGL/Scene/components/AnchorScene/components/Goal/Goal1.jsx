@@ -51,7 +51,6 @@ export default function Goal({ actionBall, nodes }) {
 
     if (!data.visible(0.225,.2) && group.current.visible == true) {
       group.current.visible = false;
-      console.log("plop");
     }
     else if(data.visible(0.225,.2)){
       // console.log(durations)

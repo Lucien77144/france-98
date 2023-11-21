@@ -12,6 +12,7 @@ export default function SoundProvider({ children }) {
   const audioLoader = useRef(new THREE.AudioLoader());
   const audioListener = useRef(new THREE.AudioListener());
   const [audioEnd, setAudioEnd] = useState();
+  const [activeAudio, setActiveAudio] = useState();
 
   const [audioScene, setAudioScene] = useState({
     ui: {
