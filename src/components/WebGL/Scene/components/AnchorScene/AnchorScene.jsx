@@ -120,12 +120,6 @@ function TestAnchor(props) {
                 blur={0.15}
               ></Environment>
               <ambientLight intensity={Math.PI / 1.5} />
-              <PerspectiveCamera makeDefault far={1000} />
-
-              <RailCameraController
-              // anchorsRef={anchors}
-              // lookAtPos={[0, 0, 0]}
-              ></RailCameraController>
 
               <mesh
                 name="Cage1"
@@ -353,35 +347,65 @@ function TestAnchor(props) {
               />
               <GlobalFog />
 
-              <InteractivePoint
-                mode={POINT_TYPE.SOUND}
-                position={[0, 0.05, 0]}
-                audio={{
-                  scene: 'stadiumScene',
-                  context: 'track_02',
-                }}
-              />
-
-              <group name="TEMP_IPOINTS">
-                {/* <InteractivePoint
+              <group>
+                <InteractivePoint
                   mode={POINT_TYPE.SOUND}
-                  position={[0, 1.05, 0]}
+                  position={[0, 0.05, 0]}
                   audio={{
                     scene: 'stadiumScene',
                     context: 'track_02',
                   }}
-                /> */}
+                />
                 <InteractivePoint
                   mode={POINT_TYPE.SOUND}
-                  position={[0, 1.05, 0]}
+                  size={1}
+                  position={[0.75, 0.35, 0]}
                   audio={{
                     scene: 'stadiumScene',
                     context: 'track_03',
                   }}
                 />
+                <InteractivePoint
+                  mode={POINT_TYPE.SOUND}
+                  size={1}
+                  position={[0, 0.05, -0.65]}
+                  audio={{
+                    scene: 'stadiumScene',
+                    context: 'track_04',
+                  }}
+                />
+                <InteractivePoint
+                  mode={POINT_TYPE.SOUND}
+                  size={1}
+                  position={[0, 0.065, 0.425]}
+                  audio={{
+                    scene: 'stadiumScene',
+                    context: 'track_05',
+                  }}
+                />
+                <InteractivePoint
+                  mode={POINT_TYPE.SOUND}
+                  size={1}
+                  position={[0.02, 0.05, 0.35]}
+                  audio={{
+                    scene: 'stadiumScene',
+                    context: 'track_06',
+                  }}
+                />
+                <InteractivePoint
+                  mode={POINT_TYPE.SOUND}
+                  size={1}
+                  position={[0, 1, .5]}
+                  audio={{
+                    scene: 'stadiumScene',
+                    context: 'track_07',
+                  }}
+                />
               </group>
+
               <PerspectiveCamera makeDefault far={100} near={0.001} />
               <RailCameraController></RailCameraController>
+
               <Stadium
                 nodes={nodes}
                 materials={materials}
