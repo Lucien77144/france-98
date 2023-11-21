@@ -8,6 +8,7 @@ import {
   useGLTF,
   Environment,
 } from '@react-three/drei';
+
 import { editable as e } from '@theatre/r3f';
 import { useThree, useLoader } from '@react-three/fiber';
 import { TemplateContext } from '../../../../providers/TemplateProvider';
@@ -19,17 +20,20 @@ import InteractivePoint, {
   POINT_TYPE,
 } from '../shared/InteractivePoint/InteractivePoint';
 
+import Stadium from './components/Stadium/Stadium';
+import Goal1 from './components/Goal/Goal1';
+import Goal2 from './components/Goal/Goal2';
+import Goal3 from './components/Goal/Goal3';
+
 function TestAnchor(props) {
   const { camera, scene } = useThree();
   const group = useRef();
   const light = useRef();
   const anchors = useRef([]);
   const { nodes, materials, animations } = useGLTF(
-    '/src/assets/models/Stade.glb'
+    '/src/assets/models/stade4.glb'
   );
-  const { nodes: n2, materials: m2 } = useGLTF(
-    '/src/assets/models/supporter.glb'
-  );
+
   const { actions } = useAnimations(animations, group);
 
   const { canScroll } = useContext(TemplateContext);
@@ -73,13 +77,24 @@ function TestAnchor(props) {
       <>
         {/* <e.mesh
           visible
-          theatreKey={'interactObj'}
+          theatreKey={"interactObj"}
           position={[1, 2, 3]}
           rotation={[Math.PI / 2, 0, 0]}
         >
           <sphereGeometry args={[1, 16, 16]} />
           <meshStandardMaterial color="hotpink" transparent />
         </e.mesh> */}
+
+        {/* <group name="SPECTATEURS1">
+          <InteractivePoint position={[0, 0.05, 0]} size={1} />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.SPECTATEURS1.geometry}
+            material={nodes.SPECTATEURS1.material}
+            position={[0, 0.016, 0]}
+          />
+        </group> */}
       </>
     );
   }
@@ -104,8 +119,6 @@ function TestAnchor(props) {
                 files={'/src/assets/img/env2.hdr'}
                 blur={0.15}
               ></Environment>
-              {/* <rectAreaLight width={.25} height={.5} intensity={20} rotation={[-Math.PI/2,0,0]} position={[0,0.5,0]} power={.5}> */}
-              {/* </rectAreaLight> */}
               <ambientLight intensity={Math.PI / 1.5} />
               <PerspectiveCamera makeDefault far={1000} />
 
@@ -340,23 +353,14 @@ function TestAnchor(props) {
               />
               <GlobalFog />
 
-              <group name="SPECTATEURS1">
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  position={[0, 0.05, 0]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_02',
-                  }}
-                />
-                <mesh
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.SPECTATEURS1.geometry}
-                  material={nodes.SPECTATEURS1.material}
-                  position={[0, 0.016, 0]}
-                />
-              </group>
+              <InteractivePoint
+                mode={POINT_TYPE.SOUND}
+                position={[0, 0.05, 0]}
+                audio={{
+                  scene: 'stadiumScene',
+                  context: 'track_02',
+                }}
+              />
 
               <group name="TEMP_IPOINTS">
                 {/* <InteractivePoint
@@ -376,6 +380,19 @@ function TestAnchor(props) {
                   }}
                 />
               </group>
+              <PerspectiveCamera makeDefault far={100} near={0.001} />
+              <RailCameraController></RailCameraController>
+              <Stadium
+                nodes={nodes}
+                materials={materials}
+                material={material}
+                actions={actions}
+              />
+              <Goal1 nodes={nodes} actionBall={actions} />
+              <Goal2 nodes={nodes} actionBall={actions} />
+              <Goal3 nodes={nodes} actionBall={actions} />
+
+              <GlobalFog />
             </SceneManager>
           </group>
         </group>
