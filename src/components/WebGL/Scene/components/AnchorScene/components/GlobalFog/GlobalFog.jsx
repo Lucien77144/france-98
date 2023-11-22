@@ -20,6 +20,18 @@ export default function GlobalFog() {
       z:   5,
       color: "white",
     }
+
+    const skyControls = useControls("Sky", { 
+      turbidity: { value: 10.2, min: 0, max: 20, step: 0.1 },
+      rayleigh: { value: 0.005, min: 0, max: 4, step: 0.00001 },
+      mieCoefficient: { value: 0, min: 0, max: 0.1, step: 0.0001 },
+      mieDirectionalG: { value: 0.299, min: 0, max: 1, step: 0.001 },
+      elevation: { value:0, min: 0, max: 90, step: .1 },
+      azimuth: { value:-72.2, min: -180, max: 180, step: .1 },
+      exposure: { value: 0.1764, min: 0, max: 1, step: 0.001 },
+
+    });
+
     useFrame((state, delta) => {
       ref.current.rotation.y = Math.cos(state.clock.elapsedTime / 2) / 2
       ref.current.rotation.x = Math.sin(state.clock.elapsedTime / 2) / 2
@@ -27,7 +39,7 @@ export default function GlobalFog() {
     })
     return (
       <>
-        <SkyImpl />
+        {/* <SkyImpl {...skyControls} sunPosition={[100, 20, 100]}/> */}
         <group ref={ref}>
           <Clouds material={THREE.MeshLambertMaterial} limit={400} range={range} position={[0,1,0]} scale={[.15,.15,.15]}>
             <Cloud ref={cloud0} {...config} bounds={[x, y, z]} color={color} />

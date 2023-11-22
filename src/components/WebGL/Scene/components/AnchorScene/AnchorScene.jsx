@@ -7,6 +7,8 @@ import {
   useAnimations,
   useGLTF,
   Environment,
+  Stars,
+  Stats,
 } from '@react-three/drei';
 
 import { editable as e } from '@theatre/r3f';
@@ -33,7 +35,7 @@ function TestAnchor(props) {
   const light = useRef();
   const anchors = useRef([]);
   const { nodes, materials, animations } = useGLTF(
-    '/src/assets/models/stade5.glb'
+    '/src/assets/models/stade6.glb'
   );
 
   const { actions } = useAnimations(animations, group);
@@ -58,7 +60,6 @@ function TestAnchor(props) {
   );
   const material = new THREE.MeshMatcapMaterial({
     matcap,
-    side: THREE.DoubleSide,
   });
 
   function fctEmpty(ref) {
@@ -70,6 +71,7 @@ function TestAnchor(props) {
         material={nodes.EMPTY.material}
         position={[-0.623, 1.2, -0.004]}
         rotation={[0, 0, 1.359]}
+        visible={false}
       />
     );
   }
@@ -110,6 +112,7 @@ function TestAnchor(props) {
         distance={5}
       >
         {/*<e.pointLight theatreKey="Light" position={[10, 10, 10]} intensity={10}/>*/}
+        <Stats showPanel={0} className="stats" {...props} />
         <group ref={group} {...props} dispose={null}>
           <group name="Scene">
             <SceneManager
@@ -118,11 +121,11 @@ function TestAnchor(props) {
               actions={actions}
             >
               <Environment
-                files={'/src/assets/img/env2.hdr'}
+                files={'/src/assets/img/env4.hdr'}
                 blur={0.15}
+                background
               ></Environment>
               <ambientLight intensity={Math.PI / 1.5} />
-              <PerspectiveCamera makeDefault far={1000} />
 
               {/* dialog tracklist */}
               {tracklist.tracks.map(
@@ -139,7 +142,7 @@ function TestAnchor(props) {
                   />
                 )
               )}
-              <PerspectiveCamera makeDefault far={100} near={0.001} />
+              <PerspectiveCamera makeDefault far={5} near={0.001} />
               <RailCameraController />
               <Stadium
                 nodes={nodes}
@@ -147,10 +150,11 @@ function TestAnchor(props) {
                 material={material}
                 actions={actions}
               />
+              
               <Goal1 nodes={nodes} actionBall={actions} />
               <Goal2 nodes={nodes} actionBall={actions} />
               <Goal3 nodes={nodes} actionBall={actions} />
-              <GlobalFog />
+              {/* <GlobalFog /> */}
             </SceneManager>
           </group>
         </group>

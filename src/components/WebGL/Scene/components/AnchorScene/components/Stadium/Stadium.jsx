@@ -1,52 +1,47 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MeshStandardMaterial } from "three";
 import { MeshBasicMaterial, DoubleSide } from "three";
-import SpotLight from "../Goal/SpotLight";
+import SpectatorsLargeD from "../Spectators/SpectatorsLargeD";
 
-export default function Stadium({ nodes, material }) {
-  const materialPlane = new MeshStandardMaterial({
-    color: "#57A883",
-    side: DoubleSide,
+export default function Stadium({ nodes, material, materials }) {
+  const stadeMaterial = new MeshBasicMaterial({
+    map: materials["Material.002"].map,
   });
-  
+  const mat= new MeshStandardMaterial()
+
   return (
     <group>
-      <group name="STADE1" position={[0, 0, -0.043]}>
-        <mesh
-          name="Boole"
-          geometry={nodes.Boole.geometry}
-          material={material}
-          position={[0, 0, 0.043]}
-          rotation={[Math.PI / 2, 0, 0]}
-          scale={0.01}
-          // castShadow
-          // receiveShadow
-        />
-        <mesh
-          name="Plane001"
-          // castShadow
-          receiveShadow
-          geometry={nodes.Plane001.geometry}
-          material={materialPlane}
-          position={[0.018, -0.123, 0.062]}
-          rotation={[Math.PI / 2, 0, Math.PI / 2]}
-          scale={0.01}
-        />
-        <SpotLight
-               config={{
-                position: [
-                  -7.481953795620818e-8, 0.5706194238256737, 0.0016212674764971746,
-                ],
-                quaternion: [
-                  -0.000005217017130269479, 0.9535771127912418,
-                  0.000017700021410971273, -0.30114894922647706,
-                ],
-              }}
+      <mesh
+        name="STADE"
+        geometry={nodes.STADE.geometry}
+        material={stadeMaterial}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <mesh
+        name="TERRAIN_1"
+        receiveShadow
+        geometry={nodes.TERRAIN_1.geometry}
+        material={materials["Material.001"]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
 
-          pivot
-        ></SpotLight>
-      </group>
       <mesh name="Plane" geometry={nodes.Plane.geometry} material={material} />
+      <pointLight
+            intensity={1}
+            position={[0, 0.45, 0]}
+            shadow-mapSize={[2048, 2048]}
+            castShadow={true}
+          />
+      <SpectatorsLargeD
+        material={material}
+        position={[-0.01, 0, 0]}
+      ></SpectatorsLargeD>
+      <SpectatorsLargeD
+        material={material}
+        rotation={[0, Math.PI, 0]}
+        position={[0.045, 0, 0]}
+      ></SpectatorsLargeD>
     </group>
   );
 }
