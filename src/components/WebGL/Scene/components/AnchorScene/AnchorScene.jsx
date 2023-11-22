@@ -133,14 +133,14 @@ function TestAnchor(props) {
                     position={position}
                     audio={{
                       scene: tracklist.scene,
-                      context: context,
+                      context,
                     }}
                     range={range}
                   />
                 )
               )}
               <PerspectiveCamera makeDefault far={100} near={0.001} />
-              <RailCameraController></RailCameraController>
+              <RailCameraController />
               <Stadium
                 nodes={nodes}
                 materials={materials}
