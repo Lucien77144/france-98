@@ -9,10 +9,10 @@ import SoundProvider from './providers/SoundProvider';
 import Transition from './components/WebGL/Scene/components/shared/Transition/Transition';
 import AnchorScene from './components/WebGL/Scene/components/AnchorScene/AnchorScene';
 import TemplateProvider from './providers/TemplateProvider';
-import TestScene from './components/WebGL/Scene/components/TestScene/TestScene';
 import DialogsBox from './components/Interface/DialogsBox/DialogsBox';
 import InterfaceProvider from './Providers/InterfaceProvider';
 import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
+import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
 
 export default function App() {
   const project = getProject('Template', { state });
@@ -24,6 +24,7 @@ export default function App() {
         <div className="outsideContainer">
           <DialogsBox />
           <ProgressBar />
+          <VideoPanel />
         </div>
 
         <Canvas
