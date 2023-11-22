@@ -12,6 +12,8 @@ export default function VideoPanel({ url = 'test.mp4' }) {
   const { scrollPosition } = useContext(InterfaceContext);
   const activeVideo = useRef();
 
+  const videoRef = useRef();
+
   useEffect(() => {
     activeVideo.current = videos.map((v) => {
       if (scrollPosition >= v.start && scrollPosition <= v.end) {
@@ -35,6 +37,8 @@ export default function VideoPanel({ url = 'test.mp4' }) {
       res = 1 - scroll / fStart;
     } else if (scroll > 1 - end - transition) {
       res = (scroll - (1 - end - transition)) / fEnd;
+    } else if (scroll > 0 && scroll < 1) {
+      videoRef.current.currentTime = scroll * videoRef.current.duration;
     }
 
     return res * 100;
@@ -49,8 +53,9 @@ export default function VideoPanel({ url = 'test.mp4' }) {
         }}
       >
         <video
+          ref={videoRef}
           style={{
-            transform: `scale(${1 - (getTranslation() / 100) / 4})`,
+            transform: `scale(${1 - getTranslation() / 100 / 4})`,
           }}
           src={`../../../src/assets/video/${activeVideo?.current?.url}`}
         ></video>
