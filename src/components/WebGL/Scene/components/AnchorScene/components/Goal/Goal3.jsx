@@ -44,7 +44,6 @@ export default function Goal3({ actionBall, nodes }) {
       if (group.current.visible == false) {
         group.current.visible = true;
       }
-      console.log(durations);
       if (durations !== null && durations.length > 0) {
         actionBall["Ball3"].time = data.range(0.8625, 0.1) * durations[0];
         goalAction.current["Crouch"].time =
