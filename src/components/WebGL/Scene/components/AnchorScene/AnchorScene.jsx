@@ -25,6 +25,8 @@ import Goal1 from './components/Goal/Goal1';
 import Goal2 from './components/Goal/Goal2';
 import Goal3 from './components/Goal/Goal3';
 
+import tracklist from './data/tracklist.json';
+
 function TestAnchor(props) {
   const { camera, scene } = useThree();
   const group = useRef();
@@ -120,7 +122,6 @@ function TestAnchor(props) {
                 blur={0.15}
               ></Environment>
               <ambientLight intensity={Math.PI / 1.5} />
-
               <mesh
                 name="Cage1"
                 geometry={nodes.Cage1.geometry}
@@ -140,71 +141,23 @@ function TestAnchor(props) {
               />
               <GlobalFog />
 
-              <group>
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  position={[0, 0.05, 0]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_02',
-                  }}
-                  range={[0, 0.2]}
-                />
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  size={2}
-                  position={[0.75, 0.35, 0]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_03',
-                  }}
-                  range={[0.17, 0.3]}
-                />
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  size={1}
-                  position={[0, 0.05, -0.65]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_04',
-                  }}
-                  range={[0.25, 0.4]}
-                />
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  size={1}
-                  position={[0, 0.065, 0.425]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_05',
-                  }}
-                  range={[0.5, 0.7]}
-                />
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  size={1}
-                  position={[0.02, 0.05, 0.35]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_06',
-                  }}
-                  range={[0.75, 0.95]}
-                />
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  size={1}
-                  position={[0, 1, 0.5]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_07',
-                  }}
-                  range={[0.9, 1]}
-                />
-              </group>
-
+              {/* dialog tracklist */}
+              {tracklist.tracks.map(
+                ({ size, position, context, range }, index) => (
+                  <InteractivePoint
+                    key={index}
+                    size={size}
+                    position={position}
+                    audio={{
+                      scene: tracklist.scene,
+                      context: context,
+                    }}
+                    range={range}
+                  />
+                )
+              )}
               <PerspectiveCamera makeDefault far={100} near={0.001} />
               <RailCameraController></RailCameraController>
-
               <Stadium
                 nodes={nodes}
                 materials={materials}
@@ -214,7 +167,6 @@ function TestAnchor(props) {
               <Goal1 nodes={nodes} actionBall={actions} />
               <Goal2 nodes={nodes} actionBall={actions} />
               <Goal3 nodes={nodes} actionBall={actions} />
-
               <GlobalFog />
             </SceneManager>
           </group>

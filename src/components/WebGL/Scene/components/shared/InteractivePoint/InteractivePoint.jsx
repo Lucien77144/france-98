@@ -38,7 +38,7 @@ extend({ InteractiveMaterial });
 
 export default function InteractivePoint({
   position = [0, 0, 0],
-  size = 0.75,
+  size = 1,
   colors = {
     primary: new THREE.Color('#001eff'),
     action: new THREE.Color('#af2bfc'),
@@ -53,9 +53,9 @@ export default function InteractivePoint({
   const planeRef = useRef(null);
   const pointRef = useRef(null);
 
-  const { isFocus, scrollPosition } = useContext(TemplateContext);
+  const { isFocus } = useContext(TemplateContext);
   const { audioScene, audioEnd, setAudioEnd } = useContext(SoundContext);
-  const { setActiveAudio } = useContext(InterfaceContext);
+  const { setActiveAudio, scrollPosition } = useContext(InterfaceContext);
 
   const { clock } = useThree();
 

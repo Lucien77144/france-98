@@ -10,10 +10,12 @@
 
   &-item {
     list-style: none;
+    font-weight: 900;
+    color: rgb(21, 21, 21);
+
     transition: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
     position: fixed;
     padding: 1rem 2rem;
-    background-color: grey;
     opacity: 0;
     bottom: -2rem;
     left: 50%;

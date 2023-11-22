@@ -7,6 +7,7 @@ import {
 } from '../../../../Utils/Utils';
 import * as THREE from 'three';
 import { TemplateContext } from '../../../../../../providers/TemplateProvider';
+import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
 
 function RailCameraController({
   empty,
@@ -23,14 +24,9 @@ function RailCameraController({
 
   const { camera, pointer } = useThree();
   const data = useScroll();
-  const {
-    canScroll,
-    interactSettings,
-    itemFocus,
-    projectRef,
-    scrollPosition,
-    setScrollPosition,
-  } = useContext(TemplateContext);
+  const { canScroll, interactSettings, itemFocus, projectRef } =
+    useContext(TemplateContext);
+  const { scrollPosition, setScrollPosition } = useContext(InterfaceContext);
 
   useEffect(() => {
     if (empty && empty.current) {

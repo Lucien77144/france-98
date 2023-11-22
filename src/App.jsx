@@ -12,6 +12,7 @@ import TemplateProvider from './providers/TemplateProvider';
 import TestScene from './components/WebGL/Scene/components/TestScene/TestScene';
 import DialogsBox from './components/Interface/DialogsBox/DialogsBox';
 import InterfaceProvider from './Providers/InterfaceProvider';
+import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
 
 function App() {
   const project = getProject('Template', { state });
@@ -21,7 +22,8 @@ function App() {
     <InterfaceProvider>
       <div className="mainContainer darkMode">
         <div className="outsideContainer">
-          <DialogsBox></DialogsBox>
+          <DialogsBox />
+          <ProgressBar />
         </div>
 
         <Canvas

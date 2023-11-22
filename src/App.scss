@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'Carrois Gothic';
+  src: url('../assets/fonts/CarroisGothic-Regular.ttf');
+}
+
 body {
   margin: 0;
+  font-family: 'Carrois Gothic', sans-serif;
 }
 
 .outsideContainer {

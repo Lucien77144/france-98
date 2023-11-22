@@ -12,16 +12,18 @@ export default function DialogsBox() {
     <>
       <div className="dgb-container">
         <ul className="dgb-list">
-          {transcriptions?.[activeAudio?.name]?.map((transcription, index) => {
-            const show =
-              activeAudio?.progress >= transcription.start &&
-              activeAudio?.progress <= transcription.end;
-            return (
-              <li className={`dgb-item ${show && 'dgb-active'}`} key={index}>
-                {transcription.text}
-              </li>
-            );
-          })}
+          {transcriptions?.[activeAudio?.name]?.map(
+            ({ start, end, text }, index) => {
+              const progress = activeAudio?.progress;
+              const show = progress >= start && progress <= end;
+
+              return (
+                <li className={`dgb-item ${show && 'dgb-active'}`} key={index}>
+                  {text}
+                </li>
+              );
+            }
+          )}
         </ul>
       </div>
     </>

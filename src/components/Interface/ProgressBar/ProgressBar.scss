@@ -1,0 +1,17 @@
+.progress-bar {
+  background-color: white;
+  border-radius: 1rem;
+
+  &-container {
+    transform: translate(-50%, -50%);
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    height: 90vh;
+    width: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.075);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
