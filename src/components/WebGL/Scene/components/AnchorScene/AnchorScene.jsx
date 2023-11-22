@@ -25,6 +25,8 @@ import Goal1 from './components/Goal/Goal1';
 import Goal2 from './components/Goal/Goal2';
 import Goal3 from './components/Goal/Goal3';
 
+import tracklist from './data/tracklist.json';
+
 function TestAnchor(props) {
   const { camera, scene } = useThree();
   const group = useRef();
@@ -122,39 +124,21 @@ function TestAnchor(props) {
               <ambientLight intensity={Math.PI / 1.5} />
               <PerspectiveCamera makeDefault far={1000} />
 
-              <RailCameraController
-              // anchorsRef={anchors}
-              // lookAtPos={[0, 0, 0]}
-              ></RailCameraController>
-              <GlobalFog />
-
-              <InteractivePoint
-                mode={POINT_TYPE.SOUND}
-                position={[0, 0.05, 0]}
-                audio={{
-                  scene: 'stadiumScene',
-                  context: 'track_02',
-                }}
-              />
-
-              <group name="TEMP_IPOINTS">
-                {/* <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  position={[0, 1.05, 0]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_02',
-                  }}
-                /> */}
-                <InteractivePoint
-                  mode={POINT_TYPE.SOUND}
-                  position={[0, 1.05, 0]}
-                  audio={{
-                    scene: 'stadiumScene',
-                    context: 'track_03',
-                  }}
-                />
-              </group>
+              {/* dialog tracklist */}
+              {tracklist.tracks.map(
+                ({ size, position, context, range }, index) => (
+                  <InteractivePoint
+                    key={index}
+                    size={size}
+                    position={position}
+                    audio={{
+                      scene: tracklist.scene,
+                      context: context,
+                    }}
+                    range={range}
+                  />
+                )
+              )}
               <PerspectiveCamera makeDefault far={100} near={0.001} />
               <RailCameraController></RailCameraController>
               <Stadium
@@ -166,7 +150,6 @@ function TestAnchor(props) {
               <Goal1 nodes={nodes} actionBall={actions} />
               <Goal2 nodes={nodes} actionBall={actions} />
               <Goal3 nodes={nodes} actionBall={actions} />
-
               <GlobalFog />
             </SceneManager>
           </group>

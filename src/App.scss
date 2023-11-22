@@ -1,123 +1,21 @@
+@font-face {
+  font-family: 'Carrois Gothic';
+  src: url('../assets/fonts/CarroisGothic-Regular.ttf');
+}
+
 body {
   margin: 0;
+  font-family: 'Carrois Gothic', sans-serif;
 }
 
-.darkMode {
-  --currentMainColor: var(--mainColor);
-  --currentFontColor: var(--mainColor);
-}
-
-.lightMode {
-  --currentMainColor: var(--secondColor);
-  --currentFontColor: #ffffff;
-}
-
-header {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  top: clamp(32px, 15vw, 64px);
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  & img {
-    width: clamp(64px, 15vw, 124px);
-  }
-}
-
-.overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: calc(100vw - var(--offsetOverlay));
-  height: calc(100vh - var(--offsetOverlay));
-  transform: translate(-50%, -50%);
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--currentMainColor);
+.outsideContainer {
   pointer-events: none;
-  z-index: 100;
+  z-index: 1000;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
 }
 
-.title {
-  position: relative;
-  font-family: 'SangBleu-Empire';
-  font-width: 300;
-  padding: 0.5rem 0;
-  text-transform: capitalize;
-  font-size: 3.5rem;
-  color: var(--currentFontColor);
-  width: 87.5%;
-  /*&::before{*/
-  /*  position: absolute;*/
-  /*  content: "";*/
-  /*  top: 0;*/
-  /*  width: 100%;*/
-  /*  height: 2px;*/
-  /*  background: var(--currentMainColor);*/
-  /*}*/
-  &::after {
-    position: absolute;
-    content: '';
-    top: 100%;
-    width: 100%;
-    height: 2px;
-    background: var(--currentMainColor);
-  }
-}
-
-.text {
-  font-family: 'Adriane';
-  font-size: 1.25rem;
-  color: var(--currentFontColor);
-  text-transform: none;
-  /*width: 60%;*/
-}
-
-.left .content {
-  left: 0;
-  .title {
-    text-align: left;
-    &::before {
-      right: 0;
-      transform-origin: center left;
-      transform: scaleX(0.35);
-    }
-    &::after {
-      left: 0;
-      transform-origin: center right;
-      transform: scaleX(0.35);
-    }
-  }
-  .text {
-    text-align: left;
-    margin-left: 0;
-    margin-right: auto;
-  }
-}
-
-.right .content {
-  right: 0;
-  width: 70%;
-
-  .title {
-    text-align: right;
-    margin-left: auto;
-    margin-right: 0;
-    &::before {
-      left: 0;
-      transform-origin: center left;
-      transform: scaleX(0.35);
-    }
-    &::after {
-      right: 0;
-      transform-origin: center right;
-      transform: scaleX(0.35);
-    }
-  }
-  .text {
-    text-align: right;
-    margin-left: auto;
-    margin-right: 0;
-  }
+.pointer-active {
+  pointer-events: auto;
 }
