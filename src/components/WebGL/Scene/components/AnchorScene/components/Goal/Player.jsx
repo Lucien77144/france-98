@@ -21,7 +21,10 @@ export default function Player({ action, material, config, pivot = false }) {
   useEffect(() => {
     clone.current = cloneGltf(model);
     clone.current.scene.traverse((child) => {
-      if( child instanceof THREE.Mesh){child.material = material}
+      if( child instanceof THREE.Mesh){
+        child.material = material
+        child.castShadow = true
+      }
     })
   }, []);
 

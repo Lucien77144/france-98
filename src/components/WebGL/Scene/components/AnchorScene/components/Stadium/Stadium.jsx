@@ -1,204 +1,52 @@
 import React, { useEffect, useRef } from "react";
+import { MeshStandardMaterial } from "three";
+import { MeshBasicMaterial, DoubleSide } from "three";
+import SpotLight from "../Goal/SpotLight";
 
-export default function Stadium({ nodes, materials, material,actions }) {
-  const action = useRef();
-
-
-useEffect(() => {
-  // console.log(actions);
-  // action.current = Object.values(actions)[1];
-  // console.log(action.current);
-  // action.current.timeScale = 100;
-
-  // action.current.play()
-},[])
-
+export default function Stadium({ nodes, material }) {
+  const materialPlane = new MeshStandardMaterial({
+    color: "#57A883",
+    side: DoubleSide,
+  });
+  
   return (
     <group>
       <group name="STADE1" position={[0, 0, -0.043]}>
-        <group
-          name="STADE1-_1"
-          position={[0.037, 0, 0.088]}
-          rotation={[0, 0.022, 0]}
-        >
-          <mesh
-            name="STADE1-_1001"
-            geometry={nodes["STADE1-_1001"].geometry}
-            material={materials["_1.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_1"
-            geometry={nodes["STADE1-_1001_1"].geometry}
-            material={materials["_2_1.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_2"
-            geometry={nodes["STADE1-_1001_2"].geometry}
-            material={materials["_11_2.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_3"
-            geometry={nodes["STADE1-_1001_3"].geometry}
-            material={materials["_12_1.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_4"
-            geometry={nodes["STADE1-_1001_4"].geometry}
-            material={materials["_11_1.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_5"
-            geometry={nodes["STADE1-_1001_5"].geometry}
-            material={materials["_11.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_6"
-            geometry={nodes["STADE1-_1001_6"].geometry}
-            material={materials["_12.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_7"
-            geometry={nodes["STADE1-_1001_7"].geometry}
-            material={materials["_10.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_8"
-            geometry={nodes["STADE1-_1001_8"].geometry}
-            material={materials["_14.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_9"
-            geometry={nodes["STADE1-_1001_9"].geometry}
-            material={materials["_3.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_10"
-            geometry={nodes["STADE1-_1001_10"].geometry}
-            material={materials["Asphalt_New.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_11"
-            geometry={nodes["STADE1-_1001_11"].geometry}
-            material={materials["_7.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_12"
-            geometry={nodes["STADE1-_1001_12"].geometry}
-            material={materials["_Charcoal_.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_13"
-            geometry={nodes["STADE1-_1001_13"].geometry}
-            material={materials["_6.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_14"
-            geometry={nodes["STADE1-_1001_14"].geometry}
-            material={materials["__0137_Black__1.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_15"
-            geometry={nodes["STADE1-_1001_15"].geometry}
-            material={materials["Metal_Aluminum_Anodized.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_16"
-            geometry={nodes["STADE1-_1001_16"].geometry}
-            material={materials["_2.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_17"
-            geometry={nodes["STADE1-_1001_17"].geometry}
-            material={materials["_8.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_18"
-            geometry={nodes["STADE1-_1001_18"].geometry}
-            material={materials["_16.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_19"
-            geometry={nodes["STADE1-_1001_19"].geometry}
-            material={materials["Material85.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_20"
-            geometry={nodes["STADE1-_1001_20"].geometry}
-            material={materials["_17.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_21"
-            geometry={nodes["STADE1-_1001_21"].geometry}
-            material={materials["_0137_Black_.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_22"
-            geometry={nodes["STADE1-_1001_22"].geometry}
-            material={materials["FrontColor.004"]}
-          />
-          <mesh
-            name="STADE1-_1001_23"
-            geometry={nodes["STADE1-_1001_23"].geometry}
-            material={materials["Color_005.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_24"
-            geometry={nodes["STADE1-_1001_24"].geometry}
-            material={materials["jean_blue.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_25"
-            geometry={nodes["STADE1-_1001_25"].geometry}
-            material={materials["Color_006.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_26"
-            geometry={nodes["STADE1-_1001_26"].geometry}
-            material={materials["Color_002.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_27"
-            geometry={nodes["STADE1-_1001_27"].geometry}
-            material={materials["_0128_White_.002"]}
-          />
-          <mesh
-            name="STADE1-_1001_28"
-            geometry={nodes["STADE1-_1001_28"].geometry}
-            material={materials["FrontColor.005"]}
-          />
-        </group>
-      </group>
-
-      <mesh
-        name="Cage1"
-        geometry={nodes.Cage1.geometry}
-        material={material}
-        position={[0, 0.048, 0.607]}
-      />
-      <mesh
-        name="Cage2"
-        geometry={nodes.Cage2.geometry}
-        material={material}
-        position={[0, 0.049, -0.691]}
-      />
-      <mesh
-        name="Plane"
-        geometry={nodes.Plane.geometry}
-        material={material}
-      />
-
-
-
-      <group name="but_3">
         <mesh
-          name="Ball3"
-          geometry={nodes.Ball3.geometry}
-          material={nodes.Ball3.material}
-          position={[0, 0.026, 0.37]}
-          rotation={[2.552, 0.765, -2.708]}
-          scale={0.004}
+          name="Boole"
+          geometry={nodes.Boole.geometry}
+          material={material}
+          position={[0, 0, 0.043]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={0.01}
+          // castShadow
+          // receiveShadow
         />
+        <mesh
+          name="Plane001"
+          // castShadow
+          receiveShadow
+          geometry={nodes.Plane001.geometry}
+          material={materialPlane}
+          position={[0.018, -0.123, 0.062]}
+          rotation={[Math.PI / 2, 0, Math.PI / 2]}
+          scale={0.01}
+        />
+        <SpotLight
+               config={{
+                position: [
+                  -7.481953795620818e-8, 0.5706194238256737, 0.0016212674764971746,
+                ],
+                quaternion: [
+                  -0.000005217017130269479, 0.9535771127912418,
+                  0.000017700021410971273, -0.30114894922647706,
+                ],
+              }}
+
+          pivot
+        ></SpotLight>
       </group>
+      <mesh name="Plane" geometry={nodes.Plane.geometry} material={material} />
     </group>
   );
 }

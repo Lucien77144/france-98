@@ -27,7 +27,7 @@ function App() {
           background: '#000000 ',
           top: 0,
         }}
-        gl={{ preserveDrawingBuffer: true }}
+        shadows colorManagement        // gl={{ preserveDrawingBuffer: true }}
       >
         {/* <Leva ></Leva> */}
         <TemplateProvider project={project}>
@@ -36,8 +36,8 @@ function App() {
               <SheetProvider sheet={globalSheet}>
                 <Transition />
                 <Routes>
-                  <Route index path="/" element={<TestScene />} />
-                  <Route path="/anchor" element={<AnchorScene />} />
+                  {/* <Route index path="/" element={<TestScene />} /> */}
+                  <Route index path="/" element={<AnchorScene />} />
                   <Route from="*" to="/" />
                 </Routes>
               </SheetProvider>

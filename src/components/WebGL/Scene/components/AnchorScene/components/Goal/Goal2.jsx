@@ -57,10 +57,10 @@ export default function Goal2({ actionBall, nodes }) {
       if (durations !== null && durations.length > 0) {
         actionBall["Ball2"].time = data.range(0.5625, 0.1) * durations[0];
         shooterAction.current["HeadMid"].time =
-          data.range(0.55, 0.1) * durations[1];
+          data.range(0.5, 0.3) * durations[1];
         goalAction.current["Idle"].time = data.range(0.55, 0.21) * durations[2];
         passAction.current["PassEnd"].time =
-          data.range(0.52, 0.05) * durations[3];
+          data.range(0.47, 0.3) * durations[3];
       }
     }
   });
@@ -73,11 +73,11 @@ export default function Goal2({ actionBall, nodes }) {
           material={material}
           config={{
             position: [
-              0.030171401703648393, 0.021737948849145084, 0.42196341275908406,
+              0.012207295784845513, 0.019707431371618542, 0.5082846989534596,
             ],
             quaternion: [
-              -0.00020651146707609507, 0.03426056772421883,
-              -0.000007148268486364307, 0.9994129130650307,
+              0.0008226945130503613, 0.16354789089186786,
+              0.00013637099490046873, 0.9865350434533544,
             ],
           }}
         ></Player>
@@ -87,11 +87,11 @@ export default function Goal2({ actionBall, nodes }) {
           material={material}
           config={{
             position: [
-              0.34833968707461166, 0.022411313123576398, 0.5541912763706206,
+              0.4027638982386643, 0.02020194295441111, 0.6106654391898021,
             ],
             quaternion: [
-              -0.00006860547293714252, -0.8396497706177926,
-              0.00010503844734484755, 0.5431282049035036,
+              0.00009822609002911884, -0.7907824520418358,
+              -0.00012928332186911125, 0.6120972857153997,
             ],
           }}
         ></Player>
@@ -101,20 +101,21 @@ export default function Goal2({ actionBall, nodes }) {
           material={material}
           config={{
             position: [
-              0.013704211993233873, 0.02340946119414087, 0.5771249479191052,
+              0.03035029876757274, 0.02172592871384313, 0.6378439365868653,
             ],
             quaternion: [
-              -0.000023572195028978736, 0.9968369989841002,
-              -0.0002942505104826517, 0.07947270171173125,
+              0.000021720406879469335, 0.9986389596161027,
+              -0.0004200891977532612, -0.052154111919941654,
             ],
           }}
         ></Player>
 
         <group name="but_2">
           <mesh
+                  castShadow
             name="Ball2"
             geometry={nodes.Ball2.geometry}
-            material={nodes.Ball2.material}
+            material={material}
             position={[0.057, 0.066, 0.37]}
             rotation={[-3.002, 0.533, 3.071]}
             scale={0.004}

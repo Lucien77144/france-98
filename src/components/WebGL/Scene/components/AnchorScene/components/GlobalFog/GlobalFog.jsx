@@ -7,19 +7,19 @@ import { useRef } from "react"
 export default function GlobalFog() {
     const ref = useRef()
     const cloud0 = useRef()
-    const { color, x, y, z, range, ...config } = useControls({
-      seed: { value: 7, min: 1, max: 100, step: 1 },
-      segments: { value: 11, min: 1, max: 80, step: 1 },
-      volume: { value: 1.9, min: 0, max: 100, step: 0.1 },
-      opacity: { value: .25, min: 0, max: 1, step: 0.01 },
-      fade: { value: 0, min: 0, max: 400, step: 1 },
-      growth: { value: 3, min: 0, max: 20, step: 1 },
-      speed: { value: 0.41, min: 0, max: 1, step: 0.01 },
-      x: { value: 5, min: 0, max: 100, step: 1 },
-      y: { value: 6, min: 0, max: 100, step: 1 },
-      z: { value: 5, min: 0, max: 100, step: 1 },
+    const { color, x, y, z, range, ...config } = {
+      seed: 7,
+      segments: 11,
+      volume:  1.9,
+      opacity: .25,
+      fade:  0,
+      growth:  3,
+      speed: 0.41,
+      x: 5,
+      y:  6,
+      z:   5,
       color: "white",
-    })
+    }
     useFrame((state, delta) => {
       ref.current.rotation.y = Math.cos(state.clock.elapsedTime / 2) / 2
       ref.current.rotation.x = Math.sin(state.clock.elapsedTime / 2) / 2

@@ -28,38 +28,31 @@ export default function Goal3({ actionBall, nodes }) {
   useEffect(() => {}, []);
 
   useFrame(() => {
-    // if (
-    //   durations == null &&
-    //   shooterAction.current &&
-    //   goalAction.current &&
-    //   passAction.current
-    // ) {
-    //   const tmpDurations = [];
-    //   actionBall["Ball2"].play().paused = true;
-    //   shooterAction.current["HeadMid"].play().paused = true;
-    //   goalAction.current["Idle"].play().paused = true;
-    //   passAction.current["PassEnd"].play().paused = true;
-    //   tmpDurations.push(actionBall["Ball2"].getClip().duration);
-    //   tmpDurations.push(shooterAction.current["HeadMid"].getClip().duration);
-    //   tmpDurations.push(goalAction.current["Idle"].getClip().duration);
-    //   tmpDurations.push(passAction.current["PassEnd"].getClip().duration);
-    //   setDurations([...tmpDurations]);
-    // }
-    // if (!data.visible(0.5, 0.24) && group.current.visible == true) {
-    //   group.current.visible = false;
-    // } else if (data.visible(0.5, 0.24)) {
-    //   if (group.current.visible == false) {
-    //     group.current.visible = true;
-    //   }
-    //   if (durations !== null && durations.length > 0) {
-    //     actionBall["Ball2"].time = data.range(0.5625, 0.1) * durations[0];
-    //     shooterAction.current["HeadMid"].time =
-    //       data.range(0.55, 0.1) * durations[1];
-    //     goalAction.current["Idle"].time = data.range(0.55, 0.21) * durations[2];
-    //     passAction.current["PassEnd"].time =
-    //       data.range(0.52, 0.05) * durations[3];
-    //   }
-    // }
+    if (durations == null && shooterAction.current && goalAction.current) {
+      const tmpDurations = [];
+      actionBall["Ball3"].play().paused = true;
+      shooterAction.current["Pass"].play().paused = true;
+      goalAction.current["Crouch"].play().paused = true;
+      tmpDurations.push(actionBall["Ball2"].getClip().duration);
+      tmpDurations.push(shooterAction.current["PassEnd"].getClip().duration);
+      tmpDurations.push(goalAction.current["Crouch"].getClip().duration);
+      setDurations([...tmpDurations]);
+    }
+    if (!data.visible(0.8, 0.24) && group.current.visible == true) {
+      group.current.visible = false;
+    } else if (data.visible(0.8, 0.24)) {
+      if (group.current.visible == false) {
+        group.current.visible = true;
+      }
+      console.log(durations);
+      if (durations !== null && durations.length > 0) {
+        actionBall["Ball3"].time = data.range(0.8625, 0.1) * durations[0];
+        goalAction.current["Crouch"].time =
+          data.range(0.85, 0.21) * durations[1];
+        shooterAction.current["Pass"].time =
+          data.range(0.815, 0.15) * durations[2];
+      }
+    }
   });
 
   return (
@@ -70,25 +63,11 @@ export default function Goal3({ actionBall, nodes }) {
           material={material}
           config={{
             position: [
-              0.030171401703648393, 0.021737948849145084, 0.42196341275908406,
+              0.09487924135671896, 0.021625045894751945, 0.4205829105373414,
             ],
             quaternion: [
-              -0.00020651146707609507, 0.03426056772421883,
-              -0.000007148268486364307, 0.9994129130650307,
-            ],
-          }}
-        ></Player>
-
-        {/* <Player
-          action={passAction}
-          material={material}
-          config={{
-            position: [
-              0.34833968707461166, 0.022411313123576398, 0.5541912763706206,
-            ],
-            quaternion: [
-              -0.00006860547293714252, -0.8396497706177926,
-              0.00010503844734484755, 0.5431282049035036,
+              -0.00003103834688149986, -0.15880883476276686,
+              0.000004529672999744995, 0.9873093502126856,
             ],
           }}
         ></Player>
@@ -98,20 +77,21 @@ export default function Goal3({ actionBall, nodes }) {
           material={material}
           config={{
             position: [
-              0.013704211993233873, 0.02340946119414087, 0.5771249479191052,
+              0.046104376952320475, 0.021878943518959873, 0.5521084960601799,
             ],
             quaternion: [
-              -0.000023572195028978736, 0.9968369989841002,
-              -0.0002942505104826517, 0.07947270171173125,
+              5.678314289845093e-7, 0.9995779385530085,
+              -0.000009212121644286011, -0.029050725858959854,
             ],
           }}
-        ></Player> */}
+        ></Player>
 
         <group name="but_3">
           <mesh
+            castShadow
             name="Ball3"
             geometry={nodes.Ball3.geometry}
-            material={nodes.Ball3.material}
+            material={material}
             position={[0, 0.026, 0.37]}
             rotation={[2.552, 0.765, -2.708]}
             scale={0.004}
