@@ -36,7 +36,7 @@ export default function VideoPanel() {
       } else if (scroll > 1 - transition) {
         res = (scroll - (1 - transition)) / transition;
       }
-      videoRef.current.currentTime = scroll * (videoRef.current?.duration || 0);
+      videoRef.current.currentTime = scroll * (videoRef.current?.duration || 1);
     }
     return res * 100;
   };
@@ -46,7 +46,7 @@ export default function VideoPanel() {
       <div
         className="vpnl-container"
         style={{
-          transform: `translateY(${getTranslation()}%)`,
+          // transform: `translateY(${getTranslation()}%)`,
           opacity: 1 - getTranslation() / 100,
         }}
       >

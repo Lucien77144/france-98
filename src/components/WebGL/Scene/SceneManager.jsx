@@ -63,14 +63,14 @@ export default function SceneManager({
     setNewChildren(filteredChildren);
     setEmptyElt(fctEmpty(empty));
 
-    function showPos(){
-        console.log(empty.current.position.toArray(),data.offset)
+    function showPos() {
+      // console.log(empty.current.position.toArray(),data.offset)
     }
 
-    window.addEventListener("click", showPos)
+    window.addEventListener('click', showPos);
     return () => {
-        window.removeEventListener("click",showPos)
-    }
+      window.removeEventListener('click', showPos);
+    };
   }, [fctEmpty]);
 
   useFrame((state, delta, frame) => {

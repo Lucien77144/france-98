@@ -49,10 +49,6 @@ export default function IntroPlayers() {
     side: THREE.DoubleSide,
   });
 
-  useEffect(() => {
-    console.log("plop");
-  }, []);
-
   const setAnimFr = () => {
     frP1.current["Idle1"].play();
     frP1.current["Idle1"].time = Math.random();

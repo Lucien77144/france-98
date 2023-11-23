@@ -3,7 +3,7 @@
   "tracks": [
     {
       "context": "track_02",
-      "position": [0, 0.05, -0.005],
+      "position": [0, 0.05, -0.01],
       "track_position": 0.1675,
       "range": [0, 0.2]
     },

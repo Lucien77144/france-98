@@ -46,16 +46,15 @@ export default function ProgressBar() {
                 key={index}
                 style={{
                   bottom: `${position * 100}%`,
-                  backgroundColor:
-                    position < scrollPosition ? COLORS.secondary : COLORS.primary,
+                  ...(position < scrollPosition && {
+                    backgroundColor: COLORS.primary,
+                  }),
                 }}
                 className={`progress-bar-item pointer-active ${
                   position < scrollPosition ? 'progress-bar-item-active' : ''
                 }`}
                 onClick={() => scrollTo(position)}
-              >
-                {/* {track.context} */}
-              </li>
+              ></li>
             );
           })}
         </ul>
@@ -63,7 +62,7 @@ export default function ProgressBar() {
           className="progress-bar"
           style={{
             height: scrollPosition * 100 + '%',
-            backgroundColor: COLORS.primary,
+            backgroundColor: '#ffffff49',
           }}
         ></div>
       </div>
