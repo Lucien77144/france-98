@@ -5,22 +5,30 @@ import gsap from 'gsap';
 import './ProgressBar.scss';
 import { tracks } from '../../../components/WebGL/Scene/components/AnchorScene/data/tracklist.json';
 import COLORS from '../Colors/Colors';
+import { useState } from 'react';
 
 function getTrackPosition({ range }) {
   return range[0] + (range[1] - range[0] / 2);
 }
 
 export default function ProgressBar() {
-  const { setScrollPosition, scrollPosition, redirect, setRedirect } =
-    useContext(InterfaceContext);
+  const { scrollPositionRef, setRedirect } = useContext(InterfaceContext);
+  const [scroll, setScroll] = useState(scrollPositionRef.current);
 
   useEffect(() => {
-    // console.log(scrollPosition);
-  }, [scrollPosition]);
+    const handleScroll = () => {
+      setScroll(scrollPositionRef.current);
+    };
+
+    window.addEventListener('wheel', handleScroll);
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, []);
 
   const scrollTo = (value) => {
-    const duration = Math.abs(value - scrollPosition) * 8;
-    const newPos = { value: scrollPosition };
+    const duration = Math.abs(value - scroll) * 8;
+    const newPos = { value: scroll };
 
     gsap.to(newPos, {
       duration,
@@ -46,12 +54,12 @@ export default function ProgressBar() {
                 key={index}
                 style={{
                   bottom: `${position * 100}%`,
-                  ...(position < scrollPosition && {
+                  ...(position < scroll && {
                     backgroundColor: COLORS.primary,
                   }),
                 }}
                 className={`progress-bar-item pointer-active ${
-                  position < scrollPosition ? 'progress-bar-item-active' : ''
+                  position < scroll ? 'progress-bar-item-active' : ''
                 }`}
                 onClick={() => scrollTo(position)}
               ></li>
@@ -61,7 +69,7 @@ export default function ProgressBar() {
         <div
           className="progress-bar"
           style={{
-            height: scrollPosition * 100 + '%',
+            height: scroll * 100 + '%',
             backgroundColor: '#ffffff49',
           }}
         ></div>

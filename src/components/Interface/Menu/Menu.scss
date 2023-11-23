@@ -39,6 +39,7 @@
 
   &::before {
     content: '';
+    z-index: -1;
     box-sizing: border;
     transition: 0.25s ease-in-out;
     position: absolute;

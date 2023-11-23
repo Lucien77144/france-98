@@ -33,8 +33,8 @@ export default function App() {
             <DialogsBox />
             <ProgressBar />
             <PlayerPresentation />
-            <Menu />
-            {/* <Menu intro="france_supporters.mp4" /> */}
+            {/* <Menu /> */}
+            <Menu intro="france_supporters.mp4" />
           </div>
 
           <Canvas

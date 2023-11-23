@@ -28,11 +28,11 @@ export default function RailCameraController({
   const { canScroll, interactSettings, itemFocus, projectRef } =
     useContext(TemplateContext);
 
-  const { scrollPosition, setScrollPosition, redirect, setRedirect } =
+  const { scrollPositionRef, redirect, setRedirect } =
     useContext(InterfaceContext);
 
   useEffect(() => {
-    if (empty && empty.current) {
+    if (empty?.current) {
       camPosition.current = empty.current.position;
       camRotation.current = empty.current.rotation;
       if (actions) {
@@ -60,25 +60,22 @@ export default function RailCameraController({
       data.scroll.current = redirect;
       data.offset = redirect;
 
-      setScrollPosition(redirect);
+      scrollPositionRef.current = redirect;
       setRedirect(null);
     }
   }, [redirect]);
-
-  useEffect(() => {
-    // console.log(scrollPosition);
-  }, [scrollPosition]);
 
   useFrame((_, delta) => {
     if (empty?.current) {
       if (stateAnim.current === 'classic') {
         classicCamPos(delta);
         classicCamRot();
-        if (data.offset != scrollPosition) {
-          setScrollPosition(Math.round(data.offset * DECIMAL) / DECIMAL);
+        if (data.offset != scrollPositionRef.current) {
+          scrollPositionRef.current =
+            Math.round(data.offset * DECIMAL) / DECIMAL;
         }
         projectRef.current.sheet('global').sequence.position =
-          scrollPosition * 15;
+          scrollPositionRef.current * 15;
       } else if (stateAnim.current === 'enter') {
         if (data.delta == 0 && canScroll.current) {
           previousScroll.current = [data.scroll.current, data.el.scrollTop];
@@ -93,9 +90,8 @@ export default function RailCameraController({
         }
 
         if (previousScroll.current) {
-          setScrollPosition(
-            Math.round(previousScroll.current[0] * DECIMAL) / DECIMAL
-          );
+          scrollPositionRef.current =
+            Math.round(previousScroll.current[0] * DECIMAL) / DECIMAL;
           data.el.scrollTop = previousScroll.current[1];
           data.scroll.current = previousScroll.current[0];
         }
@@ -111,9 +107,8 @@ export default function RailCameraController({
         objToTargetPos(camera, empty.current, delta, lambda);
         camera.quaternion.slerp(empty.current.quaternion, 0.5);
         data.scroll.current = previousScroll.current[0];
-        setScrollPosition(
-          Math.round(previousScroll.current[0] * DECIMAL) / DECIMAL
-        );
+        scrollPositionRef.current =
+          Math.round(previousScroll.current[0] * DECIMAL) / DECIMAL;
         data.el.scrollTop = previousScroll.current[1];
 
         if (camera.position.distanceTo(empty.current.position) < 0.001) {
@@ -129,7 +124,7 @@ export default function RailCameraController({
     if (actions && data) {
       action.current.time = THREE.MathUtils.damp(
         action.current.time,
-        action.current.getClip().duration * scrollPosition,
+        action.current.getClip().duration * scrollPositionRef.current,
         100,
         delta
       );

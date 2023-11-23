@@ -8,22 +8,31 @@ import { SoundContext } from '../../../../../../providers/SoundProvider';
 import gsap from 'gsap';
 
 export default function AmbiantAudioManager({ scene = 'stadiumAmbiant' }) {
-  const { scrollPosition, startExperience } = useContext(InterfaceContext);
+  const { scrollPositionRef, startExperience } = useContext(InterfaceContext);
   const { audioScene } = useContext(SoundContext);
-
   const [ambiantList, setAmbiantList] = useState();
+  const [scroll, setScroll] = useState(scrollPositionRef.current);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScroll(scrollPositionRef.current);
+    };
+
+    window.addEventListener('wheel', handleScroll);
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const newAmbiant = ambiant
-      .filter(
-        ({ range }) => scrollPosition >= range[0] && scrollPosition <= range[1]
-      )
+      .filter(({ range }) => scroll >= range[0] && scroll <= range[1])
       .map(({ context }) => context);
 
     if (newAmbiant?.join('') != ambiantList?.join('')) {
       setAmbiantList(newAmbiant);
     }
-  }, [scrollPosition]);
+  }, [scroll]);
 
   useEffect(() => {
     startExperience &&

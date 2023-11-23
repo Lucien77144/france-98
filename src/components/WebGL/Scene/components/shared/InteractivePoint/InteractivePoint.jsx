@@ -54,12 +54,24 @@ export default function InteractivePoint({
 
   const { isFocus } = useContext(TemplateContext);
   const { audioScene, audioEnd, setAudioEnd } = useContext(SoundContext);
-  const { setActiveAudio, scrollPosition } = useContext(InterfaceContext);
+  const { setActiveAudio, scrollPositionRef } = useContext(InterfaceContext);
 
   const { clock } = useThree();
-
   const [status, setStatus] = useState('stop');
   const [startTime, setStartTime] = useState(0);
+
+  const [scroll, setScroll] = useState(scrollPositionRef.current);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScroll(scrollPositionRef.current);
+    };
+
+    window.addEventListener('wheel', handleScroll);
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, []);
 
   useFrame(({ camera }) => {
     planeRef.current.lookAt(camera.position);
@@ -99,12 +111,12 @@ export default function InteractivePoint({
   }, [isFocus]);
 
   useEffect(() => {
-    if (scrollPosition > range[0] && scrollPosition < range[1]) {
+    if (scroll > range[0] && scroll < range[1]) {
       pointRef.current.visible = true;
     } else {
       pointRef.current.visible = false;
     }
-  }, [scrollPosition]);
+  }, [scroll]);
 
   useEffect(() => {
     if (materialRef?.current) {

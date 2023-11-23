@@ -30,6 +30,7 @@ export default function Menu({ intro }) {
       style={{
         backgroundColor: COLORS.primary,
         opacity: !startExperience ? 1 : 0,
+        pointerEvents: !startExperience ? 'all' : 'none',
       }}
       className={`menu ${hoverStart ? 'menu-hover' : ''} ${
         startVideo ? 'start-video' : ''
