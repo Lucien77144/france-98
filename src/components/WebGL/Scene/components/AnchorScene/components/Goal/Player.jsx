@@ -28,7 +28,7 @@ export default function Player({ action, material, config, pivot = false }) {
           action={action}
           clone={clone}
           material={material}
-          config={config}
+          config={{scale:0.01225 ,...config}}
           pivot={pivot}
         />
       )}

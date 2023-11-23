@@ -28,7 +28,7 @@ export default function PlayerModel({ action,clone, material, config, pivot = fa
   }, []);
 
   const groupRender = (
-    <group ref={group} dispose={null} scale={0.01225} {...config}>
+    <group ref={group} dispose={null}  {...config}>
       <primitive object={clone.current.scene} castShadow receiveShadow/>
     </group>
     ) 

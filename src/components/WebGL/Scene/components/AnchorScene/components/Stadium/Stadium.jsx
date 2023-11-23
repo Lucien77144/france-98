@@ -1,52 +1,82 @@
-import React, { useRef } from 'react';
-import { MeshStandardMaterial } from 'three';
-import { MeshBasicMaterial, DoubleSide } from 'three';
-import SpectatorsLargeD from '../Spectators/SpectatorsLargeD';
-import Smoke from '../Smoke/Smoke';
-import { useFrame } from '@react-three/fiber';
-import { useScroll } from '@react-three/drei';
+import React, { useEffect, useRef } from "react";
+import {
+  DoubleSide,
+  MeshBasicMaterial,
+  MeshStandardMaterial,
+  PlaneGeometry,
+  Quaternion,
+  TextureLoader,
+  Vector3,
+} from "three";
+import SpectatorsLargeD from "../Spectators/SpectatorsLargeD";
+import Smoke from "../Smoke/Smoke";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { PivotControls, useScroll } from "@react-three/drei";
 
 export default function Stadium({ nodes, material, materials }) {
-  const progressSmoke1 = useRef(0);
-  const progressSmoke2 = useRef(0);
-
+  const progressSmoke1 = useRef(1);
+  const progressSmoke2 = useRef(1);
+  const progressSmoke3 = useRef(0);
   const data = useScroll();
 
-  const stadeMaterial = new MeshBasicMaterial({
-    map: materials['Material.002'].map,
+  const map = useLoader(TextureLoader, "/src/assets/img/screen.jpg");
+
+  const stadeMaterial = new MeshStandardMaterial({
+    map: materials["Material.005"].map,
   });
+  const fieldMaterial = new MeshStandardMaterial({
+    map: materials["Material.006"].map,
+  });
+  const screenMaterial = new MeshBasicMaterial({
+    map: map,
+  });
+  const screenGeometry = new PlaneGeometry(0.3, 0.2, 10, 10);
 
   useFrame((state, delta) => {
-    if (data.visible(0.375, 1) && progressSmoke1.current < 1) {
-      progressSmoke1.current += delta / 2;
+    if (data.visible(0.2, 1) && progressSmoke3.current < 1) {
+      progressSmoke3.current += delta / 2;
     }
-    if (data.visible(0.407, 1) && progressSmoke2.current < 1) {
-      progressSmoke2.current += delta / 2;
-    }
+    // if(data.visible(0.375,1) && progressSmoke1.current < 1){
+    //   progressSmoke1.current += delta/2
+    // }
+    // if(data.visible(0.407,1) && progressSmoke2.current < 1){
+    //   progressSmoke2.current += delta/2
+    // }
   });
+
 
   return (
     <group>
       <mesh
-        name="STADE"
-        geometry={nodes.STADE.geometry}
+        name="STADE002"
+        geometry={nodes.STADE002.geometry}
         material={stadeMaterial}
+        position={[-0.026, 0, 0]}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
-        name="TERRAIN_1"
+        name="TERRAIN_1001"
         receiveShadow
-        geometry={nodes.TERRAIN_1.geometry}
-        material={materials['Material.001']}
+        geometry={nodes.TERRAIN_1001.geometry}
+        material={fieldMaterial}
+        position={[-0.026, 0, 0]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
       />
 
-      <mesh name="Plane" geometry={nodes.Plane.geometry} material={material} />
+        <mesh
+          name="Plane"
+          geometry={screenGeometry}
+          material={screenMaterial}
+          rotation={[0, -Math.PI / 2, 0]}
+          position={[
+            0.8825325464474212, 0.37804333229182485, -0.00005425097508603012,
+          ]}
+        />
       <pointLight
-        intensity={1}
-        position={[0, 0.45, 0]}
-        shadow-mapSize={[2048, 2048]}
+        intensity={8}
+        position={[0, 0.65, 0]}
+        shadow-mapSize={[4096, 4096]}
         castShadow={true}
       />
       <SpectatorsLargeD
@@ -60,7 +90,7 @@ export default function Stadium({ nodes, material, materials }) {
       ></SpectatorsLargeD>
       <Smoke
         // pivot
-        nameConf={'sm1'}
+        nameConf={"sm1"}
         configCloud={{
           seed: 61,
           segments: { value: 17, min: 1, max: 80, step: 1 },
@@ -72,16 +102,17 @@ export default function Stadium({ nodes, material, materials }) {
           x: 5,
           y: 2.5,
           z: 5,
-          color: '#13582d',
+          color: "#13582d",
         }}
         configProps={{
           position: [
             0.7527804262450353, 0.07365932536007919, 0.2907510533188442,
           ],
         }}
+        progressScroll={progressSmoke3}
       ></Smoke>
       <Smoke
-        nameConf={'sm2'}
+        nameConf={"sm2"}
         configCloud={{
           seed: { value: 15, min: 1, max: 100, step: 1 },
           segments: { value: 16, min: 1, max: 80, step: 1 },
@@ -93,16 +124,17 @@ export default function Stadium({ nodes, material, materials }) {
           x: { value: 4, min: 0, max: 100, step: 1 },
           y: { value: 3, min: 0, max: 100, step: 1 },
           z: { value: 10, min: 0, max: 100, step: 1 },
-          color: '#656921',
+          color: "#656921",
         }}
         configProps={{
           position: [
             0.7122205924592314, 0.07650980419265092, -0.28362644009290716,
           ],
         }}
+        progressScroll={progressSmoke3}
       ></Smoke>
       <Smoke
-        nameConf={'sm3'}
+        nameConf={"sm3"}
         configCloud={{
           seed: { value: 24, min: 1, max: 100, step: 1 },
           segments: { value: 19, min: 1, max: 80, step: 1 },
@@ -114,7 +146,7 @@ export default function Stadium({ nodes, material, materials }) {
           x: { value: 11, min: 0, max: 100, step: 1 },
           y: { value: 6, min: 0, max: 100, step: 1 },
           z: { value: 8, min: 0, max: 100, step: 1 },
-          color: '#c40101',
+          color: "#c40101",
         }}
         configProps={{
           position: [
@@ -124,7 +156,7 @@ export default function Stadium({ nodes, material, materials }) {
         progressScroll={progressSmoke1}
       ></Smoke>
       <Smoke
-        nameConf={'sm4'}
+        nameConf={"sm4"}
         configCloud={{
           seed: { value: 21, min: 1, max: 100, step: 1 },
           segments: { value: 51, min: 1, max: 80, step: 1 },
@@ -136,7 +168,7 @@ export default function Stadium({ nodes, material, materials }) {
           x: { value: 3, min: 0, max: 100, step: 1 },
           y: { value: 10, min: 0, max: 100, step: 1 },
           z: { value: 3, min: 0, max: 100, step: 1 },
-          color: '#FFFFFF',
+          color: "#FFFFFF",
         }}
         configProps={{
           position: [-0.75, 0.03592831548856044, 0],
@@ -144,7 +176,7 @@ export default function Stadium({ nodes, material, materials }) {
         progressScroll={progressSmoke2}
       ></Smoke>
       <Smoke
-        nameConf={'sm5'}
+        nameConf={"sm5"}
         configCloud={{
           seed: { value: 24, min: 1, max: 100, step: 1 },
           segments: { value: 19, min: 1, max: 80, step: 1 },
@@ -156,7 +188,7 @@ export default function Stadium({ nodes, material, materials }) {
           x: { value: 11, min: 0, max: 100, step: 1 },
           y: { value: 6, min: 0, max: 100, step: 1 },
           z: { value: 8, min: 0, max: 100, step: 1 },
-          color: '#292b79',
+          color: "#292b79",
         }}
         configProps={{
           position: [-0.65, 0.045261130903242304, 0.175],
