@@ -14,10 +14,11 @@ import InterfaceProvider from './Providers/InterfaceProvider';
 import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
 import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
 import Menu from './components/Interface/Menu/Menu';
-import { Suspense } from 'react';
-import Loading from './components/Interface/Loading/Loading';
+import PlayerPresentation from './components/Interface/PlayerPresentation/PlayerPresentation';
 import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing';
 import { KernelSize, Resolution } from 'postprocessing';
+import { Suspense } from 'react';
+import Loading from './components/Interface/Loading/Loading.jsx';
 
 export default function App() {
   const project = getProject('Template', { state });
@@ -31,8 +32,10 @@ export default function App() {
             <VideoPanel />
             <DialogsBox />
             <ProgressBar />
-            <Menu />
-            {/* <Menu intro="france_supporters.mp4" /> */}
+            <PlayerPresentation />
+
+            {/* <Menu /> */}
+            <Menu intro="france_supporters.mp4" />
           </div>
 
           <Canvas

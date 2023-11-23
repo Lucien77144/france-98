@@ -474,7 +474,7 @@ export default function IntroPlayers() {
             seed: { value: 24, min: 1, max: 100, step: 1 },
             segments: { value: 37, min: 1, max: 80, step: 1 },
             volume: { value: 9, min: 0, max: 100, step: 0.1 },
-            opacity: { value: 0.45, min: 0, max: 1, step: 0.01 },
+            opacity: { value: 0.75, min: 0, max: 1, step: 0.01 },
             fade: { value: 0, min: 0, max: 400, step: 1 },
             growth: { value: 1, min: 0, max: 20, step: 1 },
             speed: { value: 0.79, min: 0, max: 1, step: 0.01 },
