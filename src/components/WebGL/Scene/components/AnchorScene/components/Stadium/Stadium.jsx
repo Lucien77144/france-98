@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import {
   DoubleSide,
   MeshBasicMaterial,
+  MeshPhongMaterial,
   MeshStandardMaterial,
   PlaneGeometry,
   Quaternion,
@@ -11,7 +12,7 @@ import {
 import SpectatorsLargeD from "../Spectators/SpectatorsLargeD";
 import Smoke from "../Smoke/Smoke";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { PivotControls, useScroll } from "@react-three/drei";
+import { PivotControls, useGLTF, useScroll } from "@react-three/drei";
 
 export default function Stadium({ nodes, material, materials }) {
   const progressSmoke1 = useRef(1);
@@ -19,6 +20,12 @@ export default function Stadium({ nodes, material, materials }) {
   const progressSmoke3 = useRef(0);
   const data = useScroll();
 
+  const { nodes: n2, materials: m2 } = useGLTF(
+    "/src/assets/models/franceFlag.glb"
+  );
+  const { nodes: n3, materials: m3 } = useGLTF(
+    "/src/assets/models/brazilFlag.glb"
+  );
   const map = useLoader(TextureLoader, "/src/assets/img/screen.jpg");
 
   const stadeMaterial = new MeshStandardMaterial({
@@ -27,6 +34,30 @@ export default function Stadium({ nodes, material, materials }) {
   const fieldMaterial = new MeshStandardMaterial({
     map: materials["Material.006"].map,
   });
+
+  const flagsMaterialFR = new MeshPhongMaterial({
+    color: "#5b080f",
+    side: DoubleSide,
+  });
+  const flagsMaterialFW = new MeshPhongMaterial({
+    color: "#767676",
+    side: DoubleSide,
+  });
+  const flagsMaterialFB = new MeshPhongMaterial({
+    color: "#002654",
+    side: DoubleSide,
+  });
+
+  const flagsMaterialBG = new MeshPhongMaterial({
+    color: "#005a22",
+  });
+  const flagsMaterialBY = new MeshPhongMaterial({
+    color: "#6d5f00",
+  });
+  const flagsMaterialBB = new MeshPhongMaterial({
+    color: "#002654",
+  });
+
   const screenMaterial = new MeshBasicMaterial({
     map: map,
   });
@@ -43,7 +74,6 @@ export default function Stadium({ nodes, material, materials }) {
     //   progressSmoke2.current += delta/2
     // }
   });
-
 
   return (
     <group>
@@ -64,15 +94,54 @@ export default function Stadium({ nodes, material, materials }) {
         scale={0.01}
       />
 
-        <mesh
-          name="Plane"
-          geometry={screenGeometry}
-          material={screenMaterial}
-          rotation={[0, -Math.PI / 2, 0]}
-          position={[
-            0.8825325464474212, 0.37804333229182485, -0.00005425097508603012,
-          ]}
-        />
+      <mesh
+        name="Plane"
+        geometry={screenGeometry}
+        material={screenMaterial}
+        rotation={[0, -Math.PI / 2, 0]}
+        position={[
+          0.8825325464474212, 0.37804333229182485, -0.00005425097508603012,
+        ]}
+      />
+
+      <mesh
+        geometry={n2.BLANC.geometry}
+        material={flagsMaterialFW}
+        rotation={[Math.PI / 2, 0, 3.054]}
+        scale={0.01}
+      />
+      <mesh
+        geometry={n2.BLEU.geometry}
+        material={flagsMaterialFB}
+        rotation={[Math.PI / 2, 0, 3.054]}
+        scale={0.01}
+      />
+      <mesh
+        geometry={n2.ROUGE.geometry}
+        material={flagsMaterialFR}
+        rotation={[Math.PI / 2, 0, 3.054]}
+        scale={0.01}
+      />
+
+      <mesh
+        geometry={n3.BLEU001.geometry}
+        material={flagsMaterialBB}
+        rotation={[Math.PI / 2, 0, Math.PI]}
+        scale={0.01}
+      />
+      <mesh
+        geometry={n3.JAUNE.geometry}
+        material={flagsMaterialBY}
+        rotation={[Math.PI / 2, 0, Math.PI]}
+        scale={0.01}
+      />
+      <mesh
+        geometry={n3.VERT.geometry}
+        material={flagsMaterialBG}
+        rotation={[Math.PI / 2, 0, Math.PI]}
+        scale={0.01}
+      />
+
       <pointLight
         intensity={8}
         position={[0, 0.65, 0]}
@@ -94,7 +163,7 @@ export default function Stadium({ nodes, material, materials }) {
         configCloud={{
           seed: 61,
           segments: { value: 17, min: 1, max: 80, step: 1 },
-          volume: 4,
+          volume: 6,
           opacity: 1,
           fade: 3,
           growth: 14.0,
@@ -102,7 +171,7 @@ export default function Stadium({ nodes, material, materials }) {
           x: 5,
           y: 2.5,
           z: 5,
-          color: "#13582d",
+          color: "#3b7253",
         }}
         configProps={{
           position: [
@@ -124,7 +193,7 @@ export default function Stadium({ nodes, material, materials }) {
           x: { value: 4, min: 0, max: 100, step: 1 },
           y: { value: 3, min: 0, max: 100, step: 1 },
           z: { value: 10, min: 0, max: 100, step: 1 },
-          color: "#656921",
+          color: "#a7903c",
         }}
         configProps={{
           position: [

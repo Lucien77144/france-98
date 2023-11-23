@@ -15,6 +15,7 @@ import ProgressBar from "./components/Interface/ProgressBar/ProgressBar";
 import VideoPanel from "./components/Interface/VideoPanel/VideoPanel";
 import { Bloom, EffectComposer, Noise } from "@react-three/postprocessing";
 import { KernelSize, Resolution } from "postprocessing";
+import PlayerPresentation from "./components/Interface/PlayerPresentation/PlayerPresentation";
 
 export default function App() {
   const project = getProject("Template", { state });
@@ -27,6 +28,7 @@ export default function App() {
           <VideoPanel />
           <DialogsBox />
           <ProgressBar />
+          <PlayerPresentation/>
         </div>
 
         <Canvas

@@ -3,6 +3,11 @@
   src: url('/src/assets/fonts/CarroisGothic-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'PressStyle';
+  src: url('/src/assets/fonts/PressStyle.otf');
+}
+
 body {
   margin: 0;
   font-family: 'Carrois Gothic', sans-serif;

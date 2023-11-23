@@ -126,7 +126,7 @@ function TestAnchor(props) {
                 blur={0.15}
                 background
               ></Environment>
-              <ambientLight intensity={Math.PI / 1.5} />
+              {/* <ambientLight intensity={Math.PI / 1.5} /> */}
 
               {/* dialog tracklist */}
               {tracklist.tracks.map(
