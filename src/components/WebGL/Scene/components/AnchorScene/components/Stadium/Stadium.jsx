@@ -63,17 +63,17 @@ export default function Stadium({ nodes, material, materials }) {
   });
   const screenGeometry = new PlaneGeometry(0.3, 0.2, 10, 10);
 
-  useFrame((state, delta) => {
-    if (data.visible(0.2, 1) && progressSmoke3.current < 1) {
-      progressSmoke3.current += delta / 2;
-    }
-    // if(data.visible(0.375,1) && progressSmoke1.current < 1){
-    //   progressSmoke1.current += delta/2
-    // }
-    // if(data.visible(0.407,1) && progressSmoke2.current < 1){
-    //   progressSmoke2.current += delta/2
-    // }
-  });
+  // useFrame((state, delta) => {
+  //   if (data.visible(0.2, 1) && progressSmoke3.current < 1) {
+  //     progressSmoke3.current += delta / 2;
+  //   }
+  //   // if(data.visible(0.375,1) && progressSmoke1.current < 1){
+  //   //   progressSmoke1.current += delta/2
+  //   // }
+  //   // if(data.visible(0.407,1) && progressSmoke2.current < 1){
+  //   //   progressSmoke2.current += delta/2
+  //   // }
+  // });
 
   return (
     <group>
