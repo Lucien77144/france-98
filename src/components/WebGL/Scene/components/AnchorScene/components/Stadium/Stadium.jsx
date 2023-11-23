@@ -7,9 +7,9 @@ import { useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 
 export default function Stadium({ nodes, material, materials }) {
-  const progressSmoke1 = useRef(0);
-  const progressSmoke2 = useRef(0);
-
+  const progressSmoke1 = useRef(1);
+  const progressSmoke2 = useRef(1);
+  const progressSmoke3 = useRef(0);
 
   const data = useScroll();
 
@@ -18,12 +18,16 @@ export default function Stadium({ nodes, material, materials }) {
   });
 
   useFrame((state,delta) => {
-    if(data.visible(0.375,1) && progressSmoke1.current < 1){
-      progressSmoke1.current += delta/2  
+
+    if(data.visible(0.2,1) && progressSmoke3.current < 1){
+      progressSmoke3.current += delta/2  
     }
-    if(data.visible(0.407,1) && progressSmoke2.current < 1){
-      progressSmoke2.current += delta/2  
-    }
+    // if(data.visible(0.375,1) && progressSmoke1.current < 1){
+    //   progressSmoke1.current += delta/2  
+    // }
+    // if(data.visible(0.407,1) && progressSmoke2.current < 1){
+    //   progressSmoke2.current += delta/2  
+    // }
   });
 
   return (
@@ -46,8 +50,8 @@ export default function Stadium({ nodes, material, materials }) {
       <mesh name="Plane" geometry={nodes.Plane.geometry} material={material} />
       <pointLight
         intensity={1}
-        position={[0, 0.45, 0]}
-        shadow-mapSize={[2048, 2048]}
+        position={[0, .65, 0]}
+        shadow-mapSize={[4096, 4096]}
         castShadow={true}
       />
       <SpectatorsLargeD
@@ -56,7 +60,7 @@ export default function Stadium({ nodes, material, materials }) {
       ></SpectatorsLargeD>
       <SpectatorsLargeD
         material={material}
-        rotation={[0, Math.PI, 0]}
+        rotation={[0, Math.PI, 0]} 
         position={[0.045, 0, 0]}
       ></SpectatorsLargeD>
       <Smoke
@@ -80,6 +84,7 @@ export default function Stadium({ nodes, material, materials }) {
             0.7527804262450353, 0.07365932536007919, 0.2907510533188442,
           ],
         }}
+        progressScroll={progressSmoke3}
       ></Smoke>
       <Smoke
         nameConf={"sm2"}
@@ -101,6 +106,8 @@ export default function Stadium({ nodes, material, materials }) {
             0.7122205924592314, 0.07650980419265092, -0.28362644009290716,
           ],
         }}
+        progressScroll={progressSmoke3}
+
       ></Smoke>
       <Smoke
         nameConf={"sm3"}

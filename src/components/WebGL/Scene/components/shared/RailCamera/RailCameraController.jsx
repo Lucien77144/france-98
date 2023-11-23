@@ -66,7 +66,7 @@ export default function RailCameraController({
   }, [redirect]);
 
   useEffect(() => {
-    console.log(scrollPosition);
+    // console.log(scrollPosition);
   }, [scrollPosition]);
 
   useFrame((_, delta) => {

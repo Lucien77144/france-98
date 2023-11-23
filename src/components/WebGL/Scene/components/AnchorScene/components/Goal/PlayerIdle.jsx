@@ -7,9 +7,9 @@ import { useGLTF } from '@react-three/drei';
 import cloneGltf from '../../../../../Utils/Utils';
 import PlayerModel from './PlayerModel';
 
-export default function Player({ action, material, config, pivot = false }) {
+export default function PlayerIdle({ action, material, config, pivot = false }) {
   const clone = useRef();
-  const model = useGLTF('/src/assets/models/foot.glb');
+  const model = useGLTF('/src/assets/models/footballIdle.glb');
 
   useEffect(() => {
     clone.current = cloneGltf(model);
@@ -28,7 +28,7 @@ export default function Player({ action, material, config, pivot = false }) {
           action={action}
           clone={clone}
           material={material}
-          config={{scale:0.01225 ,...config}}
+          config={{scale:0.08,...config}}
           pivot={pivot}
         />
       )}

@@ -1,22 +1,25 @@
-import './App.scss';
-import state from './Template.theatre-project-state.json';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SheetProvider } from '@theatre/r3f';
-import { getProject } from '@theatre/core';
-import { Canvas } from '@react-three/fiber';
-import { Leva } from 'leva';
-import SoundProvider from './providers/SoundProvider';
-import Transition from './components/WebGL/Scene/components/shared/Transition/Transition';
-import AnchorScene from './components/WebGL/Scene/components/AnchorScene/AnchorScene';
-import TemplateProvider from './providers/TemplateProvider';
-import TestScene from './components/WebGL/Scene/components/TestScene/TestScene';
-import DialogsBox from './components/Interface/DialogsBox/DialogsBox';
-import InterfaceProvider from './Providers/InterfaceProvider';
-import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
+import "./App.scss";
+import state from "./Template.theatre-project-state.json";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { SheetProvider } from "@theatre/r3f";
+import { getProject } from "@theatre/core";
+import { Canvas } from "@react-three/fiber";
+import { Leva } from "leva";
+import SoundProvider from "./providers/SoundProvider";
+import Transition from "./components/WebGL/Scene/components/shared/Transition/Transition";
+import AnchorScene from "./components/WebGL/Scene/components/AnchorScene/AnchorScene";
+import TemplateProvider from "./providers/TemplateProvider";
+import TestScene from "./components/WebGL/Scene/components/TestScene/TestScene";
+import DialogsBox from "./components/Interface/DialogsBox/DialogsBox";
+import InterfaceProvider from "./Providers/InterfaceProvider";
+import ProgressBar from "./components/Interface/ProgressBar/ProgressBar";
+import { Bloom, EffectComposer, Noise } from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
+
 
 export default function App() {
-  const project = getProject('Template', { state });
-  const globalSheet = project.sheet('global');
+  const project = getProject("Template", { state });
+  const globalSheet = project.sheet("global");
 
   return (
     <InterfaceProvider>
@@ -28,9 +31,9 @@ export default function App() {
 
         <Canvas
           style={{
-            height: '100vh',
-            position: 'fixed',
-            background: '#000000 ',
+            height: "100vh",
+            position: "fixed",
+            background: "#000000 ",
             top: 0,
           }}
           shadows
@@ -49,6 +52,13 @@ export default function App() {
                   </Routes>
                 </SheetProvider>
               </Router>
+              {/* <EffectComposer>
+     
+                <Noise
+                  opacity={0.05}
+
+                />
+              </EffectComposer> */}
             </SoundProvider>
           </TemplateProvider>
         </Canvas>
