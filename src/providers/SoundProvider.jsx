@@ -12,7 +12,6 @@ export default function SoundProvider({ children }) {
   const audioLoader = useRef(new THREE.AudioLoader());
   const audioListener = useRef(new THREE.AudioListener());
   const [audioEnd, setAudioEnd] = useState();
-  const [activeAudio, setActiveAudio] = useState();
 
   const [audioScene, setAudioScene] = useState({
     ui: {
@@ -23,11 +22,6 @@ export default function SoundProvider({ children }) {
       },
     },
     stadiumScene: {
-      ambient: {
-        audio: null,
-        source: '/src/assets/audio/stadium_ambient.mp3',
-        volume: 0.1,
-      },
       track_01: {
         audio: null,
         source: '/src/assets/audio/tracks/1.mp3',
@@ -64,6 +58,16 @@ export default function SoundProvider({ children }) {
         volume: 1,
       },
     },
+    stadiumAmbiant: {
+      crowd: {
+        audio: null,
+        source: '/src/assets/audio/crowd.mp3',
+        volume: 0.1,
+        range: [0, 0.5],
+        loop: true,
+      },
+    },
+    
   });
 
   useEffect(() => {
@@ -78,6 +82,7 @@ export default function SoundProvider({ children }) {
             audio.onEnded = () => {
               setAudioEnd(context);
             };
+            audio.loop = !!contextObj.loop;
 
             setAudioScene((prevAudioScene) => ({
               ...prevAudioScene,

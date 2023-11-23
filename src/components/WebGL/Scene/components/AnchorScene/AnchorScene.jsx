@@ -28,6 +28,7 @@ import Goal2 from './components/Goal/Goal2';
 import Goal3 from './components/Goal/Goal3';
 
 import tracklist from './data/tracklist.json';
+import AmbiantAudioManager from '../shared/AmbiantAudioManager/AmbiantAudioManager';
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();
@@ -142,6 +143,9 @@ function TestAnchor(props) {
                   />
                 )
               )}
+
+              <AmbiantAudioManager />
+
               <PerspectiveCamera makeDefault far={5} near={0.001} />
               <RailCameraController />
               <Stadium

@@ -13,6 +13,7 @@ import DialogsBox from './components/Interface/DialogsBox/DialogsBox';
 import InterfaceProvider from './Providers/InterfaceProvider';
 import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
 import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
+import Menu from './components/Interface/Menu/Menu';
 
 export default function App() {
   const project = getProject('Template', { state });
@@ -25,6 +26,7 @@ export default function App() {
           <VideoPanel />
           <DialogsBox />
           <ProgressBar />
+          <Menu />
         </div>
 
         <Canvas

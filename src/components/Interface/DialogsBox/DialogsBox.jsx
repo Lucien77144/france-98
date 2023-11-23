@@ -4,6 +4,7 @@ import { InterfaceContext } from '../../../Providers/InterfaceProvider';
 import './DialogsBox.scss';
 
 import transcriptions from './data/transcriptions.json';
+import COLORS from '../Colors/Colors';
 
 export default function DialogsBox() {
   const { activeAudio } = useContext(InterfaceContext);
@@ -18,7 +19,19 @@ export default function DialogsBox() {
               const show = progress >= start && progress <= end;
 
               return (
-                <li className={`dgb-item ${show && 'dgb-active'}`} key={index}>
+                <li
+                  className={`dgb-item ${show && 'dgb-active'}`}
+                  style={{
+                    background: `radial-gradient(
+                      ellipse at bottom center,
+                      ${COLORS.secondary + 'AC'} 0%,
+                      ${COLORS.secondary + '00'} 50%,
+                      ${COLORS.secondary + '00'} 100%
+                    )`,
+                    textShadow: `1px 1px 0px ${COLORS.primary}`,
+                  }}
+                  key={index}
+                >
                   {text}
                 </li>
               );
