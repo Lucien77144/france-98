@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Instance, Instances, PivotControls, useGLTF } from "@react-three/drei";
+import { Instance, Instances, PivotControls, useGLTF, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -7,11 +7,6 @@ export default function Spectators({ material, data, total, config, pivot }) {
   const { nodes } = useGLTF("/src/assets/models/supporter.glb");
   const rotationRef = useRef();
   const positionRef = useRef();
-
-  const mat= new THREE.MeshStandardMaterial({
-    color: "#FF0000",
-  });
-
 
   useEffect(() => {
     window.addEventListener("keydown", (event) => {
@@ -21,6 +16,8 @@ export default function Spectators({ material, data, total, config, pivot }) {
       }
     });
   }, []);
+
+
 
   return (
     <>
@@ -42,7 +39,7 @@ export default function Spectators({ material, data, total, config, pivot }) {
             {...config}
           >
             {data.map((props, i) => (
-              <Spectator key={i} {...props} />
+              <Spectator key={i} {...props}/>
             ))}
           </Instances>
         </PivotControls>
@@ -54,7 +51,7 @@ export default function Spectators({ material, data, total, config, pivot }) {
           {...config}
         >
           {data.map((props, i) => (
-            <Spectator key={i} {...props} />
+            <Spectator key={i} {...props}/>
           ))}
         </Instances>
       )}
@@ -62,21 +59,20 @@ export default function Spectators({ material, data, total, config, pivot }) {
   );
 }
 
-function Spectator({ random, ...props }) {
+function Spectator({ random,intensity, ...props }) {
   const ref = useRef();
-  const wPosInit = useRef();
+  const posInit = useRef();
 
   useEffect(() => {
-    wPosInit.current = new THREE.Vector3();
-    ref.current.getWorldPosition(wPosInit.current);
+    posInit.current = ref.current.position.clone();
+    
     // console.log(ref.current.parent.position)
   }, []);
 
-  //   useFrame((state) => {
-  //     const t = state.clock.getElapsedTime() + random * 10000
-  //     ref.current.rotation.set(Math.cos(t / 4) / 2, Math.sin(t / 4) / 2, Math.cos(t / 1.5) / 2)
-  //     ref.current.position.y = Math.sin(t / 1.5) / 2
-  //   })
+    useFrame((state) => {
+      const t = state.clock.getElapsedTime() + random * 10000
+      ref.current.position.y = posInit.current.y + Math.abs(Math.sin(t*7.5)) * .0025
+    })
   return <Instance ref={ref} {...props} />;
 }
 

@@ -71,12 +71,12 @@ export default function Goal({ actionBall, nodes }) {
 
   return (
     <>
-      {/* <SpotLightMove
+      <SpotLightMove
         target={[
           0.10654682727715425, 0.020324277612842556, -0.5635984710842615,
         ]}
         intensity={intensity}
-      ></SpotLightMove> */}
+      ></SpotLightMove>
       <group ref={group} visible={true}>
         <Player
           action={shooterAction}
