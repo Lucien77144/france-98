@@ -5,17 +5,16 @@ import './VideoPanel.scss';
 import { useEffect } from 'react';
 
 import videos from './data/videos.json';
-import { useState } from 'react';
 import { useRef } from 'react';
 
-export default function VideoPanel({ url = 'test.mp4' }) {
+export default function VideoPanel() {
   const { scrollPosition } = useContext(InterfaceContext);
   const activeVideo = useRef();
 
   const videoRef = useRef();
 
   useEffect(() => {
-    activeVideo.current = videos.map((v) => {
+    activeVideo.current = videos.filter((v) => {
       if (scrollPosition >= v.start && scrollPosition <= v.end) {
         return v;
       }
@@ -29,18 +28,16 @@ export default function VideoPanel({ url = 'test.mp4' }) {
     const scroll =
       Math.abs(Math.floor(((scrollPosition - start) / (end - start)) * 10000)) /
       10000;
-    const fStart = start + transition;
-    const fEnd = end + transition;
 
     let res = 0;
-    if (scroll < start + transition) {
-      res = 1 - scroll / fStart;
-    } else if (scroll > 1 - end - transition) {
-      res = (scroll - (1 - end - transition)) / fEnd;
-    } else if (scroll > 0 && scroll < 1) {
-      videoRef.current.currentTime = scroll * videoRef.current.duration;
+    if (scroll > 0 && scroll < 1) {
+      if (scroll < transition) {
+        res = 1 - scroll / transition;
+      } else if (scroll > 1 - transition) {
+        res = (scroll - (1 - transition)) / transition;
+      }
+      videoRef.current.currentTime = scroll * (videoRef.current?.duration || 0);
     }
-
     return res * 100;
   };
 
@@ -50,6 +47,7 @@ export default function VideoPanel({ url = 'test.mp4' }) {
         className="vpnl-container"
         style={{
           transform: `translateY(${getTranslation()}%)`,
+          opacity: 1 - getTranslation() / 100,
         }}
       >
         <video

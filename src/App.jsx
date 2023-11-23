@@ -22,9 +22,9 @@ export default function App() {
     <InterfaceProvider>
       <div className="mainContainer darkMode">
         <div className="outsideContainer">
+          <VideoPanel />
           <DialogsBox />
           <ProgressBar />
-          <VideoPanel />
         </div>
 
         <Canvas
