@@ -6,11 +6,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useGLTF, useScroll } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import Player from "./Player";
-import SpotLight from "./SpotLight";
+import SpotLight from "./SpotLightMove";
+import SpotLightMove from "./SpotLightMove";
 
 export default function Goal({ actionBall, nodes }) {
   const group = useRef();
-
+  const intensity = useRef(0);
   const shooterAction = useRef(null);
   const goalAction = useRef(null);
   const passAction = useRef(null);
@@ -26,7 +27,6 @@ export default function Goal({ actionBall, nodes }) {
     matcap,
     side: THREE.DoubleSide,
   });
-  
 
   useEffect(() => {}, []);
 
@@ -49,12 +49,13 @@ export default function Goal({ actionBall, nodes }) {
       setDurations([...tmpDurations]);
     }
 
+
     if (!data.visible(0.225, 0.2) && group.current.visible == true) {
-      // group.current.visible = false;
+      group.current.visible = false;
     } else if (data.visible(0.225, 0.2)) {
-      // if (group.current.visible == false) {
-      //   group.current.visible = true;
-      // }
+      if (group.current.visible == false) {
+        group.current.visible = true;
+      }
 
       if (durations !== null && durations.length > 0) {
         actionBall["Ball1"].time = data.range(0.2825, 0.0325) * durations[0];
@@ -69,63 +70,69 @@ export default function Goal({ actionBall, nodes }) {
   });
 
   return (
-    <group ref={group} visible={true}>
-      <Player
-        action={shooterAction}
-        material={material}
-        config={{
-          position: [
-            0.10654682727715425, 0.020324277612842556, -0.5635984710842615,
-          ],
-          quaternion: [
-            -0.000005217017130269479, 0.9535771127912418,
-            0.000017700021410971273, -0.30114894922647706,
-          ],
-        }}
-      ></Player>
+    <>
+      <SpotLightMove
+        target={[
+          0.10654682727715425, 0.020324277612842556, -0.5635984710842615,
+        ]}
+        intensity={intensity}
+      ></SpotLightMove>
+      <group ref={group} visible={true}>
+        <Player
+          action={shooterAction}
+          material={material}
+          config={{
+            position: [
+              0.10654682727715425, 0.020324277612842556, -0.5635984710842615,
+            ],
+            quaternion: [
+              -0.000005217017130269479, 0.9535771127912418,
+              0.000017700021410971273, -0.30114894922647706,
+            ],
+          }}
+        ></Player>
 
-      <Player
-        action={goalAction}
-        material={material}
-        config={{
-          position: [
-            0.022493094674920187, 0.020323184588191184, -0.6373971595983139,
-          ],
-          quaternion: [
-            -0.00035583020913424265, 0.28374071907076287,
-            -0.00010442294572414904, 0.9589009682036604,
-          ],
-        }}
-        // pivot
-      ></Player>
+        <Player
+          action={goalAction}
+          material={material}
+          config={{
+            position: [
+              0.022493094674920187, 0.020323184588191184, -0.6373971595983139,
+            ],
+            quaternion: [
+              -0.00035583020913424265, 0.28374071907076287,
+              -0.00010442294572414904, 0.9589009682036604,
+            ],
+          }}
+          // pivot
+        ></Player>
+        <Player
+          action={passAction}
+          material={material}
+          config={{
+            position: [
+              0.4338436083677207, 0.0201486684264636, -0.6307142798489236,
+            ],
+            quaternion: [
+              -0.0005127108139945434, -0.6014481879667491,
+              0.00038645732689096725, 0.798911550154252,
+            ],
+          }}
+        ></Player>
 
-      <Player
-        action={passAction}
-        material={material}
-        config={{
-          position: [
-            0.4338436083677207, 0.0201486684264636, -0.6307142798489236,
-          ],
-          quaternion: [
-            -0.0005127108139945434, -0.6014481879667491, 0.00038645732689096725,
-            0.798911550154252,
-          ],
-        }}
-      ></Player>
-
-
-      <group name="but_1">
-        <mesh
-        castShadow
-          name="Ball1"
-          geometry={nodes.Ball1.geometry}
-          // material={material}
-          position={[0.018, 0.065, -0.426]}
-          rotation={[-0.116, -0.206, -0.024]}
-          scale={0.003}
-        />
+        <group name="but_1">
+          <mesh
+            castShadow
+            name="Ball1"
+            geometry={nodes.Ball1.geometry}
+            material={material}
+            position={[0.018, 0.065, -0.426]}
+            rotation={[-0.116, -0.206, -0.024]}
+            scale={0.003}
+          />
+        </group>
       </group>
-    </group>
+    </>
   );
 }
 

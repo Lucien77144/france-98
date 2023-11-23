@@ -1,52 +1,151 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { MeshStandardMaterial } from "three";
 import { MeshBasicMaterial, DoubleSide } from "three";
-import SpotLight from "../Goal/SpotLight";
+import SpectatorsLargeD from "../Spectators/SpectatorsLargeD";
+import Smoke from "../Smoke/Smoke";
+import { useFrame } from "@react-three/fiber";
+import { useScroll } from "@react-three/drei";
 
-export default function Stadium({ nodes, material }) {
-  const materialPlane = new MeshStandardMaterial({
-    color: "#57A883",
-    side: DoubleSide,
+export default function Stadium({ nodes, material, materials }) {
+  const progressSmoke1 = useRef(0);
+  const progressSmoke2 = useRef(0);
+
+
+  const data = useScroll();
+
+  const stadeMaterial = new MeshBasicMaterial({
+    map: materials["Material.002"].map,
   });
-  
+
+  useFrame((state,delta) => {
+    if(data.visible(0.375,1) && progressSmoke1.current < 1){
+      progressSmoke1.current += delta/2  
+    }
+    if(data.visible(0.407,1) && progressSmoke2.current < 1){
+      progressSmoke2.current += delta/2  
+    }
+  });
+
   return (
     <group>
-      <group name="STADE1" position={[0, 0, -0.043]}>
-        <mesh
-          name="Boole"
-          geometry={nodes.Boole.geometry}
-          material={material}
-          position={[0, 0, 0.043]}
-          rotation={[Math.PI / 2, 0, 0]}
-          scale={0.01}
-          // castShadow
-          // receiveShadow
-        />
-        <mesh
-          name="Plane001"
-          // castShadow
-          receiveShadow
-          geometry={nodes.Plane001.geometry}
-          material={materialPlane}
-          position={[0.018, -0.123, 0.062]}
-          rotation={[Math.PI / 2, 0, Math.PI / 2]}
-          scale={0.01}
-        />
-        <SpotLight
-               config={{
-                position: [
-                  -7.481953795620818e-8, 0.5706194238256737, 0.0016212674764971746,
-                ],
-                quaternion: [
-                  -0.000005217017130269479, 0.9535771127912418,
-                  0.000017700021410971273, -0.30114894922647706,
-                ],
-              }}
+      <mesh
+        name="STADE"
+        geometry={nodes.STADE.geometry}
+        material={stadeMaterial}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <mesh
+        name="TERRAIN_1"
+        receiveShadow
+        geometry={nodes.TERRAIN_1.geometry}
+        material={materials["Material.001"]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
 
-          pivot
-        ></SpotLight>
-      </group>
       <mesh name="Plane" geometry={nodes.Plane.geometry} material={material} />
+      <pointLight
+        intensity={1}
+        position={[0, 0.45, 0]}
+        shadow-mapSize={[2048, 2048]}
+        castShadow={true}
+      />
+      <SpectatorsLargeD
+        material={material}
+        position={[-0.01, 0, 0]}
+      ></SpectatorsLargeD>
+      <SpectatorsLargeD
+        material={material}
+        rotation={[0, Math.PI, 0]}
+        position={[0.045, 0, 0]}
+      ></SpectatorsLargeD>
+      <Smoke
+        // pivot
+        nameConf={"sm1"}
+        configCloud={{
+          seed: 61,
+          segments: { value: 17, min: 1, max: 80, step: 1 },
+          volume: 4,
+          opacity: .5,
+          fade: 3,
+          growth: 20.0,
+          speed: 0.25,
+          x: 5,
+          y: 5,
+          z: 5,
+          color: "#148d40",
+        }}
+        configProps={{
+          position: [
+            0.7527804262450353, 0.07365932536007919, 0.2907510533188442,
+          ],
+        }}
+      ></Smoke>
+      <Smoke
+        nameConf={"sm2"}
+        configCloud={{
+          seed: { value: 15, min: 1, max: 100, step: 1 },
+          segments: { value: 16, min: 1, max: 80, step: 1 },
+          volume: { value: 11.1, min: 0, max: 100, step: 0.1 },
+          opacity: { value: 0.64, min: 0, max: 1, step: 0.01 },
+          fade: { value: 0, min: 0, max: 400, step: 1 },
+          growth: { value: 4, min: 0, max: 20, step: 1 },
+          speed: { value: 0.79, min: 0, max: 1, step: 0.01 },
+          x: { value: 4, min: 0, max: 100, step: 1 },
+          y: { value: 3, min: 0, max: 100, step: 1 },
+          z: { value: 10, min: 0, max: 100, step: 1 },
+          color: "#315189",
+        }}
+        configProps={{
+          position: [
+            0.7122205924592314, 0.07650980419265092, -0.28362644009290716,
+          ],
+        }}
+      ></Smoke>
+      <Smoke
+        nameConf={"sm3"}
+        configCloud={{
+          seed: { value: 24, min: 1, max: 100, step: 1 },
+          segments: { value: 19, min: 1, max: 80, step: 1 },
+          volume: { value: 23.5, min: 0, max: 100, step: 0.1 },
+          opacity: { value: 0.21, min: 0, max: 1, step: 0.01 },
+          fade: { value: 0, min: 0, max: 400, step: 1 },
+          growth: { value: 4, min: 0, max: 20, step: 1 },
+          speed: { value: 0.67, min: 0, max: 1, step: 0.01 },
+          x: { value: 11, min: 0, max: 100, step: 1 },
+          y: { value: 6, min: 0, max: 100, step: 1 },
+          z: { value: 8, min: 0, max: 100, step: 1 },
+          color: "#c40101",
+        }}
+        configProps={{
+          position: [
+            -0.7073991215833195, 0.045261130903242304, -0.23546001809101966,
+          ],
+        }}
+        progressScroll={progressSmoke1}
+      ></Smoke>
+      <Smoke
+        nameConf={"sm4"}
+        configCloud={{
+          seed: { value: 21, min: 1, max: 100, step: 1 },
+          segments: { value: 51, min: 1, max: 80, step: 1 },
+          volume: { value: 8.6, min: 0, max: 100, step: 0.1 },
+          opacity: { value: 0.43, min: 0, max: 1, step: 0.01 },
+          fade: { value: 0, min: 0, max: 400, step: 1 },
+          growth: { value: 1, min: 0, max: 20, step: 1 },
+          speed: { value: 0.67, min: 0, max: 1, step: 0.01 },
+          x: { value: 3, min: 0, max: 100, step: 1 },
+          y: { value: 10, min: 0, max: 100, step: 1 },
+          z: { value: 3, min: 0, max: 100, step: 1 },
+          color: "#FFFFFF",
+        }}
+        configProps={{
+          position: [
+            -0.6816253049107491, 0.03592831548856044, 0.23795271814535224,
+          ],
+        }}
+        progressScroll={progressSmoke2}
+      ></Smoke>
     </group>
   );
 }

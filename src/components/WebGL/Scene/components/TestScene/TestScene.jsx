@@ -74,7 +74,7 @@ function TestScene() {
         clickHandler={redirectionPage}
         flyAround={false}
       >
-        <PerspectiveCamera makeDefault far={1000} />
+        {/* <PerspectiveCamera makeDefault far={1000} /> */}
         <RailCameraController lookAtPos={[0, 0, 0]}></RailCameraController>
         {/* <Plane
           ref={plane}
