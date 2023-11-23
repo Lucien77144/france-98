@@ -129,7 +129,7 @@ export default function IntroPlayers() {
       <group ref={group} visible={true}>
         <group
           name="franceSide"
-          position={[0.03, 0, 0.01 - 0.125]}
+          position={[0.03, -0.0015, 0.01 - 0.125]}
           rotation={[0, -Math.PI / 2, 0]}
         >
           <PlayerIdle
@@ -290,7 +290,7 @@ export default function IntroPlayers() {
         </group>
         <group
           name="brasilSide"
-          position={[0.03, 0, -0.02 + 0.125]}
+          position={[0.03, -0.0015, -0.02 + 0.125]}
           rotation={[0, -Math.PI / 2, 0]}
         >
           <PlayerIdle
