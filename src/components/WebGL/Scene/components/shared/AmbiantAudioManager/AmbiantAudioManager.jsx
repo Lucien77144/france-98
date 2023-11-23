@@ -26,21 +26,33 @@ export default function AmbiantAudioManager({ scene = 'stadiumAmbiant' }) {
   }, [scrollPosition]);
 
   useEffect(() => {
-    ambiant.forEach(({ context, audio }) => {
+    ambiant.forEach(({ context, volume, transition }) => {
       const currAudio = audioScene?.[scene]?.[context]?.audio;
+      if (!currAudio) return;
+
       if (ambiantList?.includes(context)) {
         if (!currAudio?.isPlaying) {
           currAudio?.play();
-          gsap.to(currAudio, {
-            volume: 1,
-            duration: 1,
+          const newVolume = { value: currAudio?.volume };
+
+          gsap.to(newVolume, {
+            value: volume,
+            duration: transition,
+            onUpdate: () => {
+              currAudio.setVolume(newVolume.value);
+            },
           });
         }
       } else {
         if (currAudio?.isPlaying) {
-          gsap.to(currAudio, {
-            volume: 0,
-            duration: 1,
+          const newVolume = { value: volume };
+
+          gsap.to(newVolume, {
+            value: 0,
+            duration: transition,
+            onUpdate: () => {
+              currAudio.setVolume(newVolume.value);
+            },
             onComplete: () => {
               currAudio.pause();
             },

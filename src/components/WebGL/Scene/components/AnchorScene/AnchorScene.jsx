@@ -156,7 +156,7 @@ function TestAnchor(props) {
                 actions={actions}
               />
 
-              <IntroPlayers></IntroPlayers>
+              <IntroPlayers />
               <Goal1 nodes={nodes} actionBall={actions} />
               <Goal2 nodes={nodes} actionBall={actions} />
               <Goal3 nodes={nodes} actionBall={actions} />
