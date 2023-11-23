@@ -1,17 +1,25 @@
-import React, { useRef } from "react";
-import { MeshStandardMaterial } from "three";
-import { MeshBasicMaterial, DoubleSide } from "three";
+import React, { useEffect, useRef } from "react";
+import {
+  DoubleSide,
+  MeshBasicMaterial,
+  MeshStandardMaterial,
+  PlaneGeometry,
+  Quaternion,
+  TextureLoader,
+  Vector3,
+} from "three";
 import SpectatorsLargeD from "../Spectators/SpectatorsLargeD";
 import Smoke from "../Smoke/Smoke";
-import { useFrame } from "@react-three/fiber";
-import { useScroll } from "@react-three/drei";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { PivotControls, useScroll } from "@react-three/drei";
 
 export default function Stadium({ nodes, material, materials }) {
   const progressSmoke1 = useRef(1);
   const progressSmoke2 = useRef(1);
   const progressSmoke3 = useRef(0);
-
   const data = useScroll();
+
+  const map = useLoader(TextureLoader, "/src/assets/img/screen.jpg");
 
   const stadeMaterial = new MeshStandardMaterial({
     map: materials["Material.005"].map,
@@ -19,6 +27,10 @@ export default function Stadium({ nodes, material, materials }) {
   const fieldMaterial = new MeshStandardMaterial({
     map: materials["Material.006"].map,
   });
+  const screenMaterial = new MeshBasicMaterial({
+    map: map,
+  });
+  const screenGeometry = new PlaneGeometry(0.3, 0.2, 10, 10);
 
   useFrame((state, delta) => {
     if (data.visible(0.2, 1) && progressSmoke3.current < 1) {
@@ -32,13 +44,11 @@ export default function Stadium({ nodes, material, materials }) {
     // }
   });
 
+
   return (
     <group>
-
-
       <mesh
         name="STADE002"
-
         geometry={nodes.STADE002.geometry}
         material={stadeMaterial}
         position={[-0.026, 0, 0]}
@@ -54,9 +64,17 @@ export default function Stadium({ nodes, material, materials }) {
         scale={0.01}
       />
 
-      <mesh name="Plane" geometry={nodes.Plane.geometry} material={material} />
+        <mesh
+          name="Plane"
+          geometry={screenGeometry}
+          material={screenMaterial}
+          rotation={[0, -Math.PI / 2, 0]}
+          position={[
+            0.8825325464474212, 0.37804333229182485, -0.00005425097508603012,
+          ]}
+        />
       <pointLight
-        intensity={1}
+        intensity={8}
         position={[0, 0.65, 0]}
         shadow-mapSize={[4096, 4096]}
         castShadow={true}

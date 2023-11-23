@@ -34,20 +34,20 @@ export default function SpotLightMove({ target,intensity = 0, pivot = false }) {
       >
         <SpotLight
           ref={spotLight}
-          intensity={1}
-          distance={15}
+          intensity={10}
+          distance={20}
           angle={0.1}
-          attenuation={1.5}
+          attenuation={15}
           anglePower={5} // Diffuse-cone anglePower (default: 5)
         />
       </group>
       <group position={[-0.5587403138807835, 6.408411202609682e-9, 0]}>
         <SpotLight
-          intensity={1}
+          intensity={10}
           ref={spotLight2}
           distance={15}
           angle={0.1}
-          attenuation={1.5}
+          attenuation={15}
           anglePower={5} // Diffuse-cone anglePower (default: 5)
         />
       </group>

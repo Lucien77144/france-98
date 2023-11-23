@@ -16,6 +16,8 @@ import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
 import Menu from './components/Interface/Menu/Menu';
 import { Suspense } from 'react';
 import Loading from './components/Interface/Loading/Loading';
+import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing';
+import { KernelSize, Resolution } from 'postprocessing';
 
 export default function App() {
   const project = getProject('Template', { state });
