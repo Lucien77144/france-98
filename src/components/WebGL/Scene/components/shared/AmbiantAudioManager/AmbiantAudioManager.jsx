@@ -8,7 +8,7 @@ import { SoundContext } from '../../../../../../providers/SoundProvider';
 import gsap from 'gsap';
 
 export default function AmbiantAudioManager({ scene = 'stadiumAmbiant' }) {
-  const { scrollPosition } = useContext(InterfaceContext);
+  const { scrollPosition, startExperience } = useContext(InterfaceContext);
   const { audioScene } = useContext(SoundContext);
 
   const [ambiantList, setAmbiantList] = useState();
@@ -26,40 +26,41 @@ export default function AmbiantAudioManager({ scene = 'stadiumAmbiant' }) {
   }, [scrollPosition]);
 
   useEffect(() => {
-    ambiant.forEach(({ context, volume, transition }) => {
-      const currAudio = audioScene?.[scene]?.[context]?.audio;
-      if (!currAudio) return;
+    startExperience &&
+      ambiant.forEach(({ context, volume, transition }) => {
+        const currAudio = audioScene?.[scene]?.[context]?.audio;
+        if (!currAudio) return;
 
-      if (ambiantList?.includes(context)) {
-        if (!currAudio?.isPlaying) {
-          currAudio?.play();
-          const newVolume = { value: currAudio?.volume };
+        if (ambiantList?.includes(context)) {
+          if (!currAudio?.isPlaying) {
+            currAudio?.play();
+            const newVolume = { value: currAudio?.volume };
 
-          gsap.to(newVolume, {
-            value: volume,
-            duration: transition,
-            onUpdate: () => {
-              currAudio.setVolume(newVolume.value);
-            },
-          });
+            gsap.to(newVolume, {
+              value: volume,
+              duration: transition,
+              onUpdate: () => {
+                currAudio.setVolume(newVolume.value);
+              },
+            });
+          }
+        } else {
+          if (currAudio?.isPlaying) {
+            const newVolume = { value: volume };
+
+            gsap.to(newVolume, {
+              value: 0,
+              duration: transition,
+              onUpdate: () => {
+                currAudio.setVolume(newVolume.value);
+              },
+              onComplete: () => {
+                currAudio.pause();
+              },
+            });
+          }
         }
-      } else {
-        if (currAudio?.isPlaying) {
-          const newVolume = { value: volume };
-
-          gsap.to(newVolume, {
-            value: 0,
-            duration: transition,
-            onUpdate: () => {
-              currAudio.setVolume(newVolume.value);
-            },
-            onComplete: () => {
-              currAudio.pause();
-            },
-          });
-        }
-      }
-    });
+      });
   }, [ambiantList, audioScene]);
 
   return <></>;

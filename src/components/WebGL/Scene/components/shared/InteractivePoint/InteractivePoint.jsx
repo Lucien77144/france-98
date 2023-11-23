@@ -4,7 +4,7 @@ import vertexShader from './shaders/vertexShader.vert?raw';
 import fragmentShader from './shaders/fragmentShader.frag?raw';
 
 import * as THREE from 'three';
-import { extend, useFrame, useLoader, useThree } from '@react-three/fiber';
+import { extend, useFrame, useThree } from '@react-three/fiber';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -29,8 +29,6 @@ const InteractiveMaterial = shaderMaterial(
     uPrimaryColor: { value: null },
     uActionColor: { value: null },
     uPlaying: { value: false },
-    uPause: { value: null },
-    uPlay: { value: null },
   },
   vertexShader,
   fragmentShader
@@ -62,12 +60,6 @@ export default function InteractivePoint({
 
   const [status, setStatus] = useState('stop');
   const [startTime, setStartTime] = useState(0);
-
-  const playImg = useLoader(THREE.TextureLoader, '/src/assets/img/ui/play.png');
-  const pauseImg = useLoader(
-    THREE.TextureLoader,
-    '/src/assets/img/ui/pause.png'
-  );
 
   useFrame(({ camera }) => {
     planeRef.current.lookAt(camera.position);
@@ -119,9 +111,6 @@ export default function InteractivePoint({
       materialRef.current.uniforms.uColor.value = colors.primary;
       materialRef.current.uniforms.uPrimaryColor.value = colors.primary;
       materialRef.current.uniforms.uActionColor.value = colors.action;
-
-      materialRef.current.uniforms.uPlay.value = playImg;
-      materialRef.current.uniforms.uPause.value = pauseImg;
     }
   }, []);
 
@@ -131,7 +120,6 @@ export default function InteractivePoint({
       case 'stop':
       case 'pause':
         fadeColor('primary', animDuration / 1000);
-        materialRef.current.uniforms.uPlaying.value = false;
 
         setTimeout(() => {
           materialRef.current.uniforms.uProgress.value = 0;

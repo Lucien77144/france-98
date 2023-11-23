@@ -14,55 +14,60 @@ import InterfaceProvider from './Providers/InterfaceProvider';
 import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
 import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
 import Menu from './components/Interface/Menu/Menu';
+import { Suspense } from 'react';
+import Loading from './components/Interface/Loading/Loading';
 
 export default function App() {
-  const project = getProject("Template", { state });
-  const globalSheet = project.sheet("global");
+  const project = getProject('Template', { state });
+  const globalSheet = project.sheet('global');
 
   return (
     <InterfaceProvider>
-      <div className="mainContainer darkMode">
-        <div className="outsideContainer">
-          <VideoPanel />
-          <DialogsBox />
-          <ProgressBar />
-          <Menu />
-        </div>
+      <Suspense fallback={<Loading />}>
+        <div className="mainContainer darkMode">
+          <div className="outsideContainer">
+            <VideoPanel />
+            <DialogsBox />
+            <ProgressBar />
+            <Menu />
+            <Menu intro="france_supporters.mp4" />
+          </div>
 
-        <Canvas
-          style={{
-            height: "100vh",
-            position: "fixed",
-            background: "#000000 ",
-            top: 0,
-          }}
-          shadows
-          // gl={{ preserveDrawingBuffer: true }}
-        >
-          {/* <Leva ></Leva> */}
-          <TemplateProvider project={project}>
-            <SoundProvider>
-              <Router>
-                <SheetProvider sheet={globalSheet}>
-                  <Transition />
-                  <Routes>
-                    {/* <Route index path="/" element={<TestScene />} /> */}
-                    <Route index path="/" element={<AnchorScene />} />
-                    <Route from="*" to="/" />
-                  </Routes>
-                </SheetProvider>
-              </Router>
-              {/* <EffectComposer>
+          <Canvas
+            style={{
+              height: '100vh',
+              position: 'fixed',
+              background: '#000000 ',
+              top: 0,
+            }}
+            shadows
+            // gl={{ preserveDrawingBuffer: true }}
+          >
+            {/* <Leva ></Leva> */}
+            <TemplateProvider project={project}>
+              <SoundProvider>
+                <Router>
+                  <SheetProvider sheet={globalSheet}>
+                    <Transition />
+                    <Routes>
+                      {/* <Route index path="/" element={<TestScene />} /> */}
+                      <Route index path="/" element={<AnchorScene />} />
+                      <Route from="*" to="/" />
+                    </Routes>
+                  </SheetProvider>
+                </Router>
+                {/* <EffectComposer>
      
                 <Noise
                   opacity={0.05}
 
                 />
               </EffectComposer> */}
-            </SoundProvider>
-          </TemplateProvider>
-        </Canvas>
-      </div>
+              </SoundProvider>
+            </TemplateProvider>
+          </Canvas>
+        </div>
+      </Suspense>
     </InterfaceProvider>
   );
 }

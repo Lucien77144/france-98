@@ -42,10 +42,11 @@ function TestAnchor(props) {
 
   const { actions } = useAnimations(animations, group);
 
-  const { canScroll } = useContext(TemplateContext);
+  const { canScroll, startExperience } = useContext(TemplateContext);
   const { audioListener, audioScene } = useContext(SoundContext);
 
   useEffect(() => {
+    if (!startExperience) return;
     camera.add(audioListener.current);
 
     if (light.current) {
@@ -54,7 +55,7 @@ function TestAnchor(props) {
     return () => {
       camera.remove(audioListener.current);
     };
-  }, [audioScene]);
+  }, [startExperience]);
 
   const matcap = useLoader(
     THREE.TextureLoader,

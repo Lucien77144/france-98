@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { useContext } from 'react';
+import { InterfaceContext } from './InterfaceProvider';
 
 export const SoundContext = createContext(null);
 
@@ -10,8 +12,10 @@ export const SoundContext = createContext(null);
  */
 export default function SoundProvider({ children }) {
   const audioLoader = useRef(new THREE.AudioLoader());
-  const audioListener = useRef(new THREE.AudioListener());
+  const audioListener = useRef();
   const [audioEnd, setAudioEnd] = useState();
+
+  const { startExperience } = useContext(InterfaceContext);
 
   const [audioScene, setAudioScene] = useState({
     ui: {
@@ -67,10 +71,13 @@ export default function SoundProvider({ children }) {
         loop: true,
       },
     },
-    
   });
 
   useEffect(() => {
+    if (!startExperience) return;
+
+    audioListener.current = new THREE.AudioListener();
+
     for (const [scene, sceneObj] of Object.entries(audioScene)) {
       for (const [context, contextObj] of Object.entries(sceneObj)) {
         if (contextObj.source) {
@@ -98,7 +105,7 @@ export default function SoundProvider({ children }) {
         }
       }
     }
-  }, []);
+  }, [startExperience]);
 
   function addNewAudioSrc(newAudioSrc, sceneName) {
     // Utilisez audioLoader pour charger le fichier audio
