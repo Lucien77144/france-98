@@ -31,7 +31,7 @@ export default function App() {
             <VideoPanel />
             <DialogsBox />
             <ProgressBar />
-            <Menu />
+            {/* <Menu /> */}
             <Menu intro="france_supporters.mp4" />
           </div>
 
