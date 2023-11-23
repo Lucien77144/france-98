@@ -9,7 +9,8 @@ import * as THREE from 'three';
 import { TemplateContext } from '../../../../../../providers/TemplateProvider';
 import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
 
-function RailCameraController({
+const DECIMAL = 100000;
+export default function RailCameraController({
   empty,
   stateAnim,
   lookAtPos = null,
@@ -26,7 +27,9 @@ function RailCameraController({
   const data = useScroll();
   const { canScroll, interactSettings, itemFocus, projectRef } =
     useContext(TemplateContext);
-  const { scrollPosition, setScrollPosition } = useContext(InterfaceContext);
+
+  const { scrollPosition, setScrollPosition, redirect, setRedirect } =
+    useContext(InterfaceContext);
 
   useEffect(() => {
     if (empty && empty.current) {
@@ -38,16 +41,8 @@ function RailCameraController({
       } else {
         action.current = [0, 1, 3];
       }
-      camera.position.set(
-        camPosition.current.x,
-        camPosition.current.y,
-        camPosition.current.z
-      );
-      camera.rotation.set(
-        camRotation.current.x,
-        camRotation.current.y,
-        camRotation.current.z
-      );
+      camera.position.copy(camPosition.current);
+      camera.rotation.copy(camRotation.current);
     }
     function showPos() {
       // console.log(scrollPosition);
@@ -59,13 +54,28 @@ function RailCameraController({
     };
   }, []);
 
-  useFrame((state, delta) => {
+  useEffect(() => {
+    if (redirect) {
+      data.el.scrollTop = redirect * data.el.scrollHeight;
+      data.scroll.current = redirect;
+      data.offset = redirect;
+
+      setScrollPosition(redirect);
+      setRedirect(null);
+    }
+  }, [redirect]);
+
+  useEffect(() => {
+    console.log(scrollPosition);
+  }, [scrollPosition]);
+
+  useFrame((_, delta) => {
     if (empty?.current) {
       if (stateAnim.current === 'classic') {
         classicCamPos(delta);
         classicCamRot();
         if (data.offset != scrollPosition) {
-          setScrollPosition(data.offset);
+          setScrollPosition(Math.round(data.offset * DECIMAL) / DECIMAL);
         }
         projectRef.current.sheet('global').sequence.position =
           scrollPosition * 15;
@@ -74,17 +84,22 @@ function RailCameraController({
           previousScroll.current = [data.scroll.current, data.el.scrollTop];
           canScroll.current = false;
         }
+
         if (
           itemFocus?.current.position.distanceTo(camera.position) >=
           interactSettings.focusDistance
         ) {
           objToTargetPos(camera, itemFocus.current, delta, lambda);
         }
+
         if (previousScroll.current) {
-          setScrollPosition(previousScroll.current[0]);
+          setScrollPosition(
+            Math.round(previousScroll.current[0] * DECIMAL) / DECIMAL
+          );
           data.el.scrollTop = previousScroll.current[1];
           data.scroll.current = previousScroll.current[0];
         }
+
         objectALookAtObjectBWithLerp(
           camera,
           itemFocus.current,
@@ -96,7 +111,9 @@ function RailCameraController({
         objToTargetPos(camera, empty.current, delta, lambda);
         camera.quaternion.slerp(empty.current.quaternion, 0.5);
         data.scroll.current = previousScroll.current[0];
-        setScrollPosition(previousScroll.current[0]);
+        setScrollPosition(
+          Math.round(previousScroll.current[0] * DECIMAL) / DECIMAL
+        );
         data.el.scrollTop = previousScroll.current[1];
 
         if (camera.position.distanceTo(empty.current.position) < 0.001) {
@@ -118,39 +135,15 @@ function RailCameraController({
       );
     }
 
-    camera.position.set(
-      camPosition.current.x,
-      camPosition.current.y,
-      camPosition.current.z
-    );
+    camera.position.copy(camPosition.current);
   }
   function classicCamRot() {
     if (lookAtPos) {
       camera.lookAt(...lookAtPos);
     } else {
-      camera.rotation.set(
-        camRotation.current.x,
-        camRotation.current.y,
-        camRotation.current.z
-      );
+      camera.rotation.copy(camRotation.current);
     }
   }
 
   return <></>;
 }
-
-export default RailCameraController;
-
-// if(anim1 && anim2 && anim3){
-//     if(scrollSign.current == 0 && anim1.timeScale != 2){
-//         anim1.timeScale = 2
-//         anim2.timeScale = 2;
-//         anim3.timeScale = 2;
-//     }
-//     else if(scrollSign.current !== 0 && anim1.timeScale != 0.5){
-//         console.log("pause")
-//         anim1.timeScale = 0.5
-//         anim2.timeScale = 0.5;
-//         anim3.timeScale = 0.5;
-//     }
-// }
