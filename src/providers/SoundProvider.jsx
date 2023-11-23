@@ -75,8 +75,7 @@ export default function SoundProvider({ children }) {
 
   useEffect(() => {
     if (!startExperience) return;
-
-    audioListener.current = new THREE.AudioListener();
+    audioListener.current ??= new THREE.AudioListener();
 
     for (const [scene, sceneObj] of Object.entries(audioScene)) {
       for (const [context, contextObj] of Object.entries(sceneObj)) {
