@@ -13,12 +13,6 @@ export default function Menu({ intro }) {
   const [startVideo, setStartVideo] = useState(false);
   const videoRef = useRef();
 
-  useEffect(() => {
-    if (startExperience) {
-      setRedirect(0.05);
-    }
-  }, [startExperience]);
-
   const startExp = () => {
     setStartVideo(true);
     if (intro) {
