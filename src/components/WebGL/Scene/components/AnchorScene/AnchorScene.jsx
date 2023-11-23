@@ -29,6 +29,7 @@ import Goal3 from './components/Goal/Goal3';
 
 import tracklist from './data/tracklist.json';
 import AmbiantAudioManager from '../shared/AmbiantAudioManager/AmbiantAudioManager';
+import IntroPlayers from './components/Goal/IntroPlayers';
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();
@@ -154,11 +155,13 @@ function TestAnchor(props) {
                 material={material}
                 actions={actions}
               />
-              
+
+              <IntroPlayers></IntroPlayers>
               <Goal1 nodes={nodes} actionBall={actions} />
               <Goal2 nodes={nodes} actionBall={actions} />
               <Goal3 nodes={nodes} actionBall={actions} />
-              {/* <GlobalFog /> */}
+
+              <GlobalFog />
             </SceneManager>
           </group>
         </group>

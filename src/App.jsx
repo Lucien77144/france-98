@@ -16,8 +16,8 @@ import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
 import Menu from './components/Interface/Menu/Menu';
 
 export default function App() {
-  const project = getProject('Template', { state });
-  const globalSheet = project.sheet('global');
+  const project = getProject("Template", { state });
+  const globalSheet = project.sheet("global");
 
   return (
     <InterfaceProvider>
@@ -31,9 +31,9 @@ export default function App() {
 
         <Canvas
           style={{
-            height: '100vh',
-            position: 'fixed',
-            background: '#000000 ',
+            height: "100vh",
+            position: "fixed",
+            background: "#000000 ",
             top: 0,
           }}
           shadows
@@ -52,6 +52,13 @@ export default function App() {
                   </Routes>
                 </SheetProvider>
               </Router>
+              {/* <EffectComposer>
+     
+                <Noise
+                  opacity={0.05}
+
+                />
+              </EffectComposer> */}
             </SoundProvider>
           </TemplateProvider>
         </Canvas>
