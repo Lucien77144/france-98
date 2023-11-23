@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import gsap from 'gsap';
 import './ProgressBar.scss';
 import { tracks } from '../../../components/WebGL/Scene/components/AnchorScene/data/tracklist.json';
+import COLORS from '../Colors/Colors';
 
 function getTrackPosition({ range }) {
   return range[0] + (range[1] - range[0] / 2);
@@ -31,8 +32,13 @@ export default function ProgressBar() {
 
   return (
     <>
-      <div className="progress-bar-container">
-        <ul className="tracks-list">
+      <div
+        className="progress-bar-container"
+        style={{
+          backgroundColor: COLORS.primary + '22',
+        }}
+      >
+        <ul className="progress-bar-list">
           {tracks.map((track, index) => {
             const position = track.track_position || getTrackPosition(track);
             return (
@@ -40,9 +46,11 @@ export default function ProgressBar() {
                 key={index}
                 style={{
                   bottom: `${position * 100}%`,
+                  backgroundColor:
+                    position < scrollPosition ? COLORS.secondary : COLORS.primary,
                 }}
-                className={`tracks-item pointer-active ${
-                  position < scrollPosition ? 'tracks-item-active' : ''
+                className={`progress-bar-item pointer-active ${
+                  position < scrollPosition ? 'progress-bar-item-active' : ''
                 }`}
                 onClick={() => scrollTo(position)}
               >
@@ -53,7 +61,10 @@ export default function ProgressBar() {
         </ul>
         <div
           className="progress-bar"
-          style={{ height: scrollPosition * 100 + '%' }}
+          style={{
+            height: scrollPosition * 100 + '%',
+            backgroundColor: COLORS.primary,
+          }}
         ></div>
       </div>
     </>
