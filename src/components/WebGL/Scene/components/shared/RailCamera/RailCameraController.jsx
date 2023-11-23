@@ -118,6 +118,10 @@ export default function RailCameraController({
         }
       }
     }
+
+    if (data.delta > 0.0001) {
+      window.dispatchEvent(new Event('wheel'));
+    }
   });
 
   function classicCamPos(delta) {
