@@ -13,6 +13,7 @@ import gsap from 'gsap';
 import { useContext } from 'react';
 import { SoundContext } from '../../../../../../providers/SoundProvider';
 import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
+import COLORS from '../../../../../Interface/Colors/Colors';
 
 export const POINT_TYPE = {
   NONE: null,
@@ -40,8 +41,8 @@ export default function InteractivePoint({
   position = [0, 0, 0],
   size = 1,
   colors = {
-    primary: new THREE.Color('#001eff'),
-    action: new THREE.Color('#af2bfc'),
+    primary: new THREE.Color(COLORS.primary),
+    action: new THREE.Color(COLORS.action),
   },
   audio = {
     scene: 'stadiumScene',
