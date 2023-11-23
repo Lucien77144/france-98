@@ -37,7 +37,7 @@ export default function SpotLightMove({ target,intensity = 0, pivot = false }) {
           intensity={1}
           distance={15}
           angle={0.1}
-          attenuation={1.5*intensity.current}
+          attenuation={1.5}
           anglePower={5} // Diffuse-cone anglePower (default: 5)
         />
       </group>
@@ -47,7 +47,7 @@ export default function SpotLightMove({ target,intensity = 0, pivot = false }) {
           ref={spotLight2}
           distance={15}
           angle={0.1}
-          attenuation={1.5*intensity.current}
+          attenuation={1.5}
           anglePower={5} // Diffuse-cone anglePower (default: 5)
         />
       </group>
