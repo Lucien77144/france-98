@@ -1,6 +1,6 @@
 // AlambicScene.js
-import React, { useContext, useEffect, useRef } from "react";
-import * as THREE from "three";
+import React, { useContext, useEffect, useRef } from 'react';
+import * as THREE from 'three';
 import {
   PerspectiveCamera,
   ScrollControls,
@@ -9,26 +9,27 @@ import {
   Environment,
   Stars,
   Stats,
-} from "@react-three/drei";
+} from '@react-three/drei';
 
-import { editable as e } from "@theatre/r3f";
-import { useThree, useLoader } from "@react-three/fiber";
-import { TemplateContext } from "../../../../../providers/TemplateProvider";
-import { SoundContext } from "../../../../../providers/SoundProvider";
-import SceneManager from "../../SceneManager";
-import GlobalFog from "./components/GlobalFog/GlobalFog";
-import RailCameraController from "../shared/RailCamera/RailCameraController";
+import { editable as e } from '@theatre/r3f';
+import { useThree, useLoader } from '@react-three/fiber';
+import { TemplateContext } from '../../../../../providers/TemplateProvider';
+import { SoundContext } from '../../../../../providers/SoundProvider';
+import SceneManager from '../../SceneManager';
+import GlobalFog from './components/GlobalFog/GlobalFog';
+import RailCameraController from '../shared/RailCamera/RailCameraController';
 import InteractivePoint, {
   POINT_TYPE,
-} from "../shared/InteractivePoint/InteractivePoint";
+} from '../shared/InteractivePoint/InteractivePoint';
 
-import Stadium from "./components/Stadium/Stadium";
-import Goal1 from "./components/Goal/Goal1";
-import Goal2 from "./components/Goal/Goal2";
-import Goal3 from "./components/Goal/Goal3";
+import Stadium from './components/Stadium/Stadium';
+import Goal1 from './components/Goal/Goal1';
+import Goal2 from './components/Goal/Goal2';
+import Goal3 from './components/Goal/Goal3';
 
-import tracklist from "./data/tracklist.json";
-import IntroPlayers from "./components/Goal/IntroPlayers";
+import tracklist from './data/tracklist.json';
+import AmbiantAudioManager from '../shared/AmbiantAudioManager/AmbiantAudioManager';
+import IntroPlayers from './components/Goal/IntroPlayers';
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();
@@ -36,15 +37,16 @@ function TestAnchor(props) {
   const light = useRef();
   const anchors = useRef([]);
   const { nodes, materials, animations } = useGLTF(
-    "/src/assets/models/stade6.glb"
+    '/src/assets/models/stade6.glb'
   );
 
   const { actions } = useAnimations(animations, group);
 
-  const { canScroll } = useContext(TemplateContext);
+  const { canScroll, startExperience } = useContext(TemplateContext);
   const { audioListener, audioScene } = useContext(SoundContext);
 
   useEffect(() => {
+    if (!startExperience) return;
     camera.add(audioListener.current);
 
     if (light.current) {
@@ -53,11 +55,11 @@ function TestAnchor(props) {
     return () => {
       camera.remove(audioListener.current);
     };
-  }, [audioScene]);
+  }, [startExperience]);
 
   const matcap = useLoader(
     THREE.TextureLoader,
-    "/src/assets/img/spectator.png"
+    '/src/assets/img/spectator.png'
   );
   const material = new THREE.MeshMatcapMaterial({
     matcap,
@@ -122,7 +124,7 @@ function TestAnchor(props) {
               actions={actions}
             >
               <Environment
-                files={"/src/assets/img/env4.hdr"}
+                files={'/src/assets/img/env4.hdr'}
                 blur={0.15}
                 background
               ></Environment>
@@ -143,6 +145,9 @@ function TestAnchor(props) {
                   />
                 )
               )}
+
+              <AmbiantAudioManager />
+
               <PerspectiveCamera makeDefault far={5} near={0.001} />
               <RailCameraController />
               <Stadium
@@ -152,7 +157,7 @@ function TestAnchor(props) {
                 actions={actions}
               />
 
-              <IntroPlayers></IntroPlayers>
+              <IntroPlayers />
               <Goal1 nodes={nodes} actionBall={actions} />
               <Goal2 nodes={nodes} actionBall={actions} />
               <Goal3 nodes={nodes} actionBall={actions} />

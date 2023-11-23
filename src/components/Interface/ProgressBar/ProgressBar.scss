@@ -35,9 +35,18 @@
     height: 0.5rem;
     width: 0.5rem;
 
+    background-color: #665bff;
+
+    &:hover {
+      opacity: 1;
+      background-color: #5044ff;
+    }
+
     &-active {
       height: 0;
       width: 0;
+
+      opacity: 1;
     }
   }
 }
