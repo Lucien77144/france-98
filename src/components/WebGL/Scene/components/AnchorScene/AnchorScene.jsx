@@ -167,7 +167,7 @@ function TestAnchor(props) {
               <Goal2 nodes={nodes} actionBall={actions} />
               <Goal3 nodes={nodes} actionBall={actions} />
               <WorldCup
-                // pivot
+                
                 config={{
                   position: [
                     -0.02504285860961397, 1.661282233803289, 0.794500436336105,

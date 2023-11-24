@@ -35,16 +35,16 @@ export function WorldCup({ config, pivot = false }) {
 
   const groupRender = (
     <group dispose={null} {...config} scale={0.02} ref={group} visible={false}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-        <mesh
-          geometry={nodes.Mesh.geometry}
-          material={materials["Octane Material"]}
-        />
-        <mesh
-          geometry={nodes.Mesh_1.geometry}
-          material={materials.OctUniversal1}
-        />
-      </group>
+    <group scale={1} >
+      <mesh
+        geometry={nodes.Object_8.geometry}
+        material={materials.Trophy_Mtl}
+      />
+      <mesh
+        geometry={nodes.Object_11.geometry}
+        material={materials.Trophy_base_Mtl}
+      />
+    </group>
     </group>
   );
   return (
