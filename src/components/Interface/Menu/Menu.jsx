@@ -48,10 +48,10 @@ export default function Menu({ intro }) {
             Start Experience
           </div>
         </div>
-        <div className="scroll-action">
+        {/* <div className="scroll-action">
           <img src="./src/assets/img/ui/scroll.svg"></img>
           Scroll to explore
-        </div>
+        </div> */}
       </div>
       <div className="names">Victor - Lucien - Ariste - Chanel</div>
       {intro && (
