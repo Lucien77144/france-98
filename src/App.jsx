@@ -22,8 +22,6 @@ import Loading from './components/Interface/Loading/Loading.jsx';
 import InfosPanel from './components/Interface/InfosPanel/InfosPanel';
 
 export default function App() {
-
-
   return (
     <InterfaceProvider>
       <Suspense fallback={<Loading />}>
@@ -49,16 +47,16 @@ export default function App() {
             linear
             // gl={{ preserveDrawingBuffer: true }}
           >
-            <Leva hidden ></Leva>
-            <TemplateProvider >
+            <Leva hidden></Leva>
+            <TemplateProvider>
               <SoundProvider>
                 <Router>
-                    <Transition />
-                    <Routes>
-                      {/* <Route index path="/" element={<TestScene />} /> */}
-                      <Route index path="/" element={<AnchorScene />} />
-                      <Route from="*" to="/" />
-                    </Routes>
+                  <Transition />
+                  <Routes>
+                    {/* <Route index path="/" element={<TestScene />} /> */}
+                    <Route index path="/" element={<AnchorScene />} />
+                    <Route from="*" to="/" />
+                  </Routes>
                 </Router>
                 {/* <EffectComposer>
      

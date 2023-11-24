@@ -119,7 +119,7 @@ function TestAnchor(props) {
         distance={5}
       >
         {/*<e.pointLight theatreKey="Light" position={[10, 10, 10]} intensity={10}/>*/}
-        <Stats showPanel={0} className="stats" {...props} />
+        {/* <Stats showPanel={0} className="stats" {...props} /> */}
         <group ref={group} {...props} dispose={null}>
           <group name="Scene">
             <SceneManager

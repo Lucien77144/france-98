@@ -1,5 +1,10 @@
 .progress-bar {
+  pointer-events: all;
   border-radius: 1rem;
+  transition: background-color 0.25s ease-in-out;
+  &:hover {
+    background-color: white !important;
+  }
 
   &-container {
     transform: translate(-50%, -50%);
