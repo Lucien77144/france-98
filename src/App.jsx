@@ -6,18 +6,18 @@ import { getProject } from '@theatre/core';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import SoundProvider from './providers/SoundProvider';
-import AnchorScene from './components/webgl/scene/components/anchor-scene/AnchorScene';
-import TemplateProvider from './providers/TemplateProvider';
-import DialogsBox from './components/interface/dialogs-box/DialogsBox';
-import ProgressBar from './components/interface/progress-bar/ProgressBar';
-import VideoPanel from './components/interface/video-panel/VideoPanel';
-import Menu from './components/interface/menu/Menu';
-import PlayerPresentation from './components/interface/player-presentation/PlayerPresentation';
+import AnchorScene from './components/webgl/scene/components/anchor-scene/AnchorScene.jsx';
+import TemplateProvider from './providers/TemplateProvider.jsx';
+import DialogsBox from './components/interface/dialogs-box/DialogsBox.jsx';
+import ProgressBar from './components/interface/progress-bar/ProgressBar.jsx';
+import VideoPanel from './components/interface/video-panel/VideoPanel.jsx';
+import Menu from './components/interface/menu/Menu.jsx';
+import PlayerPresentation from './components/interface/player-presentation/PlayerPresentation.jsx';
 import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing';
 import { KernelSize, Resolution } from 'postprocessing';
 import { Suspense } from 'react';
 import Loading from './components/interface/loading/Loading.jsx';
-import InfosPanel from './components/interface/Infos-panel/InfosPanel';
+import InfosPanel from './components/interface/Infos-panel/InfosPanel.jsx';
 import InterfaceProvider from './Providers/InterfaceProvider.jsx';
 
 export default function App() {
