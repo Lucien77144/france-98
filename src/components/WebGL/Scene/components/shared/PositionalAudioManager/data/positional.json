@@ -19,7 +19,7 @@
   },
   {
     "position": [
-      -0.7009943040572405, 0.05254400788959884, -0.0011705654568174577 
+      -0.7009943040572405, 0.05254400788959884, -0.0011705654568174577
     ],
     "url": "/src/assets/audio/stadium.wav",
     "distance": 0.025,
@@ -37,7 +37,7 @@
   },
   {
     "position": [
-      0.00009283252844252628, 0.09776087039257475, 0.928274252952326 
+      0.00009283252844252628, 0.09776087039257475, 0.928274252952326
     ],
     "url": "/src/assets/audio/crowd.wav",
     "distance": 0.005,
@@ -51,7 +51,45 @@
     "url": "/src/assets/audio/cheering.wav",
     "distance": 0.1,
     "volume": 0.5,
-    
+    "start": 0.2,
+    "pivot": false
+  },
+  {
+    "position": [0.09730381876919218, 0.03967515396505211, -0.5760499288805191],
+    "url": "/src/assets/audio/ball.wav",
+    "distance": 0.05,
+    "volume": 0.25,
+    "start": 0.283,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.0012719117483199595, 0.042642903334443864, -0.9428570846396457
+    ],
+    "url": "/src/assets/audio/cheering2.wav",
+    "distance": 0.25,
+    "volume": 0.25,
+    "start": 0.306,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.0012719117483199595, 0.042642903334443864, -0.9428570846396457
+    ],
+    "url": "/src/assets/audio/cheering.wav",
+    "distance": 0.25,
+    "volume": 0.25,
+    "start": 0.306,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.7227525107135622, 0.08233769660870714, -0.8473854592341517
+    ],
+    "url": "/src/assets/audio/cheering.wav",
+    "distance": 0.25,
+    "volume": 0.25,
+    "start": 0.306,
     "pivot": true
   }
 ]
