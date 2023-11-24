@@ -1,0 +1,8 @@
+[
+  {
+    "context": "crowd",
+    "range": [0, 1],
+    "volume": 0.1,
+    "transition": 1
+  }
+]

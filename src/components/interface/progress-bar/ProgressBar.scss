@@ -1,0 +1,57 @@
+.progress-bar {
+  pointer-events: all;
+  border-radius: 1rem;
+  transition: background-color 0.25s ease-in-out;
+  &:hover {
+    background-color: white !important;
+  }
+
+  &-container {
+    transform: translate(-50%, -50%);
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    height: 90vh;
+    width: 0.5rem;
+
+    backdrop-filter: blur(0.5rem);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+  }
+
+  &-item {
+    transition: 0.25s ease-in-out;
+    position: absolute;
+    transform: translate(-50%, 50%);
+
+    border-radius: 2rem;
+    padding: 0.25rem;
+    height: 0.5rem;
+    width: 0.5rem;
+
+    background-color: #665bff;
+
+    &:hover {
+      opacity: 1;
+      background-color: #5044ff;
+    }
+
+    &-active {
+      height: 0;
+      width: 0;
+
+      opacity: 1;
+    }
+  }
+}

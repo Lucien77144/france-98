@@ -1,0 +1,26 @@
+[
+  {
+    "score": "1 . 0",
+    "timecode": "27' - 1st Half",
+    "title": "Zinedine Zidane",
+    "transition": 0.5,
+    "start": 0.3325,
+    "end": 0.3725
+  },
+  {
+    "score": "2 . 0",
+    "timecode": "45+1' - 1st Half",
+    "title": "Zinedine Zidane",
+    "transition": 0.5,
+    "start": 0.66,
+    "end": 0.7
+  },
+  {
+    "score": "3 . 0",
+    "timecode": "90+3' - 2nd Half",
+    "title": "Emmanuel Petit",
+    "transition": 0.5,
+    "start": 0.94,
+    "end": 0.98
+  }
+]

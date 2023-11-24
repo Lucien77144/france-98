@@ -1,0 +1,24 @@
+{
+  "track_02": [
+    {
+      "start": 0,
+      "end": 0.15,
+      "text": "Le stade était bondé,"
+    },
+    {
+      "start": 0.15,
+      "end": 0.5,
+      "text": "il y avait tellement de monde que j'ai même failli rater la Marseillaise."
+    },
+    {
+      "start": 0.5,
+      "end": 0.75,
+      "text": "Puis, les Bleus se sont mis à la chanter,"
+    },
+    {
+      "start": 0.75,
+      "end": 1,
+      "text": "et le stade tout entier l'a chantée avec eux."
+    }
+  ]
+}
