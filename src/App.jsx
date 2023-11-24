@@ -10,7 +10,6 @@ import Transition from './components/WebGL/Scene/components/shared/Transition/Tr
 import AnchorScene from './components/WebGL/Scene/components/AnchorScene/AnchorScene';
 import TemplateProvider from './providers/TemplateProvider';
 import DialogsBox from './components/Interface/DialogsBox/DialogsBox';
-import InterfaceProvider from './Providers/InterfaceProvider';
 import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
 import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
 import Menu from './components/Interface/Menu/Menu';
@@ -20,6 +19,7 @@ import { KernelSize, Resolution } from 'postprocessing';
 import { Suspense } from 'react';
 import Loading from './components/Interface/Loading/Loading.jsx';
 import InfosPanel from './components/Interface/InfosPanel/InfosPanel';
+import InterfaceProvider from './Providers/InterfaceProvider';
 
 export default function App() {
   return (

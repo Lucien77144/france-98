@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useState } from 'react';
 
 export const InterfaceContext = createContext(null);
-export default function InterfaceProvider({ children }) {
+function InterfaceProvider({ children }) {
   const [activeAudio, setActiveAudio] = useState(null);
   const [redirect, setRedirect] = useState(0);
   const [startAudio, setStartAudio] = useState(false);
@@ -29,3 +29,5 @@ export default function InterfaceProvider({ children }) {
     </InterfaceContext.Provider>
   );
 }
+
+export default InterfaceProvider;
