@@ -6,7 +6,6 @@
     "url": "/src/assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
-    "delay": 0,
     "pivot": false
   },
   {
@@ -16,7 +15,6 @@
     "url": "/src/assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
-    "delay": 0,
     "pivot": false
   },
   {
@@ -26,7 +24,6 @@
     "url": "/src/assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
-    "delay": 0,
     "pivot": false
   },
   {
@@ -36,7 +33,6 @@
     "url": "/src/assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
-    "delay": 0,
     "pivot": false
   },
   {
@@ -46,7 +42,6 @@
     "url": "/src/assets/audio/crowd.wav",
     "distance": 0.005,
     "volume": 0.5,
-    "delay": 0,
     "pivot": false
   },
   {
@@ -56,7 +51,7 @@
     "url": "/src/assets/audio/cheering.wav",
     "distance": 0.1,
     "volume": 0.5,
-    "delay": 0,
+    
     "pivot": true
   }
 ]
