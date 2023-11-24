@@ -6,7 +6,7 @@ import { getProject } from '@theatre/core';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import SoundProvider from './providers/SoundProvider';
-import AnchorScene from './components/webgl/scene/components/anchor-scene/anchor-scene';
+import AnchorScene from './components/webgl/scene/components/anchor-scene/AnchorScene';
 import TemplateProvider from './providers/TemplateProvider';
 import DialogsBox from './components/interface/dialogs-box/DialogsBox';
 import ProgressBar from './components/interface/progress-bar/ProgressBar';
