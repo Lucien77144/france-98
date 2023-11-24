@@ -6,7 +6,6 @@ import { getProject } from '@theatre/core';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import SoundProvider from './providers/SoundProvider';
-import Transition from './components/webgl/scene/components/shared/transition/Transition';
 import AnchorScene from './components/webgl/scene/components/anchor-scene/anchor-scene';
 import TemplateProvider from './providers/TemplateProvider';
 import DialogsBox from './components/interface/dialogs-box/DialogsBox';
@@ -51,7 +50,6 @@ export default function App() {
             <TemplateProvider>
               <SoundProvider>
                 <Router>
-                  <Transition />
                   <Routes>
                     <Route index path="/" element={<AnchorScene />} />
                     <Route from="*" to="/" />
