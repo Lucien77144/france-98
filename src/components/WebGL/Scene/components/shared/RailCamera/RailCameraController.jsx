@@ -45,7 +45,7 @@ export default function RailCameraController({
       camera.rotation.copy(camRotation.current);
     }
     function showPos() {
-      // console.log(scrollPosition);
+      console.log(data.offset);
     }
 
     window.addEventListener('click', showPos);

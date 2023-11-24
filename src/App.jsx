@@ -22,8 +22,7 @@ import Loading from './components/Interface/Loading/Loading.jsx';
 import InfosPanel from './components/Interface/InfosPanel/InfosPanel';
 
 export default function App() {
-  const project = getProject('Template', { state });
-  const globalSheet = project.sheet('global');
+
 
   return (
     <InterfaceProvider>
@@ -50,18 +49,16 @@ export default function App() {
             linear
             // gl={{ preserveDrawingBuffer: true }}
           >
-            {/* <Leva ></Leva> */}
-            <TemplateProvider project={project}>
+            <Leva hidden ></Leva>
+            <TemplateProvider >
               <SoundProvider>
                 <Router>
-                  <SheetProvider sheet={globalSheet}>
                     <Transition />
                     <Routes>
                       {/* <Route index path="/" element={<TestScene />} /> */}
                       <Route index path="/" element={<AnchorScene />} />
                       <Route from="*" to="/" />
                     </Routes>
-                  </SheetProvider>
                 </Router>
                 {/* <EffectComposer>
      
