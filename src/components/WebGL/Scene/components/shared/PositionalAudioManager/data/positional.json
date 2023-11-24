@@ -10,9 +10,7 @@
     "pivot": true
   },
   {
-    "position": [
-      0, 0.2, 0
-    ],
+    "position": [0, 0.2, 0],
     "url": "/src/assets/audio/tracks/2.mp3",
     "distance": 0.001,
     "volume": 0.01,
