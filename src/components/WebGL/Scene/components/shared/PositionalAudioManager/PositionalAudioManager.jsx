@@ -5,9 +5,11 @@ import { useRef } from 'react';
 
 import * as THREE from 'three';
 import { useEffect } from 'react';
+import { createRef } from 'react';
 
 export default function PositionalAudioManager() {
   const positionRef = useRef([]);
+  const playRef = useRef([]);
 
   useEffect(() => {
     window.addEventListener('keydown', (event) => {
@@ -19,20 +21,30 @@ export default function PositionalAudioManager() {
 
     positional.forEach((audio) => {
       positionRef.current.push(audio.position);
+      //   playRef.current.push(createRef());
+      playRef.current.push(audio);
     });
+
+    console.log(playRef.current);
   }, []);
 
-  const groupRender = ({ url, distance, volume }, key) => (
-    <group key={key} position={positionRef.current[key]}>
-      <PositionalAudio
-        url={url}
-        distance={distance}
-        volume={volume}
-        autoplay
-        loop
-      />
-    </group>
-  );
+  const groupRender = ({ url, distance, volume }, key) => {
+    console.log();
+    return (
+      <group key={key} position={positionRef.current[key]}>
+        <PositionalAudio
+          ref={playRef.current[key]}
+          url={url}
+          distance={distance}
+          volume={volume}
+          autoplay={true}
+          onEnded={() => {
+            console.log('ended ' + url);
+          }}
+        />
+      </group>
+    );
+  };
 
   return (
     <>
