@@ -1,0 +1,55 @@
+.ipanel {
+  &-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &-score {
+    margin: 0;
+    margin-bottom: 2rem;
+    font-size: 8rem;
+    color: white;
+  }
+
+  &-flag {
+    position: relative;
+    margin-bottom: 2rem;
+
+    h2 {
+      margin: 0;
+      font-size: 4rem;
+      text-align: center;
+      color: white;
+      mix-blend-mode: difference;
+    }
+
+    img {
+      z-index: -1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 7rem;
+    }
+  }
+
+  &-timecode {
+    font-size: 3rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+  }
+}

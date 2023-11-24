@@ -19,6 +19,7 @@ import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing';
 import { KernelSize, Resolution } from 'postprocessing';
 import { Suspense } from 'react';
 import Loading from './components/Interface/Loading/Loading.jsx';
+import InfosPanel from './components/Interface/InfosPanel/InfosPanel';
 
 export default function App() {
   const project = getProject('Template', { state });
@@ -29,10 +30,11 @@ export default function App() {
       <Suspense fallback={<Loading />}>
         <div className="mainContainer darkMode">
           <div className="outsideContainer">
-            <VideoPanel />
+            {/* <VideoPanel /> */}
             <DialogsBox />
             <ProgressBar />
             <PlayerPresentation />
+            <InfosPanel />
             <Menu />
             {/* <Menu intro="france_supporters.mp4" /> */}
           </div>

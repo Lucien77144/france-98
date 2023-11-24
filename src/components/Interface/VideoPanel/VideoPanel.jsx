@@ -41,15 +41,12 @@ export default function VideoPanel() {
       Math.abs(Math.floor(((scroll - start) / (end - start)) * 10000)) / 10000;
 
     let res = 0;
-    if (nScroll > 0 && nScroll < 1) {
-      if (nScroll < transition) {
-        res = 1 - nScroll / transition;
-      } else if (nScroll > 1 - transition) {
-        res = (nScroll - (1 - transition)) / transition;
-      }
-      videoRef.current.currentTime =
-        nScroll * (videoRef.current?.duration || 1);
+    if (nScroll < transition) {
+      res = 1 - nScroll / transition;
+    } else if (nScroll > 1 - transition) {
+      res = (nScroll - (1 - transition)) / transition;
     }
+    videoRef.current.currentTime = nScroll * (videoRef.current?.duration || 1);
     return res * 100;
   };
 
