@@ -40,7 +40,7 @@ function TestAnchor(props) {
   const light = useRef();
   const anchors = useRef([]);
   const { nodes, materials, animations } = useGLTF(
-    "/src/assets/models/stade6.glb"
+    "assets/models/stade6.glb"
   );
 
   const { actions } = useAnimations(animations, group);
@@ -63,7 +63,7 @@ function TestAnchor(props) {
 
   const matcap = useLoader(
     THREE.TextureLoader,
-    "/src/assets/img/spectator.png"
+    "assets/img/spectator.png"
   );
   const material = new THREE.MeshMatcapMaterial({
     matcap,
@@ -128,7 +128,7 @@ function TestAnchor(props) {
               actions={actions}
             >
               <Environment
-                files={"/src/assets/img/env4.hdr"}
+                files={"assets/img/env4.hdr"}
                 blur={0.15}
                 background
               ></Environment>

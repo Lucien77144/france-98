@@ -40,7 +40,7 @@ export default function PlayerModel({
           playerPres.current.querySelector('h3').innerHTML  = data.firstName
           playerPres.current.querySelector('h2').innerHTML = data.lastName
           playerPres.current.querySelector('h4').innerHTML = "N°" + data.number
-          playerPres.current.querySelector('img').src = `/src/assets/img/ui/${data.country}.png`
+          playerPres.current.querySelector('img').src = `assets/img/ui/${data.country}.png`
         }
       }}
 

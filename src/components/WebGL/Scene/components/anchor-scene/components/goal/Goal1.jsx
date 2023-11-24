@@ -21,7 +21,7 @@ export default function Goal({ actionBall, nodes }) {
 
   const matcap = useLoader(
     THREE.TextureLoader,
-    "/src/assets/img/spectator.png"
+    "assets/img/spectator.png"
   );
   const material = new THREE.MeshMatcapMaterial({
     matcap,
@@ -148,4 +148,4 @@ export default function Goal({ actionBall, nodes }) {
   );
 }
 
-useGLTF.preload("/src/assets/models/foot.glb");
+useGLTF.preload("assets/models/foot.glb");

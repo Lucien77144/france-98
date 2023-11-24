@@ -64,7 +64,7 @@ export default function VideoPanel() {
           style={{
             transform: `scale(${1 - getTranslation() / 100 / 4})`,
           }}
-          src={`../../../src/assets/video/${activeVideo?.current?.url}`}
+          src={`../../..assets/video/${activeVideo?.current?.url}`}
         ></video>
       </div>
     </>

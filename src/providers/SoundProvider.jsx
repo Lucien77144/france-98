@@ -21,51 +21,51 @@ export default function SoundProvider({ children }) {
     ui: {
       audio_click: {
         audio: null,
-        source: '/src/assets/audio/audio_start.mp3',
+        source: 'assets/audio/audio_start.mp3',
         volume: 0.75,
       },
     },
     stadiumScene: {
       track_01: {
         audio: null,
-        source: '/src/assets/audio/tracks/1.mp3',
+        source: 'assets/audio/tracks/1.mp3',
         volume: 2,
       },
       track_02: {
         audio: null,
-        source: '/src/assets/audio/tracks/2.mp3',
+        source: 'assets/audio/tracks/2.mp3',
         volume: 2,
       },
       track_03: {
         audio: null,
-        source: '/src/assets/audio/tracks/3.wav',
+        source: 'assets/audio/tracks/3.wav',
         volume: 2,
       },
       track_04: {
         audio: null,
-        source: '/src/assets/audio/tracks/4.mp3',
+        source: 'assets/audio/tracks/4.mp3',
         volume: 2,
       },
       track_05: {
         audio: null,
-        source: '/src/assets/audio/tracks/5.mp3',
+        source: 'assets/audio/tracks/5.mp3',
         volume: 2,
       },
       track_06: {
         audio: null,
-        source: '/src/assets/audio/tracks/6.mp3',
+        source: 'assets/audio/tracks/6.mp3',
         volume: 2,
       },
       track_07: {
         audio: null,
-        source: '/src/assets/audio/tracks/7.mp3',
+        source: 'assets/audio/tracks/7.mp3',
         volume: 3.5,
       },
     },
     stadiumAmbiant: {
       crowd: {
         audio: null,
-        source: '/src/assets/audio/crowd.wav',
+        source: 'assets/audio/crowd.wav',
         volume: 0.1,
         loop: true,
       },

@@ -15,7 +15,7 @@ export default function PlayerIdle({
   pivot = false,
 }) {
   const clone = useRef();
-  const model = useGLTF("/src/assets/models/footballIdle.glb");
+  const model = useGLTF("assets/models/footballIdle.glb");
 
   useEffect(() => {
     clone.current = cloneGltf(model);

@@ -21,12 +21,12 @@ export default function Stadium({ nodes, material, materials }) {
   const data = useScroll();
 
   const { nodes: n2, materials: m2 } = useGLTF(
-    '/src/assets/models/franceFlag.glb'
+    'assets/models/franceFlag.glb'
   );
   const { nodes: n3, materials: m3 } = useGLTF(
-    '/src/assets/models/brazilFlag.glb'
+    'assets/models/brazilFlag.glb'
   );
-  const map = useLoader(TextureLoader, '/src/assets/img/screen.jpg');
+  const map = useLoader(TextureLoader, 'assets/img/screen.jpg');
 
   const stadeMaterial = new MeshStandardMaterial({
     map: materials['Material.005'].map,

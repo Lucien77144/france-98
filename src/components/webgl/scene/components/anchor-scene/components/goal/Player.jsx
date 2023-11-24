@@ -15,7 +15,7 @@ export default function Player({
   pivot = false,
 }) {
   const clone = useRef();
-  const model = useGLTF("/src/assets/models/foot.glb");
+  const model = useGLTF("assets/models/foot.glb");
 
   useEffect(() => {
     clone.current = cloneGltf(model);

@@ -3,7 +3,7 @@
     "position": [
       0.36342275344199704, 0.35761875565464674, -0.0005970117808591407
     ],
-    "url": "/src/assets/audio/stadium.wav",
+    "url": "assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
     "pivot": false
@@ -12,7 +12,7 @@
     "position": [
       -0.0000035712099267656217, 0.05528750321154352, -0.9822720103426733
     ],
-    "url": "/src/assets/audio/stadium.wav",
+    "url": "assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
     "pivot": false
@@ -21,7 +21,7 @@
     "position": [
       -0.7009943040572405, 0.05254400788959884, -0.0011705654568174577
     ],
-    "url": "/src/assets/audio/stadium.wav",
+    "url": "assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
     "pivot": false
@@ -30,7 +30,7 @@
     "position": [
       0.00009283252844252628, 0.09776087039257475, 0.928274252952326
     ],
-    "url": "/src/assets/audio/stadium.wav",
+    "url": "assets/audio/stadium.wav",
     "distance": 0.025,
     "volume": 0.2,
     "pivot": false
@@ -39,7 +39,7 @@
     "position": [
       0.00009283252844252628, 0.09776087039257475, 0.928274252952326
     ],
-    "url": "/src/assets/audio/crowd.wav",
+    "url": "assets/audio/crowd.wav",
     "distance": 0.005,
     "volume": 0.5,
     "pivot": false
@@ -48,7 +48,7 @@
     "position": [
       0.7183663891838051, 0.04805780881981672, -0.010364210873733012
     ],
-    "url": "/src/assets/audio/cheering.wav",
+    "url": "assets/audio/cheering.wav",
     "distance": 0.15,
     "volume": 0.25,
     "start": 0.2,
@@ -58,7 +58,7 @@
     "position": [
       0,0,0
     ],
-    "url": "/src/assets/audio/cheering3.flac",
+    "url": "assets/audio/cheering3.flac",
     "distance": 0.15,
     "volume": 0.25,
     "start": 0.2,
@@ -66,7 +66,7 @@
   },
   {
     "position": [0.09730381876919218, 0.03967515396505211, -0.5760499288805191],
-    "url": "/src/assets/audio/ball.wav",
+    "url": "assets/audio/ball.wav",
     "distance": 0.05,
     "volume": 0.025,
     "start": 0.283,
@@ -76,7 +76,7 @@
     "position": [
       -0.0012719117483199595, 0.042642903334443864, -0.9428570846396457
     ],
-    "url": "/src/assets/audio/cheering2.wav",
+    "url": "assets/audio/cheering2.wav",
     "distance": 0.25,
     "volume": 0.25,
     "start": 0.306,
@@ -86,7 +86,7 @@
     "position": [
       -0.0012719117483199595, 0.042642903334443864, -0.9428570846396457
     ],
-    "url": "/src/assets/audio/cheering.wav",
+    "url": "assets/audio/cheering.wav",
     "distance": 0.25,
     "volume": 0.25,
     "start": 0.306,
@@ -96,7 +96,7 @@
     "position": [
       -0.7227525107135622, 0.08233769660870714, -0.8473854592341517
     ],
-    "url": "/src/assets/audio/cheering.wav",
+    "url": "assets/audio/cheering.wav",
     "distance": 0.25,
     "volume": 0.25,
     "start": 0.306,
@@ -104,7 +104,7 @@
   },
   {
     "position": [-0.7227525107135622, 0.08233769660870714, -0.8473854592341517],
-    "url": "/src/assets/audio/ball.wav",
+    "url": "assets/audio/ball.wav",
     "distance": 0.15,
     "volume": 0.025,
     "start": 0.5689,
@@ -114,7 +114,7 @@
     "position": [
       -0.7125259755359248, 0.0790572542608893, -0.07422613789119893 
     ],
-    "url": "/src/assets/audio/cheering2.wav",
+    "url": "assets/audio/cheering2.wav",
     "distance": 0.25,
     "volume": 0.25,
     "start": 0.644,
@@ -124,7 +124,7 @@
     "position": [
       0,0,0
     ],
-    "url": "/src/assets/audio/cheering3.flac",
+    "url": "assets/audio/cheering3.flac",
     "distance": 0.25,
     "volume": 0.25,
     "start": 0.644,
@@ -134,7 +134,7 @@
     "position": [
       -0.2621670316447183, 0.025043412573552602, 0.898368007370113
     ],
-    "url": "/src/assets/audio/cheering.wav",
+    "url": "assets/audio/cheering.wav",
     "distance": 0.25,
     "volume": 0.25,
     "start": 0.644,
@@ -142,7 +142,7 @@
   },
   {
     "position": [-0.2621670316447183, 0.025043412573552602, 0.898368007370113],
-    "url": "/src/assets/audio/ball.wav",
+    "url": "assets/audio/ball.wav",
     "distance": 0.15,
     "volume": 0.025,
     "start": 0.867,
@@ -152,7 +152,7 @@
     "position": [
       -0.7125259755359248, 0.0790572542608893, -0.07422613789119893 
     ],
-    "url": "/src/assets/audio/cheering3.flac",
+    "url": "assets/audio/cheering3.flac",
     "distance": 0.5,
     "volume": 0.25,
     "start": 0.940,
@@ -162,7 +162,7 @@
     "position": [
       0,0,0
     ],
-    "url": "/src/assets/audio/cheering3.flac",
+    "url": "assets/audio/cheering3.flac",
     "distance": 0.5,
     "volume": 0.25,
     "start": 0.940,
@@ -172,7 +172,7 @@
     "position": [
       -0.2621670316447183, 0.025043412573552602, 0.898368007370113
     ],
-    "url": "/src/assets/audio/cheering.wav",
+    "url": "assets/audio/cheering.wav",
     "distance": 0.5,
     "volume": 0.25,
     "start": 0.940,
@@ -182,7 +182,7 @@
     "position": [
       0, 0,0
     ],
-    "url": "/src/assets/audio/Lalala.mp3",
+    "url": "assets/audio/Lalala.mp3",
     "distance": 0.15,
     "volume": 0.025,
     "start": 0.940,

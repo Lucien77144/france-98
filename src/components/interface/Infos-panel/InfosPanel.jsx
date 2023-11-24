@@ -80,7 +80,7 @@ export default function InfosPanel() {
                       -10 * (1 - getTranslation() / 100)
                     }deg) scale(${1 - getTranslation() / 100 / 10})`,
                   }}
-                  src="/src/assets/img/ui/france.png"
+                  src="assets/img/ui/france.png"
                   alt=""
                 />
               </div>

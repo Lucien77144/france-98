@@ -33,7 +33,7 @@ export function WorldCup({ config, pivot = false }) {
     }
   });
 
-  const { nodes, materials } = useGLTF('/src/assets/models/worldcup.glb');
+  const { nodes, materials } = useGLTF('assets/models/worldcup.glb');
 
   const groupRender = (
     <group dispose={null} {...config} scale={0.02} ref={group} visible={false}>
@@ -71,4 +71,4 @@ export function WorldCup({ config, pivot = false }) {
   );
 }
 
-useGLTF.preload('/src/assets/models/worldcup.glb');
+useGLTF.preload('assets/models/worldcup.glb');

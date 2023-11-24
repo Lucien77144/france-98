@@ -43,7 +43,7 @@ const ev = (event) => {
           <h4>N°10</h4>
         </div>
         <div className="imgContainer">
-          <img src="/src/assets/img/ui/france.png" alt="" />
+          <img src="assets/img/ui/france.png" alt="" />
         </div>
       </div>
     </>

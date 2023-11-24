@@ -49,7 +49,7 @@ export default function Menu({ intro }) {
           </div>
         </div>
         {/* <div className="scroll-action">
-          <img src="./src/assets/img/ui/scroll.svg"></img>
+          <img src=".assets/img/ui/scroll.svg"></img>
           Scroll to explore
         </div> */}
       </div>
@@ -58,7 +58,7 @@ export default function Menu({ intro }) {
         <video
           ref={videoRef}
           className="intro-video"
-          src={`./src/assets/video/${intro}`}
+          src={`.assets/video/${intro}`}
         ></video>
       )}
     </div>

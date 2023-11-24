@@ -11,7 +11,7 @@ import * as THREE from 'three';
 import { useMemo } from 'react';
 
 export default function Spectators({ material, data, total, config, pivot }) {
-  const { nodes } = useGLTF('/src/assets/models/supporter.glb');
+  const { nodes } = useGLTF('assets/models/supporter.glb');
   const rotationRef = useRef();
   const positionRef = useRef();
 
@@ -83,4 +83,4 @@ function Spectator({ random, intensity, ...props }) {
   return <Instance ref={ref} {...props} />;
 }
 
-useGLTF.preload('/src/assets/models/supporter.glb');
+useGLTF.preload('assets/models/supporter.glb');
