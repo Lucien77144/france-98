@@ -1,19 +1,61 @@
 [
   {
     "position": [
-      -0.5983990867468951, 1.1706396974057394, -0.001386795933230378
+      0.36342275344199704, 0.35761875565464674, -0.0005970117808591407
     ],
-    "url": "/src/assets/audio/tracks/1.mp3",
-    "distance": 0.001,
-    "volume": 0.01,
+    "url": "/src/assets/audio/stadium.wav",
+    "distance": 0.025,
+    "volume": 0.2,
     "delay": 0,
-    "pivot": true
+    "pivot": false
   },
   {
-    "position": [0, 0.2, 0],
-    "url": "/src/assets/audio/tracks/2.mp3",
-    "distance": 0.001,
-    "volume": 0.01,
+    "position": [
+      -0.0000035712099267656217, 0.05528750321154352, -0.9822720103426733
+    ],
+    "url": "/src/assets/audio/stadium.wav",
+    "distance": 0.025,
+    "volume": 0.2,
+    "delay": 0,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.7009943040572405, 0.05254400788959884, -0.0011705654568174577 
+    ],
+    "url": "/src/assets/audio/stadium.wav",
+    "distance": 0.025,
+    "volume": 0.2,
+    "delay": 0,
+    "pivot": false
+  },
+  {
+    "position": [
+      0.00009283252844252628, 0.09776087039257475, 0.928274252952326
+    ],
+    "url": "/src/assets/audio/stadium.wav",
+    "distance": 0.025,
+    "volume": 0.2,
+    "delay": 0,
+    "pivot": false
+  },
+  {
+    "position": [
+      0.00009283252844252628, 0.09776087039257475, 0.928274252952326 
+    ],
+    "url": "/src/assets/audio/crowd.wav",
+    "distance": 0.005,
+    "volume": 0.5,
+    "delay": 0,
+    "pivot": false
+  },
+  {
+    "position": [
+      0.7183663891838051, 0.04805780881981672, -0.010364210873733012
+    ],
+    "url": "/src/assets/audio/cheering.wav",
+    "distance": 0.1,
+    "volume": 0.5,
     "delay": 0,
     "pivot": true
   }
