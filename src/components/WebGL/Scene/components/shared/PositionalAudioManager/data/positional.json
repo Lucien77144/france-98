@@ -49,8 +49,18 @@
       0.7183663891838051, 0.04805780881981672, -0.010364210873733012
     ],
     "url": "/src/assets/audio/cheering.wav",
-    "distance": 0.1,
-    "volume": 0.5,
+    "distance": 0.15,
+    "volume": 0.25,
+    "start": 0.2,
+    "pivot": false
+  },
+  {
+    "position": [
+      0,0,0
+    ],
+    "url": "/src/assets/audio/cheering3.flac",
+    "distance": 0.15,
+    "volume": 0.25,
     "start": 0.2,
     "pivot": false
   },
@@ -58,7 +68,7 @@
     "position": [0.09730381876919218, 0.03967515396505211, -0.5760499288805191],
     "url": "/src/assets/audio/ball.wav",
     "distance": 0.05,
-    "volume": 0.25,
+    "volume": 0.025,
     "start": 0.283,
     "pivot": false
   },
@@ -90,6 +100,92 @@
     "distance": 0.25,
     "volume": 0.25,
     "start": 0.306,
-    "pivot": true
+    "pivot": false
+  },
+  {
+    "position": [-0.7227525107135622, 0.08233769660870714, -0.8473854592341517],
+    "url": "/src/assets/audio/ball.wav",
+    "distance": 0.15,
+    "volume": 0.025,
+    "start": 0.5689,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.7125259755359248, 0.0790572542608893, -0.07422613789119893 
+    ],
+    "url": "/src/assets/audio/cheering2.wav",
+    "distance": 0.25,
+    "volume": 0.25,
+    "start": 0.644,
+    "pivot": false
+  },
+  {
+    "position": [
+      0,0,0
+    ],
+    "url": "/src/assets/audio/cheering3.flac",
+    "distance": 0.25,
+    "volume": 0.25,
+    "start": 0.644,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.2621670316447183, 0.025043412573552602, 0.898368007370113
+    ],
+    "url": "/src/assets/audio/cheering.wav",
+    "distance": 0.25,
+    "volume": 0.25,
+    "start": 0.644,
+    "pivot": false
+  },
+  {
+    "position": [-0.2621670316447183, 0.025043412573552602, 0.898368007370113],
+    "url": "/src/assets/audio/ball.wav",
+    "distance": 0.15,
+    "volume": 0.025,
+    "start": 0.867,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.7125259755359248, 0.0790572542608893, -0.07422613789119893 
+    ],
+    "url": "/src/assets/audio/cheering3.flac",
+    "distance": 0.5,
+    "volume": 0.25,
+    "start": 0.940,
+    "pivot": false
+  },
+  {
+    "position": [
+      0,0,0
+    ],
+    "url": "/src/assets/audio/cheering3.flac",
+    "distance": 0.5,
+    "volume": 0.25,
+    "start": 0.940,
+    "pivot": false
+  },
+  {
+    "position": [
+      -0.2621670316447183, 0.025043412573552602, 0.898368007370113
+    ],
+    "url": "/src/assets/audio/cheering.wav",
+    "distance": 0.5,
+    "volume": 0.25,
+    "start": 0.940,
+    "pivot": false
+  },
+  {
+    "position": [
+      0, 0,0
+    ],
+    "url": "/src/assets/audio/Lalala.mp3",
+    "distance": 0.15,
+    "volume": 0.025,
+    "start": 0.940,
+    "pivot": false
   }
 ]

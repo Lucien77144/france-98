@@ -29,37 +29,37 @@ export default function SoundProvider({ children }) {
       track_01: {
         audio: null,
         source: '/src/assets/audio/tracks/1.mp3',
-        volume: 1,
+        volume: 2,
       },
       track_02: {
         audio: null,
         source: '/src/assets/audio/tracks/2.mp3',
-        volume: 1,
+        volume: 2,
       },
       track_03: {
         audio: null,
-        source: '/src/assets/audio/tracks/3.mp3',
-        volume: 1,
+        source: '/src/assets/audio/tracks/3.wav',
+        volume: 2,
       },
       track_04: {
         audio: null,
         source: '/src/assets/audio/tracks/4.mp3',
-        volume: 1,
+        volume: 2,
       },
       track_05: {
         audio: null,
         source: '/src/assets/audio/tracks/5.mp3',
-        volume: 1,
+        volume: 2,
       },
       track_06: {
         audio: null,
         source: '/src/assets/audio/tracks/6.mp3',
-        volume: 1,
+        volume: 2,
       },
       track_07: {
         audio: null,
         source: '/src/assets/audio/tracks/7.mp3',
-        volume: 1,
+        volume: 2,
       },
     },
     stadiumAmbiant: {
