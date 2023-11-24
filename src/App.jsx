@@ -18,7 +18,7 @@ import { KernelSize, Resolution } from 'postprocessing';
 import { Suspense } from 'react';
 import Loading from './components/interface/loading/Loading.jsx';
 import InfosPanel from './components/interface/Infos-panel/InfosPanel.jsx';
-import InterfaceProvider from './Providers/InterfaceProvider.jsx';
+import InterfaceProvider from './providers/InterfaceProvider.jsx';
 
 export default function App() {
   return (

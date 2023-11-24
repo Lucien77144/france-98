@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { InterfaceContext } from '../../../Providers/InterfaceProvider';
+import { InterfaceContext } from '../../../providers/InterfaceProvider';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';

@@ -7,7 +7,7 @@ import {
 } from '../../../../Utils/Utils';
 import * as THREE from 'three';
 import { TemplateContext } from '../../../../../../providers/TemplateProvider';
-import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
+import { InterfaceContext } from '../../../../../../providers/InterfaceProvider';
 
 const DECIMAL = 100000;
 export default function RailCameraController({

@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import * as THREE from 'three';
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
+import { InterfaceContext } from '../../../../../../providers/InterfaceProvider';
 import { useState } from 'react';
 
 export default function PositionalAudioManager() {

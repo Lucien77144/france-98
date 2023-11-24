@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { InterfaceContext } from '../../../Providers/InterfaceProvider';
+import { InterfaceContext } from '../../../providers/InterfaceProvider';
 import { useContext } from 'react';
 import gsap from 'gsap';
 import './ProgressBar.scss';

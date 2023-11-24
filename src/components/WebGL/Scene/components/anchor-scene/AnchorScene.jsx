@@ -32,7 +32,7 @@ import AmbiantAudioManager from "../shared/ambiant-audio-manager/AmbiantAudioMan
 import IntroPlayers from "./components/goal/IntroPlayers";
 import PositionalAudioManager from "../shared/positional-audio-manager/PositionalAudioManager";
 import { WorldCup } from "./components/world-cup/WorldCup";
-import { InterfaceContext } from "../../../../../Providers/InterfaceProvider";
+import { InterfaceContext } from "../../../../../providers/InterfaceProvider";
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();

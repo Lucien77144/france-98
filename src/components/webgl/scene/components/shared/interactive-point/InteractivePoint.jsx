@@ -12,7 +12,7 @@ import { TemplateContext } from '../../../../../../providers/TemplateProvider';
 import gsap from 'gsap';
 import { useContext } from 'react';
 import { SoundContext } from '../../../../../../providers/SoundProvider';
-import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
+import { InterfaceContext } from '../../../../../../providers/InterfaceProvider';
 import COLORS from '../../../../../interface/colors/Colors';
 
 export const POINT_TYPE = {
