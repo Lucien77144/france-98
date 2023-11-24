@@ -80,6 +80,12 @@ export default function Goal2({ actionBall, nodes }) {
               0.00013637099490046873, 0.9865350434533544,
             ],
           }}
+          data={{
+            firstName:"Zinedine",
+            lastName:"Zidane",
+            number:10,
+            country:"france"
+          }}
         ></Player>
 
         <Player
@@ -94,6 +100,12 @@ export default function Goal2({ actionBall, nodes }) {
               -0.00012928332186911125, 0.6120972857153997,
             ],
           }}
+          data={{
+            firstName:"Youri",
+            lastName:"Djorkaeff",
+            number:6,
+            country:"france"
+          }}
         ></Player>
 
         <Player
@@ -107,6 +119,12 @@ export default function Goal2({ actionBall, nodes }) {
               0.000021720406879469335, 0.9986389596161027,
               -0.0004200891977532612, -0.052154111919941654,
             ],
+          }}
+          data={{
+            firstName:"Cláudio",
+            lastName:"Taffarel",
+            number:1,
+            country:"brazil"
           }}
         ></Player>
 
