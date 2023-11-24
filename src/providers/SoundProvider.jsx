@@ -15,7 +15,7 @@ export default function SoundProvider({ children }) {
   const audioListener = useRef();
   const [audioEnd, setAudioEnd] = useState();
 
-  const { startExperience } = useContext(InterfaceContext);
+  const { startAudio, setStartExperience } = useContext(InterfaceContext);
 
   const [audioScene, setAudioScene] = useState({
     ui: {
@@ -65,16 +65,15 @@ export default function SoundProvider({ children }) {
     stadiumAmbiant: {
       crowd: {
         audio: null,
-        source: '/src/assets/audio/crowd.mp3',
+        source: '/src/assets/audio/crowd.wav',
         volume: 0.1,
-        range: [0, 0.5],
         loop: true,
       },
     },
   });
 
   useEffect(() => {
-    if (!startExperience) return;
+    if (!startAudio) return;
     audioListener.current ??= new THREE.AudioListener();
 
     for (const [scene, sceneObj] of Object.entries(audioScene)) {
@@ -104,7 +103,10 @@ export default function SoundProvider({ children }) {
         }
       }
     }
-  }, [startExperience]);
+    setTimeout(() => {
+      setStartExperience(true);
+    });
+  }, [startAudio]);
 
   function addNewAudioSrc(newAudioSrc, sceneName) {
     // Utilisez audioLoader pour charger le fichier audio

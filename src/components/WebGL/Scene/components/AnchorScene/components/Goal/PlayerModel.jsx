@@ -24,7 +24,7 @@ export default function PlayerModel({
     action.current = actions;
     playerPres.current = document.querySelector(".playerPres")
 
-    window.addEventListener("keydown", (event) => {
+    window.addEventListener('keydown', (event) => {
       if (event.keyCode === 69 && pivot) {
         // Le code 69 correspond à la touche "E"
         console.log(positionRef.current, rotationRef.current);

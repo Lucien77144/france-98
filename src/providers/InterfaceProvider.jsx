@@ -6,6 +6,7 @@ export const InterfaceContext = createContext(null);
 export default function InterfaceProvider({ children }) {
   const [activeAudio, setActiveAudio] = useState(null);
   const [redirect, setRedirect] = useState(0);
+  const [startAudio, setStartAudio] = useState(false);
   const [startExperience, setStartExperience] = useState(false);
   const scrollPositionRef = useRef(0);
 
@@ -15,10 +16,12 @@ export default function InterfaceProvider({ children }) {
         activeAudio,
         scrollPositionRef,
         redirect,
+        startAudio,
         startExperience,
 
         setActiveAudio,
         setRedirect,
+        setStartAudio,
         setStartExperience,
       }}
     >

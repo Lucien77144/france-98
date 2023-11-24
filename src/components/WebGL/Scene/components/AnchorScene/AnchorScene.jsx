@@ -30,6 +30,8 @@ import Goal3 from './components/Goal/Goal3';
 import tracklist from './data/tracklist.json';
 import AmbiantAudioManager from '../shared/AmbiantAudioManager/AmbiantAudioManager';
 import IntroPlayers from './components/Goal/IntroPlayers';
+import PositionalAudioManager from '../shared/PositionalAudioManager/PositionalAudioManager';
+import { InterfaceContext } from '../../../../../providers/InterfaceProvider';
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();
@@ -42,8 +44,9 @@ function TestAnchor(props) {
 
   const { actions } = useAnimations(animations, group);
 
-  const { canScroll, startExperience } = useContext(TemplateContext);
-  const { audioListener, audioScene } = useContext(SoundContext);
+  const { canScroll } = useContext(TemplateContext);
+  const { startExperience } = useContext(InterfaceContext);
+  const { audioListener } = useContext(SoundContext);
 
   useEffect(() => {
     if (!startExperience) return;
@@ -146,7 +149,8 @@ function TestAnchor(props) {
                 )
               )}
 
-              <AmbiantAudioManager />
+              {/* <AmbiantAudioManager /> */}
+              {startExperience && <PositionalAudioManager />}
 
               <PerspectiveCamera makeDefault far={5} near={0.001} />
               <RailCameraController />
