@@ -3,8 +3,8 @@ import { InterfaceContext } from '../../../Providers/InterfaceProvider';
 import { useContext } from 'react';
 import gsap from 'gsap';
 import './ProgressBar.scss';
-import { tracks } from '../../../components/WebGL/Scene/components/AnchorScene/data/tracklist.json';
-import COLORS from '../Colors/Colors';
+import { tracks } from '../../webgl/scene/components/anchor-scene/data/tracklist.json';
+import COLORS from '../colors/Colors';
 import { useState } from 'react';
 
 function getTrackPosition({ range }) {

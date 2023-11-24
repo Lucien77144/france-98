@@ -13,7 +13,7 @@ import gsap from 'gsap';
 import { useContext } from 'react';
 import { SoundContext } from '../../../../../../providers/SoundProvider';
 import { InterfaceContext } from '../../../../../../Providers/InterfaceProvider';
-import COLORS from '../../../../../Interface/Colors/Colors';
+import COLORS from '../../../../../interface/colors/Colors';
 
 export const POINT_TYPE = {
   NONE: null,

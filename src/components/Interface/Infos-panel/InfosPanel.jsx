@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import './InfosPanel.scss';
 import infos from './data/infos.json';
-import COLORS from '../Colors/Colors';
+import COLORS from '../colors/Colors';
 
 export default function InfosPanel() {
   const { scrollPositionRef } = useContext(InterfaceContext);

@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { gsap } from 'gsap';
 import { useScroll } from '@react-three/drei';
-import InteractGroup from './components/shared/InteractGroup/InteractGroup';
-import AnchorController from './components/shared/RailCamera/AnchorController.jsx';
-import RailCameraController from './components/shared/RailCamera/RailCameraController';
+import InteractGroup from './components/shared/interact-group/InteractGroup';
+import AnchorController from './components/shared/rail-camera/AnchorController.jsx';
+import RailCameraController from './components/shared/rail-camera/RailCameraController';
 import { TemplateContext } from '../../../providers/TemplateProvider';
 
 export default function SceneManager({

@@ -16,23 +16,23 @@ import { useThree, useLoader } from "@react-three/fiber";
 import { TemplateContext } from "../../../../../providers/TemplateProvider";
 import { SoundContext } from "../../../../../providers/SoundProvider";
 import SceneManager from "../../SceneManager";
-import GlobalFog from "./components/GlobalFog/GlobalFog";
-import RailCameraController from "../shared/RailCamera/RailCameraController";
+import GlobalFog from "./components/global-fog/GlobalFog";
+import RailCameraController from "../shared/rail-camera/RailCameraController";
 import InteractivePoint, {
   POINT_TYPE,
-} from "../shared/InteractivePoint/InteractivePoint";
+} from "../shared/interactive-point/InteractivePoint";
 
-import Stadium from "./components/Stadium/Stadium";
-import Goal1 from "./components/Goal/Goal1";
-import Goal2 from "./components/Goal/Goal2";
-import Goal3 from "./components/Goal/Goal3";
+import Stadium from "./components/stadium/Stadium";
+import Goal1 from "./components/goal/Goal1";
+import Goal2 from "./components/goal/Goal2";
+import Goal3 from "./components/goal/Goal3";
 
 import tracklist from "./data/tracklist.json";
-import AmbiantAudioManager from "../shared/AmbiantAudioManager/AmbiantAudioManager";
-import IntroPlayers from "./components/Goal/IntroPlayers";
-import PositionalAudioManager from "../shared/PositionalAudioManager/PositionalAudioManager";
-import { InterfaceContext } from "../../../../../providers/InterfaceProvider";
-import { WorldCup } from "./components/WorldCup/WorldCup";
+import AmbiantAudioManager from "../shared/ambiant-audio-manager/AmbiantAudioManager";
+import IntroPlayers from "./components/goal/IntroPlayers";
+import PositionalAudioManager from "../shared/positional-audio-manager/PositionalAudioManager";
+import { WorldCup } from "./components/world-cup/WorldCup";
+import { InterfaceContext } from "../../../../../Providers/InterfaceProvider";
 
 function TestAnchor(props) {
   const { camera, scene } = useThree();

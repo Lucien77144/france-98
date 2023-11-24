@@ -9,8 +9,8 @@ import {
   TextureLoader,
   Vector3,
 } from 'three';
-import SpectatorsLargeD from '../Spectators/SpectatorsLargeD';
-import Smoke from '../Smoke/Smoke';
+import SpectatorsLargeD from '../spectators/SpectatorsLargeD';
+import Smoke from '../smoke/Smoke';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { PivotControls, useGLTF, useScroll } from '@react-three/drei';
 

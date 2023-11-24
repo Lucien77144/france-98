@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useGLTF, useScroll } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import PlayerIdle from "./PlayerIdle";
-import Smoke from "../Smoke/Smoke";
+import Smoke from "../smoke/Smoke";
 
 export default function IntroPlayers() {
   const group = useRef();

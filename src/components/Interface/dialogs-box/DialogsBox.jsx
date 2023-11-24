@@ -4,7 +4,7 @@ import { InterfaceContext } from '../../../Providers/InterfaceProvider';
 import './DialogsBox.scss';
 
 import transcriptions from './data/transcriptions.json';
-import COLORS from '../Colors/Colors';
+import COLORS from '../colors/Colors';
 
 export default function DialogsBox() {
   const { activeAudio } = useContext(InterfaceContext);

@@ -6,19 +6,19 @@ import { getProject } from '@theatre/core';
 import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import SoundProvider from './providers/SoundProvider';
-import Transition from './components/WebGL/Scene/components/shared/Transition/Transition';
-import AnchorScene from './components/WebGL/Scene/components/AnchorScene/AnchorScene';
+import Transition from './components/webgl/scene/components/shared/transition/Transition';
+import AnchorScene from './components/webgl/scene/components/anchor-scene/anchor-scene';
 import TemplateProvider from './providers/TemplateProvider';
-import DialogsBox from './components/Interface/DialogsBox/DialogsBox';
-import ProgressBar from './components/Interface/ProgressBar/ProgressBar';
-import VideoPanel from './components/Interface/VideoPanel/VideoPanel';
-import Menu from './components/Interface/Menu/Menu';
-import PlayerPresentation from './components/Interface/PlayerPresentation/PlayerPresentation';
+import DialogsBox from './components/interface/dialogs-box/DialogsBox';
+import ProgressBar from './components/interface/progress-bar/ProgressBar';
+import VideoPanel from './components/interface/video-panel/VideoPanel';
+import Menu from './components/interface/menu/Menu';
+import PlayerPresentation from './components/interface/player-presentation/PlayerPresentation';
 import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing';
 import { KernelSize, Resolution } from 'postprocessing';
 import { Suspense } from 'react';
-import Loading from './components/Interface/Loading/Loading.jsx';
-import InfosPanel from './components/Interface/InfosPanel/InfosPanel';
+import Loading from './components/interface/loading/Loading.jsx';
+import InfosPanel from './components/interface/Infos-panel/InfosPanel';
 import InterfaceProvider from './Providers/InterfaceProvider.jsx';
 
 export default function App() {
@@ -53,7 +53,6 @@ export default function App() {
                 <Router>
                   <Transition />
                   <Routes>
-                    {/* <Route index path="/" element={<TestScene />} /> */}
                     <Route index path="/" element={<AnchorScene />} />
                     <Route from="*" to="/" />
                   </Routes>

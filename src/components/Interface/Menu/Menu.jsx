@@ -1,4 +1,4 @@
-import COLORS from '../Colors/Colors';
+import COLORS from '../colors/Colors';
 import './Menu.scss';
 import { InterfaceContext } from '../../../Providers/InterfaceProvider';
 import { useContext } from 'react';
