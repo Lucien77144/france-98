@@ -71,12 +71,6 @@ export default function Goal({ actionBall, nodes }) {
 
   return (
     <>
-      {/* <SpotLightMove
-        target={[
-          0.10654682727715425, 0.020324277612842556, -0.5635984710842615,
-        ]}
-        intensity={intensity}
-      ></SpotLightMove> */}
       <group ref={group} visible={true}>
         <Player
           action={shooterAction}
@@ -89,6 +83,12 @@ export default function Goal({ actionBall, nodes }) {
               -0.000005217017130269479, 0.9535771127912418,
               0.000017700021410971273, -0.30114894922647706,
             ],
+          }}
+          data={{
+            firstName:"Zinedine",
+            lastName:"Zidane",
+            number:10,
+            country:"france"
           }}
         ></Player>
 
@@ -103,6 +103,12 @@ export default function Goal({ actionBall, nodes }) {
               -0.00035583020913424265, 0.28374071907076287,
               -0.00010442294572414904, 0.9589009682036604,
             ],
+          }} 
+          data={{
+            firstName:"Cláudio",
+            lastName:"Taffarel",
+            number:1,
+            country:"brazil"
           }}
           // pivot
         ></Player>
@@ -117,6 +123,12 @@ export default function Goal({ actionBall, nodes }) {
               -0.0005127108139945434, -0.6014481879667491,
               0.00038645732689096725, 0.798911550154252,
             ],
+          }}
+          data={{
+            firstName:"Emmanuel",
+            lastName:"Petit",
+            number:17,
+            country:"france"
           }}
         ></Player>
 

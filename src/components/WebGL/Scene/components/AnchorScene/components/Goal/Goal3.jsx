@@ -69,6 +69,12 @@ export default function Goal3({ actionBall, nodes }) {
               0.000004529672999744995, 0.9873093502126856,
             ],
           }}
+          data={{
+            firstName:"Emmanuel",
+            lastName:"Petit",
+            number:17,
+            country:"france"
+          }}
         ></Player>
 
         <Player
@@ -82,6 +88,12 @@ export default function Goal3({ actionBall, nodes }) {
               5.678314289845093e-7, 0.9995779385530085,
               -0.000009212121644286011, -0.029050725858959854,
             ],
+          }}
+          data={{
+            firstName:"Cláudio",
+            lastName:"Taffarel",
+            number:1,
+            country:"brazil"
           }}
         ></Player>
 

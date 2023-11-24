@@ -74,8 +74,8 @@ export default function RailCameraController({
           scrollPositionRef.current =
             Math.round(data.offset * DECIMAL) / DECIMAL;
         }
-        projectRef.current.sheet('global').sequence.position =
-          scrollPositionRef.current * 15;
+        // projectRef.current.sheet('global').sequence.position =
+        //   scrollPositionRef.current * 15;
       } else if (stateAnim.current === 'enter') {
         if (data.delta == 0 && canScroll.current) {
           previousScroll.current = [data.scroll.current, data.el.scrollTop];

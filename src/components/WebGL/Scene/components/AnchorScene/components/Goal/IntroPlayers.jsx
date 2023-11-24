@@ -124,7 +124,7 @@ export default function IntroPlayers() {
     <>
       <group ref={group} visible={true}>
         <group
-          name="franceSide"
+          name="brazilSide"
           position={[0.03, -0.0015, 0.01 - 0.125]}
           rotation={[0, -Math.PI / 2, 0]}
         >
@@ -142,6 +142,12 @@ export default function IntroPlayers() {
                 -6.494582287909178e-8, 0.9999998707843374,
               ],
             }}
+            data={{
+              firstName:"Cláudio",
+              lastName:"Taffarel",
+              number:1,
+              country:"brazil"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={frP2}
@@ -155,6 +161,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Marcos 'Cafu'",
+              lastName:"Evangelista de Moraes",
+              number:2,
+              country:"brazil"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -170,6 +182,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Aldair",
+              lastName:"Santos do Nascimento",
+              number:3,
+              country:"brazil"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={frP4}
@@ -183,6 +201,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Junior",
+              lastName:"Baiano",
+              number:4,
+              country:"brazil"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -198,6 +222,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Roberto",
+              lastName:"Carlos",
+              number:6,
+              country:"brazil"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={frP6}
@@ -211,6 +241,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"César",
+              lastName:"Sampaio",
+              number:5,
+              country:"brazil"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -226,6 +262,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Carlos 'Dunga'",
+              lastName:"Caetano Bledorn Verri",
+              number:8,
+              country:"brazil"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={frP8}
@@ -239,6 +281,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Rivaldo",
+              lastName:"Vítor Borba Ferreira",
+              number:10,
+              country:"brazil"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -254,6 +302,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Leonardo",
+              lastName:"Nascimento de Araújo",
+              number:18,
+              country:"brazil"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={frP10}
@@ -267,6 +321,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"José Roberto 'Bebeto'",
+              lastName:"Nascimento de Araújo",
+              number:20,
+              country:"brazil"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -282,10 +342,16 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Ronaldo Luis",
+              lastName:"Nazário de Lima",
+              number:9,
+              country:"brazil"
+            }}
           ></PlayerIdle>
         </group>
         <group
-          name="brasilSide"
+          name="frenchSide"
           position={[0.03, -0.0015, -0.02 + 0.125]}
           rotation={[0, -Math.PI / 2, 0]}
         >
@@ -303,6 +369,12 @@ export default function IntroPlayers() {
                 -6.494582287909178e-8, 0.9999998707843374,
               ],
             }}
+            data={{
+              firstName:"Fabien",
+              lastName:"Barthez",
+              number:16,
+              country:"france"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={brP2}
@@ -316,6 +388,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Lilian",
+              lastName:"Thuram",
+              number:15,
+              country:"france"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -331,6 +409,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Marcel",
+              lastName:"Desailly",
+              number:8,
+              country:"france"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={brP4}
@@ -344,6 +428,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Frank",
+              lastName:"Leboeuf",
+              number:18,
+              country:"france"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -359,6 +449,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Bixente",
+              lastName:"Lizarazu",
+              number:3,
+              country:"france"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={brP6}
@@ -372,6 +468,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Didier",
+              lastName:"Deschamps",
+              number:7,
+              country:"france"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -387,6 +489,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Christian",
+              lastName:"Karembeu",
+              number:19,
+              country:"france"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={brP8}
@@ -400,6 +508,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Emmanuel",
+              lastName:"Petit",
+              number:17,
+              country:"france"
             }}
           ></PlayerIdle>
           <PlayerIdle
@@ -415,6 +529,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Zinédine",
+              lastName:"Zidane",
+              number:10,
+              country:"france"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={brP10}
@@ -429,6 +549,12 @@ export default function IntroPlayers() {
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
             }}
+            data={{
+              firstName:"Youri",
+              lastName:"Djorkaeff",
+              number:6,
+              country:"france"
+            }}
           ></PlayerIdle>
           <PlayerIdle
             action={brP11}
@@ -442,6 +568,12 @@ export default function IntroPlayers() {
                 -0.00036806944306820897, 0.0002454369216942743,
                 -3.373449085971185e-8, 0.9999999021427959,
               ],
+            }}
+            data={{
+              firstName:"Stéphane",
+              lastName:"Guivarc'h",
+              number:9,
+              country:"france"
             }}
           ></PlayerIdle>
         </group>
