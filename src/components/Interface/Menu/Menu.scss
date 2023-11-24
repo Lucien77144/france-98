@@ -1,6 +1,10 @@
 .menu {
   transition: 0.5s ease-in-out, opacity 0.5s ease-in-out 0.25s;
-  background-image: url('/src/assets/img/ui/menu_rays.svg');
+
+  background-image: url('/src/assets/img/menu.png');
+  background-position: center;
+
+  // background-image: url('/src/assets/img/ui/menu_rays.svg');
   background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
@@ -32,10 +36,10 @@
     flex-direction: column;
   }
 
-  &-hover {
-    background-position-x: 1vw;
-    background-position-y: -0.25vw;
-  }
+  // &-hover {
+  //   background-position-x: 1vw;
+  //   background-position-y: -0.25vw;
+  // }
 
   &::before {
     content: '';
