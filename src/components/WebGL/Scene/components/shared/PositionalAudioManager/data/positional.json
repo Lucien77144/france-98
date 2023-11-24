@@ -1,0 +1,22 @@
+[
+  {
+    "position": [
+      -0.5983990867468951, 1.1706396974057394, -0.001386795933230378
+    ],
+    "url": "/src/assets/audio/tracks/1.mp3",
+    "distance": 0.001,
+    "volume": 0.01,
+    "delay": 0,
+    "pivot": true
+  },
+  {
+    "position": [
+      0, 0.2, 0
+    ],
+    "url": "/src/assets/audio/tracks/2.mp3",
+    "distance": 0.001,
+    "volume": 0.01,
+    "delay": 0,
+    "pivot": true
+  }
+]

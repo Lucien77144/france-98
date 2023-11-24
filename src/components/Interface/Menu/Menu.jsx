@@ -7,8 +7,7 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 
 export default function Menu({ intro }) {
-  const { startExperience, setStartExperience, setRedirect } =
-    useContext(InterfaceContext);
+  const { startExperience, setStartAudio } = useContext(InterfaceContext);
   const [hoverStart, setHoverStart] = useState();
   const [startVideo, setStartVideo] = useState(false);
   const videoRef = useRef();
@@ -18,10 +17,10 @@ export default function Menu({ intro }) {
     if (intro) {
       videoRef.current.play();
       videoRef.current.addEventListener('ended', () => {
-        setStartExperience(true);
+        setStartAudio(true);
       });
     } else {
-      setStartExperience(true);
+      setStartAudio(true);
     }
   };
 
