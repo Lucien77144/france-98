@@ -29,7 +29,6 @@ export default function InfosPanel() {
         return v;
       }
     })[0];
-    console.log(scroll);
   }, [scroll]);
 
   const getTranslation = () => {
