@@ -53,7 +53,7 @@ export default function InfosPanel() {
         className="ipanel-container"
         style={{
           opacity: 1 - getTranslation() / 100,
-          backgroundColor: `${COLORS.primary}88`,
+          backgroundColor: `#00000088`,
         }}
       >
         <div className="ipanel-wrapper">

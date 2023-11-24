@@ -9,6 +9,7 @@
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(5px);
+    font-family: "PressStyle";
   }
 
   &-content {
@@ -20,21 +21,27 @@
 
   &-score {
     margin: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    text-shadow: #665bff 2px 2px 0px;
+
     font-size: 8rem;
     color: white;
   }
 
   &-flag {
+
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
 
     h2 {
       margin: 0;
-      font-size: 4rem;
+      font-size: 6em;
       text-align: center;
       color: white;
       mix-blend-mode: difference;
+      text-transform: uppercase;
+      text-shadow: #665bff 2px 2px 0px;
+
     }
 
     img {
@@ -43,6 +50,7 @@
       top: 50%;
       left: 50%;
       width: 7rem;
+      opacity: 0;
     }
   }
 
@@ -52,5 +60,7 @@
     margin-bottom: 1rem;
     text-align: center;
     color: white;
+    text-shadow: #665bff 2px 2px 0px;
+
   }
 }

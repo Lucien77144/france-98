@@ -59,7 +59,7 @@ export default function SoundProvider({ children }) {
       track_07: {
         audio: null,
         source: '/src/assets/audio/tracks/7.mp3',
-        volume: 2,
+        volume: 3.5,
       },
     },
     stadiumAmbiant: {
