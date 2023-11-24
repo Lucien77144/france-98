@@ -45,7 +45,7 @@ export default function Menu({ intro }) {
             onMouseLeave={() => setHoverStart(false)}
             onClick={() => startExp()}
           >
-            Start ⚽️ 👉 🥅
+            Start Experience
           </div>
         </div>
         <div className="scroll-action">
